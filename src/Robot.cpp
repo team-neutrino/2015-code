@@ -14,29 +14,52 @@ class Robot: public SampleRobot
 {
 
 public:
+	/**
+	 * Constructor
+	 */
 	Robot()
 	{
+
 	}
 
 	/**
-	 * Drive left & right motors for 2 seconds then stop
+	 * Robot Initialzation
+	 */
+	void RobotInit()
+	{
+
+	}
+
+	/**
+	 * Disabled mode
+	 */
+	void Disabled()
+	{
+
+	}
+
+	/**
+	 * Autonomous mode
 	 */
 	void Autonomous()
 	{
+
 	}
 
 	/**
-	 * Runs the motors with arcade steering.
+	 * Operator Control mode
 	 */
 	void OperatorControl()
 	{
+
 	}
 
 	/**
-	 * Runs during test mode
+	 * Test mode
 	 */
 	void Test()
 	{
+
 	}
 };
 
