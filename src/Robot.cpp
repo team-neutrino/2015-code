@@ -23,7 +23,7 @@ public:
 	}
 
 	/**
-	 * Robot Initialzation
+	 * Robot Initialization
 	 */
 	void RobotInit()
 	{
