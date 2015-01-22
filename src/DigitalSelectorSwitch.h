@@ -11,10 +11,12 @@ class DigitalSelectorSwitch
 {
 public:
 	DigitalSelectorSwitch();
+	int Read();
+
+private:
 	DigitalInput Input0;
 	DigitalInput Input1;
 	DigitalInput Input2;
 	DigitalInput Input3;
 
-	int Read();
 };
