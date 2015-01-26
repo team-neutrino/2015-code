@@ -37,27 +37,28 @@ void Constants::ReadFile()
 	if (!myfile.is_open())
 	{
 		DriverStation::ReportError("No Constants file found \n");
-	}
-	else
+	} else
 	{
 		// read the file in line by line
 		while (getline(myfile, line))
 		{
 			// find the name and value in the line
 			int pos = line.find(':');
-			std::string readName = line.substr (0, pos);
+			std::string readName = line.substr(0, pos);
 			float readValue = atof(line.substr(pos + 1).c_str());
 
 			// make a flag to tell if the the constant actually exists
 			bool constantFound = false;
 
 			// search for the constant and override it
-			for(int i = 0; i < NUM_CONST; i++)
+			for (int i = 0; i < NUM_CONST; i++)
 			{
-				if(ConstantsList[i].name == readName)
+				if (ConstantsList[i].name == readName)
 				{
 					ConstantsList[i].value = readValue;
-					DriverStation::ReportError("Overriding constant [" + readName + "] with [" + std::to_string(readValue) + "]\n");
+					DriverStation::ReportError(
+							"Overriding constant [" + readName + "] with ["
+									+ std::to_string(readValue) + "]\n");
 
 					constantFound = true;
 					break;
@@ -67,7 +68,9 @@ void Constants::ReadFile()
 			// the constant in the text file doesn't exist
 			if (!constantFound)
 			{
-				DriverStation::ReportError("Can not override not existent constant [" + readName + "]\n");
+				DriverStation::ReportError(
+						"Can not override not existent constant [" + readName
+								+ "]\n");
 			}
 		}
 
@@ -78,14 +81,15 @@ void Constants::ReadFile()
 
 float Constants::GetConstant(std::string constName)
 {
-	for(int i = 0; i < NUM_CONST; i++)
+	for (int i = 0; i < NUM_CONST; i++)
 	{
-		if(ConstantsList[i].name == constName)
+		if (ConstantsList[i].name == constName)
 		{
 			return ConstantsList[i].value;
 		}
 	}
 
-	DriverStation::ReportError("No constant found with the name [" + constName + "]\n");
+	DriverStation::ReportError(
+			"No constant found with the name [" + constName + "]\n");
 	return 0;
 }
