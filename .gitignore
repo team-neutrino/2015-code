@@ -1,3 +1,7 @@
 Debug/*
 
 *.DS_Store
+/Debug/
+
+.settings/*
+.cproject
