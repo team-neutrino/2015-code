@@ -36,9 +36,7 @@ void Constants::ReadFile()
 	// check if file actually exists
 	if (!myfile.is_open())
 	{
-		std::string tmp = "No Constants file found";
-		DriverStation::ReportError(tmp);
-		DriverStation::ReportError('\n');
+		DriverStation::ReportError("No Constants file found \n");
 	}
 	else
 	{
@@ -56,11 +54,7 @@ void Constants::ReadFile()
 				if(ConstantsList[i].name == readName)
 				{
 					ConstantsList[i].value = readValue;
-					char tmp[128];
-					snprintf(tmp, 128, "Overriding constant [%s] with [%.2f] \n", readName.c_str(), readValue);
-
-					//std::string foo = std::string("Overriding constant [") + readName + std::string("] with [") + readValue + "]";
-					DriverStation::ReportError(tmp);
+					DriverStation::ReportError("Overriding constant [" + readName + "] with [" + std::to_string(readValue) + "]\n");
 				}
 			}
 		}
