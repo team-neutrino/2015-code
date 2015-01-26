@@ -48,6 +48,9 @@ void Constants::ReadFile()
 			std::string readName = line.substr (0, pos);
 			float readValue = atof(line.substr(pos + 1).c_str());
 
+			// make a flag to tell if the the constant actually exists
+			bool constantFound = false;
+
 			// search for the constant and override it
 			for(int i = 0; i < NUM_CONST; i++)
 			{
@@ -55,7 +58,16 @@ void Constants::ReadFile()
 				{
 					ConstantsList[i].value = readValue;
 					DriverStation::ReportError("Overriding constant [" + readName + "] with [" + std::to_string(readValue) + "]\n");
+
+					constantFound = true;
+					break;
 				}
+			}
+
+			// the constant in the text file doesn't exist
+			if (!constantFound)
+			{
+				DriverStation::ReportError("Can not override not existent constant [" + readName + "]\n");
 			}
 		}
 
@@ -74,5 +86,6 @@ float Constants::GetConstant(std::string constName)
 		}
 	}
 
+	DriverStation::ReportError("No constant found with the name [" + constName + "]\n");
 	return 0;
 }
