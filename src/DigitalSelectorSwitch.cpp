@@ -15,6 +15,7 @@ DigitalSelectorSwitch::DigitalSelectorSwitch() :
 
 int DigitalSelectorSwitch::Read()
 {
-	return !Input0.Get() + 2 * !Input1.Get() + 4 * !Input2.Get() + 8 * !Input3.Get();
+	return !Input0.Get() + 2 * !Input1.Get() + 4 * !Input2.Get()
+			+ 8 * !Input3.Get();
 }
 
