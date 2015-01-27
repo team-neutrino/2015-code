@@ -7,21 +7,11 @@
 
 Constants::Constant Constants::ConstantsList[NUM_CONST] =
 {
-		// Main Constants
-		{"constant1", 23},
-		{"constant2", 48},
-		{"constant3", 25},
-		{"constant4", 22},
-
 		// Drive Constants
-		{"constant5", 3},
-		{"constant6", -46},
-		{"constant7", 23},
-		{"constant8", 6},
-
-		//Shooter Constants
-		{"constant9", 7},
-		{"constant10", 8}
+		{"DriveLeft1Channel", 0},
+		{"DriveLeft2Channel", 1},
+		{"DriveRight1Channel", 2},
+		{"DriveRight2Channel", 3},
 };
 
 void Constants::ReadFile()
