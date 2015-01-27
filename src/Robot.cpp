@@ -1,4 +1,5 @@
 #include "WPILib.h"
+#include "Constants.h"
 
 /**
  * This is a demo program showing the use of the RobotDrive class.
@@ -27,7 +28,7 @@ public:
 	 */
 	void RobotInit()
 	{
-
+		Constants::ReadFile();
 	}
 
 	/**
