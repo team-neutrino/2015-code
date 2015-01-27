@@ -9,7 +9,6 @@ public:
 	int Read();
 
 private:
-	DigitalSelectorSwitch();
 	DigitalInput Input0;
 	DigitalInput Input1;
 	DigitalInput Input2;
