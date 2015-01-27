@@ -1,14 +1,11 @@
-/*
- * Switch.cpp
- *
- *  Created on: Jan 16, 2015
- *      Author: Neutrino
- */
-
 #include "DigitalSelectorSwitch.h"
 
-DigitalSelectorSwitch::DigitalSelectorSwitch() :
-		Input0(0), Input1(1), Input2(2), Input3(3)
+DigitalSelectorSwitch::DigitalSelectorSwitch(int input0Channel,
+		int input1Channel, int input2Channel, int input3Channel) :
+		Input0(input0Channel),
+		Input1(input1Channel),
+		Input2(input2Channel),
+		Input3(input3Channel)
 {
 
 }

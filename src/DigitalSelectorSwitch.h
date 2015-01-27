@@ -1,19 +1,15 @@
-/*
- * Switch.h
- *
- *  Created on: Jan 16, 2015
- *      Author: Neutrino
- */
 #include "WPILib.h"
 #pragma once
 
 class DigitalSelectorSwitch
 {
 public:
-	DigitalSelectorSwitch();
+	DigitalSelectorSwitch(int input0Channel, int input1Channel,
+			int input2Channel, int input3Channel);
 	int Read();
 
 private:
+	DigitalSelectorSwitch();
 	DigitalInput Input0;
 	DigitalInput Input1;
 	DigitalInput Input2;
