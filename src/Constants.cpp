@@ -16,6 +16,12 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 		// Lift Constants
 		{"LiftMotor1Channel"},
 		{"LiftMotor2Channel"},
+
+		//Sucky Constants
+		{"SuckyMotorRightChannel"},
+		{"SuckyMotorLeftChannel"},
+		{"SuckyMotorInSpeed"},
+		{"SuckyMotorOutSpeed"},
 };
 
 void Constants::ReadFile()

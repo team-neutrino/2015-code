@@ -1,10 +1,20 @@
-/*
- * Sucky.cpp
- *
- *  Created on: Jan 28, 2015
- *      Author: tianxinxu
- */
+#include "Sucky.h"
 
+Sucky::Sucky():
+		SuckyMotorLeft(Constants::GetConstant("SuckyMotorLeftChannel")),
+		SuckyMotorRight(Constants::GetConstant("SuckyMotorRightChannel"))
+{
 
+}
 
+void Sucky::SuckIn()
+{
+	SuckyMotorRight.Set(Constants::GetConstant("SuckyMotorInSpeed"));
+	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorInSpeed"));
+}
 
+void Sucky::SpitOut()
+{
+	SuckyMotorRight.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
+	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
+}
