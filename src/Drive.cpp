@@ -1,7 +1,7 @@
 #include "Drive.h"
 #include "Constants.h"
 
-Drive::Drive() :
+Drive::Drive():
 		MotorLeft1(Constants::GetConstant("DriveLeft1Channel")),
 		MotorLeft2(Constants::GetConstant("DriveLeft2Channel")),
 		MotorRight1(Constants::GetConstant("DriveRight1Channel")),

@@ -12,6 +12,10 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 		{"DriveLeft2Channel", 1},
 		{"DriveRight1Channel", 2},
 		{"DriveRight2Channel", 3},
+
+		// Lift Constants
+		{"LiftMotor1Channel"},
+		{"LiftMotor2Channel"},
 };
 
 void Constants::ReadFile()
