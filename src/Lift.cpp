@@ -4,8 +4,8 @@
 Lift::Lift ():
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
-		BeamBreak(Constants::GetConstant("BeamBreakSensor")),
-		LimitSwitch(Constants::GetConstant("LimitSwitchSensor"))
+		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
+		LimitSwitch(Constants::GetConstant("LimitSwitchChannel"))
 {
 
 }
