@@ -5,3 +5,4 @@ Debug/*
 
 .settings/*
 .cproject
+/sysProps.xml
