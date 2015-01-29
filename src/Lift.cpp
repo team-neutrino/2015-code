@@ -4,7 +4,7 @@
 Lift::Lift ():
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
-		BeamBreak(Constants::GetConstant("BeamBreakSensor"))
+		BeamBreak(Constants::GetConstant("BeamBreakSensor")),
 		LimitSwitch(Constants::GetConstant("LimitSwitchSensor"))
 {
 
@@ -28,6 +28,7 @@ void Lift::GoUp(int levels)
 		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
 		LiftMotor2.Set(Constants::GetConstant("LiftMotorUpSpeed"));
 	}
+	levels++;
 
 }
 
@@ -39,6 +40,7 @@ void Lift::GoDown(int levels)
  		LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
  		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
   }
+  levels = 0;
 
 }
 
