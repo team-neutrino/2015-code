@@ -11,19 +11,19 @@ Lift::Lift ():
 
 void Lift::GoUp(int levels)
 {
-	int beamBreakCount = 0;
-	while(beamBreakCount <= 3 && )
+	while(BeamBreak.Get() )
 	{
-		if (!BeamBreak.Get())
-		{
-			beamBreakCount++;
-		}
 		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
 		LiftMotor2.Set(Constants::GetConstant("LiftMotorUpSpeed"));
 	}
 
-	while(!BeamBreak.Get())
+	int BeamBreakCount = 0;
+	while(BeamBreakCount <= 5)
 	{
+		if (BeamBreak.Get())
+		{
+			BeamBreakCount++;
+		}
 		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
 		LiftMotor2.Set(Constants::GetConstant("LiftMotorUpSpeed"));
 	}
