@@ -5,6 +5,7 @@ Lift::Lift ():
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
 		BeamBreak(Constants::GetConstant("BeamBreakSensor"))
+		LimitSwitch(Constants::GetConstant("LimitSwitchSensor"))
 {
 
 }
@@ -32,12 +33,13 @@ void Lift::GoUp(int levels)
 
 void Lift::GoDown(int levels)
 {
-/*
- * while(limit switch is not pressed)
- * {
- * 		Both motors spin backward and it goes down
- * }
- */
+
+  while(!LimitSwitch.Get())
+  {
+ 		LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+ 		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+  }
+
 }
 
 int Lift::GetLevel()

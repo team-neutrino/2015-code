@@ -20,6 +20,7 @@ private:
 	Victor LiftMotor1;
 	Victor LiftMotor2;
 	DigitalInput BeamBreak;
+	DigitalInput LimitSwitch;
 };
 
 
