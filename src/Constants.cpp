@@ -16,6 +16,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 		// Lift Constants
 		{"LiftMotor1Channel"},
 		{"LiftMotor2Channel"},
+		{"BeamBreakSensor"},
+		{"LiftMotorUpSpeed"},
 
 		//Sucky Constants
 		{"SuckyMotorRightChannel"},
