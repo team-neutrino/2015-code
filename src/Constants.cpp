@@ -14,14 +14,20 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 		{"DriveRight2Channel", 3},
 
 		// Lift Constants
-		{"LiftMotor1Channel"},
-		{"LiftMotor2Channel"},
+		{"LiftMotor1Channel", 1},
+		{"LiftMotor2Channel", 2},
 
-		{"LiftMotorUpSpeed"},
-		{"LiftMotorDownSpeed"},
+		{"LiftMotorUpSpeed", 0.5},
+		{"LiftMotorDownSpeed", 0.5},
 
-		{"BeamBreakChannel"},
-		{"LimitMotorChannel"},
+		{"BeamBreakChannel", 9},
+		{"LimitMotorChannel", 7},
+
+		{"LiftTimeOut", 10},
+		{"LiftSampleRate", 0.2},
+		{"LiftNumSamples", 5},
+		{"LiftResetTimeOut", 20},
+		{"LiftMaxLevel", 5},
 
 		//Sucky Constants
 		{"SuckyMotorRightChannel", 4},

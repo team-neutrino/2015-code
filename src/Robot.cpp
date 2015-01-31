@@ -1,4 +1,5 @@
 #include "WPILib.h"
+#include "Lift.h"
 #include "Constants.h"
 
 /**
@@ -18,7 +19,15 @@ public:
 	/**
 	 * Constructor
 	 */
-	Robot()
+	Joystick Joy;
+	Talon Motor;
+	Lift LiftInst;
+
+	Robot():
+		Joy(0),
+		Motor(0),
+		LiftInst()
+
 	{
 
 	}
@@ -28,7 +37,8 @@ public:
 	 */
 	void RobotInit()
 	{
-		Constants::ReadFile();
+	//	Constants::ReadFile();
+		DriverStation::ReportError("test");
 	}
 
 	/**
@@ -52,16 +62,24 @@ public:
 	 */
 	void OperatorControl()
 	{
+		while(true)
+		{
+			if(Joy.GetRawButton(1))
+			{
+				LiftInst.GoUp(0);
+				std::cout << "Current Level:" << LiftInst.GetLevels() << std::endl;
+			}
 
-	}
+		}
+}
 
-	/**
-	 * Test mode
-	 */
-	void Test()
-	{
+/**
+ * Test mode
+ */
+void Test()
+{
 
-	}
+}
 };
 
 START_ROBOT_CLASS(Robot);

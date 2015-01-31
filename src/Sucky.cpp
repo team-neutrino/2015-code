@@ -1,4 +1,5 @@
 #include "Sucky.h"
+#include "Constants.h"
 
 Sucky::Sucky():
 		SuckyMotorLeft(Constants::GetConstant("SuckyMotorLeftChannel")),

@@ -1,9 +1,4 @@
-/*
- * Lift.h
- *
- *  Created on: Jan 27, 2015
- *      Author: tianxinxu
- */
+
 #include "WPILib.h"
 #pragma once
 
@@ -13,14 +8,16 @@ public:
 	Lift ();
 	void GoUp(int levels);
 	void GoDown(int levels);
-	int GetLevel();
+	void Reset();
+	int GetLevels();
 	bool Lifting();
 
 private:
-	Victor LiftMotor1;
-	Victor LiftMotor2;
+	Talon LiftMotor1;
+	Talon LiftMotor2;
 	DigitalInput BeamBreak;
 	DigitalInput LimitSwitch;
+	int CurrentLevel;
 };
 
 
