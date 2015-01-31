@@ -9,6 +9,8 @@ public:
 	void LevelSet(int levels);
 	void Reset();
 	bool Lifting();
+	void ManualOverride(bool up);
+	void EndManualOverride();
 
 private:
 	Talon LiftMotor1;
@@ -18,6 +20,7 @@ private:
 	DigitalInput LimitSwitchTop;
 	void MoveLevel(bool up);
 	bool IsLifting;
+	bool OverrideEnabled;
 };
 
 

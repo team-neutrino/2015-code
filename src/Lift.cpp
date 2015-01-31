@@ -6,7 +6,8 @@ Lift::Lift ():
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
-		LimitSwitch(Constants::GetConstant("LimitSwitchChannel")),
+		LimitSwitchBottom(Constants::GetConstant("LimitSwitchTopChannel")),
+		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
 		IsLifting(false)
 {
 
@@ -14,6 +15,10 @@ Lift::Lift ():
 
 void Lift::LevelSet(int levels)
 {
+	if (OverrideEnabled)
+	{
+		return;
+	}
 
 	IsLifting = true;
 
@@ -27,11 +32,19 @@ void Lift::LevelSet(int levels)
 		MoveLevel(false);
 	}
 
-	IsLifting = false;
+	if (!OverrideEnabled)
+	{
+		IsLifting = false;
+	}
 }
 
 void Lift::MoveLevel(bool up)
 {
+	if (OverrideEnabled)
+	{
+		return;
+	}
+
 	if (up)
 	{
 		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
@@ -49,7 +62,8 @@ void Lift::MoveLevel(bool up)
 	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
 			(!LimitSwitchTop.Get()) &&
-			(!LimitSwitchBottom.Get()))
+			(!LimitSwitchBottom.Get()) &&
+			(!OverrideEnabled))
 	{
 		if (!BeamBreak.Get())
 		{
@@ -72,7 +86,8 @@ void Lift::MoveLevel(bool up)
 	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
 			(!LimitSwitchTop.Get()) &&
-			(!LimitSwitchBottom.Get()))
+			(!LimitSwitchBottom.Get()) &&
+			(!OverrideEnabled))
 	{
 		if (BeamBreak.Get())
 		{
@@ -85,38 +100,86 @@ void Lift::MoveLevel(bool up)
 		Wait(Constants::GetConstant("LiftSampleRate"));
 
 	}
+
 	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
 	{
 		DriverStation::ReportError("Lift Timeout: 2\n");
 	}
-	LiftMotor1.Set(0);
-	LiftMotor2.Set(0);
+
+	if (!OverrideEnabled)
+	{
+		LiftMotor1.Set(0);
+		LiftMotor2.Set(0);
+	}
+
 }
 
 
 void Lift::Reset()
 {
+	if(OverrideEnabled)
+	{
+		return;
+	}
+
 	IsLifting = true;
 
-	double startTime = GetTime();
+	LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
 
-	while(!LimitSwitchBottom.Get() && ((GetTime() - startTime) <= Constants::GetConstant("LiftResetTimeOut")))
+	double startTime = GetTime();
+	while(!LimitSwitchBottom.Get() &&
+			((GetTime() - startTime) <= Constants::GetConstant("LiftResetTimeOut")) &&
+			(!OverrideEnabled))
 	{
- 		LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
- 		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+
 	}
-	LiftMotor1.Set(0);
-	LiftMotor2.Set(0);
+
+	if(!OverrideEnabled)
+	{
+		LiftMotor1.Set(0);
+		LiftMotor2.Set(0);
+		IsLifting = false;
+	}
 
 	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
 	{
 		DriverStation::ReportError("Lift Reset Timeout\n");
 	}
 
-	IsLifting = false;
 
 }
 
+
+void Lift::ManualOverride(bool up)
+{
+	OverrideEnabled = true;
+	IsLifting = true;
+
+	if (up)
+	{
+		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
+		LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpSpeed"));
+	}
+	else
+	{
+		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
+		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	}
+
+}
+
+void Lift::EndManualOverride()
+{
+	if (OverrideEnabled)
+	{
+		OverrideEnabled = false;
+		IsLifting = false;
+
+		LiftMotor1.Set(0);
+		LiftMotor2.Set(0);
+	}
+}
 
 bool Lift::Lifting()
 {
