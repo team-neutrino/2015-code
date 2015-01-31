@@ -66,8 +66,17 @@ public:
 		{
 			if(Joy.GetRawButton(1))
 			{
-				LiftInst.GoUp(0);
-				std::cout << "Current Level:" << LiftInst.GetLevels() << std::endl;
+				LiftInst.LevelSet(2);
+			}
+
+			if(Joy.GetRawButton(2))
+			{
+				LiftInst.Reset();
+			}
+
+			if(Joy.GetRawButton(3))
+			{
+				LiftInst.LevelSet(-2);
 			}
 
 		}

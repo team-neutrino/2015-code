@@ -21,13 +21,12 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 		{"LiftMotorDownSpeed", 0.5},
 
 		{"BeamBreakChannel", 9},
-		{"LimitMotorChannel", 7},
+		{"LimitSwitchChannel", 7},
 
 		{"LiftTimeOut", 10},
-		{"LiftSampleRate", 0.2},
+		{"LiftSampleRate", 0.01},
 		{"LiftNumSamples", 5},
-		{"LiftResetTimeOut", 20},
-		{"LiftMaxLevel", 5},
+		{"LiftResetTimeOut", 5},
 
 		//Sucky Constants
 		{"SuckyMotorRightChannel", 4},

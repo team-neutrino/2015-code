@@ -7,25 +7,49 @@ Lift::Lift ():
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
 		LimitSwitch(Constants::GetConstant("LimitSwitchChannel")),
-		CurrentLevel(0)
+		IsLifting(false)
 {
 
 }
 
-void Lift::GoUp(int levels)
+void Lift::LevelSet(int levels)
 {
-	if (CurrentLevel >= Constants::GetConstant("LiftMaxLevel"))
+
+	IsLifting = true;
+
+	for (int i = 0; i < levels; i++)
 	{
-		return;
+		MoveLevel(true);
 	}
 
-	LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
-	LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpSpeed"));
+	for (int i = 0; i > levels; i--)
+	{
+		MoveLevel(false);
+	}
+
+	IsLifting = false;
+}
+
+void Lift::MoveLevel(bool up)
+{
+	if (up)
+	{
+		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
+		LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpSpeed"));
+	}
+	else
+	{
+		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
+		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	}
 
 	//Runs the motor until we don't see the tape
 	double startTime = GetTime();
 	int BeamBreakCount = 0;
-	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) && ((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")))
+	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
+			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
+			(!LimitSwitchTop.Get()) &&
+			(!LimitSwitchBottom.Get()))
 	{
 		if (!BeamBreak.Get())
 		{
@@ -45,7 +69,10 @@ void Lift::GoUp(int levels)
 	//Runs the motor until we see the tape
 	startTime = GetTime();
 	BeamBreakCount = 0;
-	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) && ((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")))
+	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
+			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
+			(!LimitSwitchTop.Get()) &&
+			(!LimitSwitchBottom.Get()))
 	{
 		if (BeamBreak.Get())
 		{
@@ -64,83 +91,34 @@ void Lift::GoUp(int levels)
 	}
 	LiftMotor1.Set(0);
 	LiftMotor2.Set(0);
-
-	CurrentLevel++;
 }
 
-/*void Lift::GoDown(int levels)
-{
-	LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
-	LiftMotor2.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
 
-	double startTime = GetTime();
-
-	//Runs the motor until we don't see the tape
-	int BeamBreakCount = 0;
-	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) && ((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")))
-	{
-		if (!BeamBreak.Get())
-		{
-			BeamBreakCount++;
-		}
-		else
-		{
-			BeamBreakCount = 0;
-		}
-		Wait(Constants::GetConstant("LiftSampleRate"));
-	}
-	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
-	{
-		DriverStation::ReportError("Lift Timeout: 1\n");
-	}
-
-	//Runs the motor until we see the tape
-	startTime = GetTime();
-	BeamBreakCount = 0;
-	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) && ((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")))
-	{
-		if (BeamBreak.Get())
-		{
-			BeamBreakCount++;
-		}
-		else
-		{
-			BeamBreakCount = 0;
-		}
-		Wait(Constants::GetConstant("LiftSampleRate"));
-
-	}
-	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
-	{
-		DriverStation::ReportError("Lift Timeout: 2\n");
-	}
-	LiftMotor1.Set(0);
-	LiftMotor2.Set(0);
-
-	CurrentLevel++;
-}
-*/
-// This c
 void Lift::Reset()
 {
+	IsLifting = true;
+
 	double startTime = GetTime();
-	while(!LimitSwitch.Get() && ((GetTime() - startTime) <= Constants::GetConstant("LiftResetTimeOut")))
+
+	while(!LimitSwitchBottom.Get() && ((GetTime() - startTime) <= Constants::GetConstant("LiftResetTimeOut")))
 	{
  		LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
  		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
 	}
+	LiftMotor1.Set(0);
+	LiftMotor2.Set(0);
 
-  CurrentLevel = 0;
+	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
+	{
+		DriverStation::ReportError("Lift Reset Timeout\n");
+	}
+
+	IsLifting = false;
 
 }
 
-int Lift::GetLevels()
-{
-	return CurrentLevel;
-}
 
 bool Lift::Lifting()
 {
-
-	return true;
+	return IsLifting;
 }
