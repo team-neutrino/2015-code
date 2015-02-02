@@ -4,7 +4,13 @@
 class Constants
 {
 public:
+	/**
+	 * Reads in constants from file and overrides defaults.
+	 */
 	static void ReadFile();
+	/**
+	 * Returns the value of the constant with the given name.
+	 */
 	static float GetConstant(std::string constName);
 
 private:
@@ -17,4 +23,6 @@ private:
 	};
 
 	static Constant ConstantsList[NUM_CONST];
+
+	void override_const(std::string line);
 };

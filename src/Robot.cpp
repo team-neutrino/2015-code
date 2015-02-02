@@ -20,12 +20,10 @@ public:
 	 * Constructor
 	 */
 	Joystick Joy;
-	Talon Motor;
 	Lift LiftInst;
 
 	Robot():
 		Joy(0),
-		Motor(0),
 		LiftInst()
 
 	{
@@ -37,8 +35,7 @@ public:
 	 */
 	void RobotInit()
 	{
-	//	Constants::ReadFile();
-		DriverStation::ReportError("test");
+		Constants::ReadFile();
 	}
 
 	/**
@@ -80,15 +77,15 @@ public:
 			}
 
 		}
-}
+	}
 
-/**
- * Test mode
- */
-void Test()
-{
+	/**
+	 * Test mode
+	 */
+	void Test()
+	{
 
-}
+	}
 };
 
 START_ROBOT_CLASS(Robot);

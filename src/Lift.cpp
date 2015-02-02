@@ -8,7 +8,8 @@ Lift::Lift ():
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
 		LimitSwitchBottom(Constants::GetConstant("LimitSwitchTopChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
-		IsLifting(false)
+		IsLifting(false),
+		OverrideEnabled(false)
 {
 
 }
@@ -56,10 +57,10 @@ void Lift::MoveLevel(bool up)
 		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
 	}
 
-	//Runs the motor until we don't see the tape
+	// Runs the motor until we don't see the tape
 	double startTime = GetTime();
 	int BeamBreakCount = 0;
-	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
+	while (BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
 			(!LimitSwitchTop.Get()) &&
 			(!LimitSwitchBottom.Get()) &&
@@ -80,10 +81,10 @@ void Lift::MoveLevel(bool up)
 		DriverStation::ReportError("Lift Timeout: 1\n");
 	}
 
-	//Runs the motor until we see the tape
+	// Runs the motor until we see the tape
 	startTime = GetTime();
 	BeamBreakCount = 0;
-	while(BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
+	while (BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
 			(!LimitSwitchTop.Get()) &&
 			(!LimitSwitchBottom.Get()) &&
@@ -128,7 +129,7 @@ void Lift::Reset()
 	LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
 
 	double startTime = GetTime();
-	while(!LimitSwitchBottom.Get() &&
+	while (!LimitSwitchBottom.Get() &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftResetTimeOut")) &&
 			(!OverrideEnabled))
 	{

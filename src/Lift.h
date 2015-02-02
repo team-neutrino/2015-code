@@ -1,15 +1,30 @@
-
 #include "WPILib.h"
 #pragma once
 
 class Lift
 {
 public:
-	Lift ();
+	Lift();
+	/**
+	 * Moves the lift up/down the specified amount of levels.
+	 */
 	void LevelSet(int levels);
+	/**
+	 * Moves the lift to its bottom-most level.
+	 */
 	void Reset();
+	/**
+	 * Returns whether or not the robot is currently lifting.
+	 */
 	bool Lifting();
+	/**
+	 * Moves the lift up/down unconditionally until EndManualOverride is called
+	 * (ignores LevelSet and Reset calls).
+	 */
 	void ManualOverride(bool up);
+	/**
+	 * Disables Manual Override.
+	 */
 	void EndManualOverride();
 
 private:
@@ -22,9 +37,3 @@ private:
 	bool IsLifting;
 	bool OverrideEnabled;
 };
-
-
-
-
-
-
