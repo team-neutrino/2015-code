@@ -14,7 +14,7 @@ Lift::Lift ():
 
 }
 
-void Lift::LevelSet(int levels)
+void Lift::LevelChange(int levels)
 {
 	if (OverrideEnabled)
 	{

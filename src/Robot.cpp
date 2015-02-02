@@ -63,7 +63,7 @@ public:
 		{
 			if(Joy.GetRawButton(1))
 			{
-				LiftInst.LevelSet(2);
+				LiftInst.LevelChange(2);
 			}
 
 			if(Joy.GetRawButton(2))
@@ -73,7 +73,7 @@ public:
 
 			if(Joy.GetRawButton(3))
 			{
-				LiftInst.LevelSet(-2);
+				LiftInst.LevelChange(-2);
 			}
 
 		}
