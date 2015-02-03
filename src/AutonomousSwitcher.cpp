@@ -6,25 +6,29 @@ AutonomousSwitcher::AutonomousSwitcher():
 				Constants::GetConstant("AutonSwitchInput1Channel"),
 				Constants::GetConstant("AutonSwitchInput2Channel"),
 				Constants::GetConstant("AutonSwitchInput3Channel")),
-		DashboardThread(updateDashboard)
+		DashboardThread(&AutonomousSwitcher::updateDashboardThread, this)
 {
 
 }
 
-void AutonomousSwitcher::updateDashboard()
+void AutonomousSwitcher::updateDashboardThread()
 {
-	int mode = Switch.Read();
-
-	SmartDashboard::PutNumber("Autonomous Mode", mode);
-
-	switch (mode)
+	while (true)
 	{
-		case 0:
-			SmartDashboard::PutString("Autonomous Mode Description", "Do Nothing!");
-			break;
-		default:
-			SmartDashboard::PutString("Autonomous Mode Description", "Auto mode not implemented");
-			break;
+		int mode = Switch.Read();
+
+		SmartDashboard::PutNumber("Autonomous Mode", mode);
+
+		switch (mode)
+		{
+			case 0:
+				SmartDashboard::PutString("Autonomous Mode Description", "Do Nothing!");
+				break;
+			default:
+				SmartDashboard::PutString("Autonomous Mode Description", "Auto mode not implemented");
+				break;
+		}
+		Wait(1);
 	}
 }
 
