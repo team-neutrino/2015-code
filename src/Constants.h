@@ -8,6 +8,7 @@ public:
 	 * Reads in constants from file and overrides defaults.
 	 */
 	static void ReadFile();
+
 	/**
 	 * Returns the value of the constant with the given name.
 	 */

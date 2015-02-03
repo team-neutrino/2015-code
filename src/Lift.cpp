@@ -2,7 +2,7 @@
 #include "Constants.h"
 #include <stdlib.h>
 
-Lift::Lift ():
+Lift::Lift():
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
@@ -118,7 +118,7 @@ void Lift::MoveLevel(bool up)
 
 void Lift::Reset()
 {
-	if(OverrideEnabled)
+	if (OverrideEnabled)
 	{
 		return;
 	}
@@ -136,7 +136,7 @@ void Lift::Reset()
 
 	}
 
-	if(!OverrideEnabled)
+	if (!OverrideEnabled)
 	{
 		LiftMotor1.Set(0);
 		LiftMotor2.Set(0);

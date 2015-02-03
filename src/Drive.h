@@ -9,6 +9,7 @@ public:
 	 * Sets the left motor speed.
 	 */
 	void SetLeft(float speed);
+
 	/**
 	 * Sets the right motor speed.
 	 */
