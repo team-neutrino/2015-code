@@ -19,7 +19,6 @@ void AutonomousSwitcher::updateDashboard()
 	{
 		case 0:
 			SmartDashboard::PutString("Autonomous Mode Description", "Do Nothing!");
-
 			break;
 		default:
 			SmartDashboard::PutString("Autonomous Mode Description", "Auto mode not implemented");
