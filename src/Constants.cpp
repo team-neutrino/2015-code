@@ -7,6 +7,12 @@
 
 Constants::Constant Constants::ConstantsList[NUM_CONST] =
 {
+	//Autonomous Constants
+	{"AutonSwitchInput0Channel", 0},
+	{"AutonSwitchInput1Channel", 1},
+	{"AutonSwitchInput2Channel", 2},
+	{"AutonSwitchInput3Channel", 3},
+
 	// Drive Constants
 	{"DriveLeft1Channel", 0},
 	{"DriveLeft2Channel", 1},

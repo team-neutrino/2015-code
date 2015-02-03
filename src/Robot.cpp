@@ -1,6 +1,7 @@
 #include "WPILib.h"
 #include "Lift.h"
 #include "Constants.h"
+#include "AutonomousSwitcher.h"
 
 /**
  * This is a demo program showing the use of the RobotDrive class.
@@ -21,10 +22,12 @@ public:
 	 */
 	Joystick Joy;
 	Lift LiftInst;
+	AutonomousSwitcher AutoSwitch;
 
 	Robot():
 		Joy(0),
-		LiftInst()
+		LiftInst(),
+		AutoSwitch()
 
 	{
 
@@ -51,7 +54,7 @@ public:
 	 */
 	void Autonomous()
 	{
-
+		AutoSwitch.RunAuto();
 	}
 
 	/**

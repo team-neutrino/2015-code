@@ -1,7 +1,7 @@
 #include "DigitalSelectorSwitch.h"
 
 DigitalSelectorSwitch::DigitalSelectorSwitch(int input0Channel,
-		int input1Channel, int input2Channel, int input3Channel) :
+		int input1Channel, int input2Channel, int input3Channel):
 		Input0(input0Channel),
 		Input1(input1Channel),
 		Input2(input2Channel),
