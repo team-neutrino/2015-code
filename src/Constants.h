@@ -25,5 +25,5 @@ private:
 
 	static Constant ConstantsList[NUM_CONST];
 
-	static void override_const(std::string line);
+	static void overrideConst(std::string line);
 };

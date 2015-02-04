@@ -49,7 +49,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
  * Attempts to override constant with name and value in the given string.
  * Prints an error to the driver station if constant doesn't exist.
  */
-void Constants::override_const(std::string line) {
+void Constants::overrideConst(std::string line) {
 	// find the name and value in the line
 	int pos = line.find(':');
 	std::string readName = line.substr(0, pos);
@@ -100,7 +100,7 @@ void Constants::ReadFile()
 		// read the file in line by line
 		while (getline(myfile, line))
 		{
-			override_const(line);
+			overrideConst(line);
 		}
 
 		// close the file
