@@ -38,7 +38,14 @@ private:
 	DigitalInput BeamBreak;
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
+	std::thread LiftThread;
+	void ResetCalledByThread();
+	void LevelChangeCalledByThread(int levels);
 	void MoveLevel(bool up);
 	bool IsLifting;
 	bool OverrideEnabled;
+
+	void LiftThreadRunnable();
+	int CurrentTask;
+
 };

@@ -35,6 +35,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftNumSamples", 5},
 	{"LiftResetTimeOut", 5},
 
+	{"LiftThreadWaitTime", 0.05},
+
 	//Sucky Constants
 	{"SuckyMotorRightChannel", 6},
 	{"SuckyMotorLeftChannel", 7},

@@ -64,6 +64,7 @@ public:
 	{
 		while(true)
 		{
+			std::cout << "The thread is working!" << std::endl;
 			if(Joy.GetRawButton(1))
 			{
 				LiftInst.LevelChange(2);
@@ -78,6 +79,7 @@ public:
 			{
 				LiftInst.LevelChange(-2);
 			}
+			Wait(.2);
 
 		}
 	}

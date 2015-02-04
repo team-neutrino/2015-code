@@ -9,12 +9,25 @@ Lift::Lift():
 		LimitSwitchBottom(Constants::GetConstant("LimitSwitchTopChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
 		IsLifting(false),
-		OverrideEnabled(false)
+		OverrideEnabled(false),
+		LiftThread(&Lift::LiftThreadRunnable, this),
+		CurrentTask(0)
+
 {
 
 }
 
 void Lift::LevelChange(int levels)
+{
+	CurrentTask = levels;
+}
+
+void Lift::Reset()
+{
+	CurrentTask = 6;
+}
+
+void Lift::LevelChangeCalledByThread(int levels)
 {
 	if (OverrideEnabled)
 	{
@@ -115,8 +128,7 @@ void Lift::MoveLevel(bool up)
 
 }
 
-
-void Lift::Reset()
+void Lift::ResetCalledByThread()
 {
 	if (OverrideEnabled)
 	{
@@ -151,7 +163,6 @@ void Lift::Reset()
 
 }
 
-
 void Lift::ManualOverride(bool up)
 {
 	OverrideEnabled = true;
@@ -185,4 +196,24 @@ void Lift::EndManualOverride()
 bool Lift::Lifting()
 {
 	return IsLifting;
+}
+
+void Lift::LiftThreadRunnable()
+{
+	while(true)
+	{
+		if (CurrentTask == 6)
+		{
+			ResetCalledByThread();
+			CurrentTask = 0;
+		}
+
+		else if(CurrentTask != 0)
+		{
+			LevelChangeCalledByThread(CurrentTask);
+			CurrentTask = 0;
+		}
+		Wait(Constants::GetConstant("LiftThreadWaitTime"));
+
+	}
 }
