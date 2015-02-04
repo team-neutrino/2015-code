@@ -23,7 +23,7 @@ void Lift::LevelChange(int levels)
 
 void Lift::Reset()
 {
-	CurrentTask = 6;
+	CurrentTask = RESET;
 }
 
 void Lift::ManualOverride(bool up)
@@ -201,18 +201,17 @@ void Lift::liftThreadRunnable()
 {
 	while(true)
 	{
-		if (CurrentTask == 6)
+		if (CurrentTask == RESET)
 		{
 			resetCalledByThread();
 			CurrentTask = 0;
 		}
-
 		else if(CurrentTask != 0)
 		{
 			levelChangeCalledByThread(CurrentTask);
 			CurrentTask = 0;
 		}
-		Wait(Constants::GetConstant("LiftThreadWaitTime"));
 
+		Wait(Constants::GetConstant("LiftThreadWaitTime"));
 	}
 }
