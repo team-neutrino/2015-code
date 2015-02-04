@@ -39,12 +39,12 @@ private:
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
 	std::thread LiftThread;
-	void ResetCalledByThread();
-	void LevelChangeCalledByThread(int levels);
-	void MoveLevel(bool up);
+	void resetCalledByThread();
+	void levelChangeCalledByThread(int levels);
+	void moveLevel(bool up);
 	bool IsLifting;
 	bool OverrideEnabled;
-	void LiftThreadRunnable();
+	void liftThreadRunnable();
 	int CurrentTask;
 
 };

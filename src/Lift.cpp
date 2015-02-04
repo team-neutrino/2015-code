@@ -12,7 +12,6 @@ Lift::Lift():
 		IsLifting(false),
 		OverrideEnabled(false),
 		CurrentTask(0)
-
 {
 
 }
@@ -27,7 +26,42 @@ void Lift::Reset()
 	CurrentTask = 6;
 }
 
-void Lift::LevelChangeCalledByThread(int levels)
+void Lift::ManualOverride(bool up)
+{
+	OverrideEnabled = true;
+	IsLifting = true;
+
+	if (up)
+	{
+		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
+		LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpSpeed"));
+	}
+	else
+	{
+		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
+		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	}
+
+}
+
+void Lift::EndManualOverride()
+{
+	if (OverrideEnabled)
+	{
+		OverrideEnabled = false;
+		IsLifting = false;
+
+		LiftMotor1.Set(0);
+		LiftMotor2.Set(0);
+	}
+}
+
+bool Lift::Lifting()
+{
+	return IsLifting;
+}
+
+void Lift::levelChangeCalledByThread(int levels)
 {
 	if (OverrideEnabled)
 	{
@@ -38,12 +72,12 @@ void Lift::LevelChangeCalledByThread(int levels)
 
 	for (int i = 0; i < levels; i++)
 	{
-		MoveLevel(true);
+		moveLevel(true);
 	}
 
 	for (int i = 0; i > levels; i--)
 	{
-		MoveLevel(false);
+		moveLevel(false);
 	}
 
 	if (!OverrideEnabled)
@@ -52,7 +86,7 @@ void Lift::LevelChangeCalledByThread(int levels)
 	}
 }
 
-void Lift::MoveLevel(bool up)
+void Lift::moveLevel(bool up)
 {
 	if (OverrideEnabled)
 	{
@@ -128,7 +162,7 @@ void Lift::MoveLevel(bool up)
 
 }
 
-void Lift::ResetCalledByThread()
+void Lift::resetCalledByThread()
 {
 	if (OverrideEnabled)
 	{
@@ -163,54 +197,19 @@ void Lift::ResetCalledByThread()
 
 }
 
-void Lift::ManualOverride(bool up)
-{
-	OverrideEnabled = true;
-	IsLifting = true;
-
-	if (up)
-	{
-		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
-		LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpSpeed"));
-	}
-	else
-	{
-		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
-		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
-	}
-
-}
-
-void Lift::EndManualOverride()
-{
-	if (OverrideEnabled)
-	{
-		OverrideEnabled = false;
-		IsLifting = false;
-
-		LiftMotor1.Set(0);
-		LiftMotor2.Set(0);
-	}
-}
-
-bool Lift::Lifting()
-{
-	return IsLifting;
-}
-
-void Lift::LiftThreadRunnable()
+void Lift::liftThreadRunnable()
 {
 	while(true)
 	{
 		if (CurrentTask == 6)
 		{
-			ResetCalledByThread();
+			resetCalledByThread();
 			CurrentTask = 0;
 		}
 
 		else if(CurrentTask != 0)
 		{
-			LevelChangeCalledByThread(CurrentTask);
+			levelChangeCalledByThread(CurrentTask);
 			CurrentTask = 0;
 		}
 		Wait(Constants::GetConstant("LiftThreadWaitTime"));
