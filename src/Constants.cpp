@@ -26,8 +26,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftMotorUpSpeed", 0.5},
 	{"LiftMotorDownSpeed", 0.5},
 
-	{"BeamBreakChannel", 10},
-	{"LimitSwitchTopChannel", 11},
+	{"BeamBreakChannel", 4},
+	{"LimitSwitchTopChannel", 5},
 	{"LimitSwitchBottomChannel", 6},
 
 	{"LiftTimeOut", 10},
