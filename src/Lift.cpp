@@ -6,11 +6,11 @@ Lift::Lift():
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
-		LimitSwitchBottom(Constants::GetConstant("LimitSwitchTopChannel")),
+		LimitSwitchBottom(Constants::GetConstant("LimitSwitchBottomChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
+		//LiftThread(&Lift::LiftThreadRunnable, this),
 		IsLifting(false),
 		OverrideEnabled(false),
-		LiftThread(&Lift::LiftThreadRunnable, this),
 		CurrentTask(0)
 
 {

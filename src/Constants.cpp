@@ -26,8 +26,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftMotorUpSpeed", 0.5},
 	{"LiftMotorDownSpeed", 0.5},
 
-	{"BeamBreakChannel", 4},
-	{"LimitSwitchTopChannel", 5},
+	{"BeamBreakChannel", 10},
+	{"LimitSwitchTopChannel", 11},
 	{"LimitSwitchBottomChannel", 6},
 
 	{"LiftTimeOut", 10},
@@ -111,16 +111,21 @@ void Constants::ReadFile()
 float Constants::GetConstant(std::string constName)
 {
 	float ret = 0;
+	bool ConstantFound = false;
 	for (int i = 0; i < NUM_CONST; i++)
 	{
 		if (ConstantsList[i].name == constName)
 		{
 			ret = ConstantsList[i].value;
+			ConstantFound = true;
 			break;
 		}
 	}
-
-	DriverStation::ReportError(
+	if(!ConstantFound)
+	{
+		DriverStation::ReportError(
 			"No constant found with the name [" + constName + "]\n");
+	}
+
 	return ret;
 }

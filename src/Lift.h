@@ -44,7 +44,6 @@ private:
 	void MoveLevel(bool up);
 	bool IsLifting;
 	bool OverrideEnabled;
-
 	void LiftThreadRunnable();
 	int CurrentTask;
 
