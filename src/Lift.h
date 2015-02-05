@@ -38,7 +38,7 @@ private:
 	DigitalInput BeamBreak;
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
-	std::thread LiftThread;
+//	Task LiftThread;
 	const int RESET = 100;
 
 	void resetCalledByThread();
@@ -46,7 +46,6 @@ private:
 	void moveLevel(bool up);
 	bool IsLifting;
 	bool OverrideEnabled;
-	void liftThreadRunnable();
+	void liftThreadRunnable(uint32_t argPtr);
 	int CurrentTask;
-
 };
