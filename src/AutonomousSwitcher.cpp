@@ -1,5 +1,6 @@
 #include "AutonomousSwitcher.h"
 #include "Constants.h"
+#include "DriverOutputs.h"
 
 AutonomousSwitcher::AutonomousSwitcher():
 		Switch(Constants::GetConstant("AutonSwitchInput0Channel"),
@@ -13,21 +14,29 @@ AutonomousSwitcher::AutonomousSwitcher():
 
 void AutonomousSwitcher::updateDashboardThread()
 {
+	int mode;
+	int modePrev;
 	while (true)
 	{
-		int mode = Switch.Read();
-		SmartDashboard::PutNumber("Autonomous Mode", mode);
-
-		switch (mode)
+		mode = Switch.Read();
+		if(mode != modePrev)
 		{
-			case 0:
-				SmartDashboard::PutString("Autonomous Mode Description", "Do Nothing!");
-				break;
-			default:
-				SmartDashboard::PutString("Autonomous Mode Description", "Auto mode not implemented");
-				break;
+			DriverOutputs::UpdateSmartDashboardNumber("Autonomous Mode", mode);
+
+			switch (mode)
+			{
+				case 0:
+					DriverOutputs::UpdateSmartDashboardString("Autonomous Mode Description", "Do Nothing!");
+					break;
+				default:
+					DriverOutputs::UpdateSmartDashboardString("Autonomous Mode Description", "Auto mode not implemented");
+					break;
+			}
+
+			modePrev = mode;
+
+			Wait(1);
 		}
-		Wait(1);
 	}
 }
 
