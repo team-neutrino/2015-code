@@ -1,6 +1,8 @@
 #include "WPILib.h"
 #include "DriverOutputs.h"
 
+const double DriverOutputs::COMP_TIME = 1426842000;
+
 bool DriverOutputs::UpdateErrors = false;
 std::queue<DriverOutputs::Error> DriverOutputs::ErrorQueue;
 std::mutex DriverOutputs::MtxError;
@@ -53,7 +55,7 @@ void DriverOutputs::sendErrors()
 		ErrorQueue.pop();
 		MtxError.unlock();
 		DriverStation::ReportError(
-				"[" + std::to_string(e.time) + "] " + e.message + '\n');
+				"[" + std::to_string(e.time - COMP_TIME) + "] " + e.message + '\n');
 		MtxError.lock();
 	}
 }

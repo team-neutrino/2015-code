@@ -17,6 +17,7 @@ public:
 	static void UpdateSmartDashboardString(std::string key, std::string string);
 
 private:
+	static const double COMP_TIME;
 	static void sendErrors();
 	static void sendDashboardData();
 
