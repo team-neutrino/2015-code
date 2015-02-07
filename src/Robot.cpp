@@ -68,23 +68,6 @@ public:
 			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
 			DriveInst.SetRight(JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
-
-			// Lift Test Code
-//			if(JoyLeft.GetRawButton(1))
-//			{
-//				LiftInst.LevelChange(2);
-//			}
-//
-//			if(JoyLeft.GetRawButton(2))
-//			{
-//				LiftInst.Reset();
-//			}
-//
-//			if(JoyLeft.GetRawButton(3))
-//			{
-//				LiftInst.LevelChange(-2);
-//			}
-
 			Wait(.001);
 		}
 	}
