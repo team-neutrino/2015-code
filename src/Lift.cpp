@@ -34,13 +34,13 @@ void Lift::ManualOverride(bool up)
 
 	if (up)
 	{
-		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpSpeed"));
-		LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpSpeed"));
+		LiftMotor1.Set(Constants::GetConstant("LiftMotorUpOverideSpeed"));
+		LiftMotor2.Set(-Constants::GetConstant("LiftMotorUpOverideSpeed"));
 	}
 	else
 	{
-		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
-		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownOverideSpeed"));
+		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownOverideSpeed"));
 	}
 
 }
