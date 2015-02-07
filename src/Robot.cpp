@@ -97,6 +97,10 @@ public:
 			{
 				LiftInst.ManualOverride(false);
 			}
+			else
+			{
+				LiftInst.EndManualOverride();
+			}
 
 			Wait(.001);
 		}
