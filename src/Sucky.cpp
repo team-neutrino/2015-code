@@ -10,14 +10,14 @@ Sucky::Sucky():
 
 void Sucky::SuckIn()
 {
-	SuckyMotorRight.Set(Constants::GetConstant("SuckyMotorInSpeed"));
-	SuckyMotorLeft.Set(-Constants::GetConstant("SuckyMotorInSpeed"));
+	SuckyMotorRight.Set(-Constants::GetConstant("SuckyMotorInSpeed"));
+	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorInSpeed"));
 }
 
 void Sucky::SpitOut()
 {
-	SuckyMotorRight.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
-	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
+	SuckyMotorRight.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
+	SuckyMotorLeft.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
 }
 
 void Sucky::Stop()
