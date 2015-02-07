@@ -192,7 +192,7 @@ void Lift::resetCalledByThread()
 
 	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
 	{
-		DriverStation::ReportError("Lift Reset Timeout");
+		DriverOutputs::ReportError("Lift Reset Timeout");
 	}
 
 
