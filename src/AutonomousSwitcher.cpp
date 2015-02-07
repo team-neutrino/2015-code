@@ -16,7 +16,6 @@ void AutonomousSwitcher::updateDashboardThread()
 	while (true)
 	{
 		int mode = Switch.Read();
-
 		SmartDashboard::PutNumber("Autonomous Mode", mode);
 
 		switch (mode)
