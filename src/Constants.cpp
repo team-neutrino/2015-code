@@ -8,7 +8,7 @@
 
 Constants::Constant Constants::ConstantsList[NUM_CONST] =
 {
-	//Autonomous Constants
+	// Autonomous Constants
 	{"AutonSwitchInput0Channel", 0},
 	{"AutonSwitchInput1Channel", 1},
 	{"AutonSwitchInput2Channel", 2},
@@ -18,6 +18,18 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"JoyRightPort", 1},
 	{"JoyLeftPort", 0},
 	{"GamepadPort", 2},
+
+	// Button Mapping - Joysticks
+	{"SpeedBoostButton", 1},
+
+	// Button Mapping - Gamepad
+	{"SuckInButton", 5},
+	{"SpitOutButton", 6},
+
+	{"LiftUpButton", 4},
+	{"LiftDownButton", 1},
+	{"LiftResetButton", 0}, //TODO
+	{"LiftOverrideButton", 0}, //TODO
 
 	// Drive Constants
 	{"DriveLeft1Channel", 1},
