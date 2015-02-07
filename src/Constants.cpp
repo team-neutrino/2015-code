@@ -14,11 +14,18 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"AutonSwitchInput2Channel", 2},
 	{"AutonSwitchInput3Channel", 3},
 
+	// Controllers
+	{"JoyRightPort", 1},
+	{"JoyLeftPort", 0},
+
 	// Drive Constants
-	{"DriveLeft1Channel", 0},
-	{"DriveLeft2Channel", 1},
-	{"DriveRight1Channel", 2},
-	{"DriveRight2Channel", 3},
+	{"DriveLeft1Channel", 1},
+	{"DriveLeft2Channel", 2},
+	{"DriveRight1Channel", 5},
+	{"DriveRight2Channel", 6},
+
+	{"DriveSlowMultiplier", .5},
+	{"DriveFastMultiplier", 1},
 
 	// Lift Constants
 	{"LiftMotor1Channel", 4},

@@ -2,33 +2,27 @@
 #include "Lift.h"
 #include "Constants.h"
 #include "AutonomousSwitcher.h"
+#include "Drive.h"
 
-/**
- * This is a demo program showing the use of the RobotDrive class.
- * The SampleRobot class is the base of a robot application that will automatically call your
- * Autonomous and OperatorControl methods at the right time as controlled by the switches on
- * the driver station or the field controls.
- *
- * WARNING: While it may look like a good choice to use for your code if you're inexperienced,
- * don't. Unless you know what you are doing, complex code will be much more difficult under
- * this system. Use IterativeRobot or Command-Based instead if you're new.
- */
 class Robot: public SampleRobot
 {
 
 public:
+	AutonomousSwitcher AutoSwitch;
+	Joystick JoyRight;
+	Joystick JoyLeft;
+	Drive DriveInst;
+	Lift LiftInst;
+
 	/**
 	 * Constructor
 	 */
-	Joystick Joy;
-	Lift LiftInst;
-	AutonomousSwitcher AutoSwitch;
-
 	Robot():
-		Joy(0),
-		LiftInst(),
-		AutoSwitch()
-
+		AutoSwitch(),
+		JoyRight(Constants::GetConstant("JoyRightPort")),
+		JoyLeft(Constants::GetConstant("JoyLeftPort")),
+		DriveInst(),
+		LiftInst()
 	{
 
 	}
@@ -62,25 +56,34 @@ public:
 	 */
 	void OperatorControl()
 	{
-		while(true)
+		float driveSlowMultiplier = Constants::GetConstant("DriveSlowMultiplier");
+		float driveFastMultiplier = Constants::GetConstant("DriveFastMultiplier");
+		float driveMultiplier = driveFastMultiplier;
+
+		while(IsOperatorControl() && IsEnabled())
 		{
-			std::cout << "The thread is working!" << std::endl;
-			if(Joy.GetRawButton(1))
-			{
-				LiftInst.LevelChange(2);
-			}
+			//Drive Loop
+			driveMultiplier =(JoyLeft.GetRawButton(1) || JoyRight.GetRawButton(1)) ?
+								driveFastMultiplier : driveSlowMultiplier;
+			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
+			DriveInst.SetRight(JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
-			if(Joy.GetRawButton(2))
-			{
-				LiftInst.Reset();
-			}
 
-			if(Joy.GetRawButton(3))
-			{
-				LiftInst.LevelChange(-2);
-			}
-			Wait(.2);
-
+			// Lift Test Code
+//			if(JoyLeft.GetRawButton(1))
+//			{
+//				LiftInst.LevelChange(2);
+//			}
+//
+//			if(JoyLeft.GetRawButton(2))
+//			{
+//				LiftInst.Reset();
+//			}
+//
+//			if(JoyLeft.GetRawButton(3))
+//			{
+//				LiftInst.LevelChange(-2);
+//			}
 		}
 	}
 
