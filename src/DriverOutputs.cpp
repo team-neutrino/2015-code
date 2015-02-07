@@ -110,6 +110,6 @@ void DriverOutputs::run()
 			MtxDashboard.unlock();
 		}
 
-		Wait(.25);
+		Wait(.05);
 	}
 }

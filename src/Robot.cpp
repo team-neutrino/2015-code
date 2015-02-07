@@ -84,6 +84,8 @@ public:
 //			{
 //				LiftInst.LevelChange(-2);
 //			}
+
+			Wait(.001);
 		}
 	}
 
