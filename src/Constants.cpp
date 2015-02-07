@@ -1,5 +1,6 @@
 #include "Constants.h"
 #include "WPILib.h"
+#include "DriverOutputs.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -63,9 +64,9 @@ void Constants::overrideConst(std::string line) {
 		if (ConstantsList[i].name == readName)
 		{
 			ConstantsList[i].value = readValue;
-			DriverStation::ReportError(
+			DriverOutputs::ReportError(
 					"Overriding constant [" + readName + "] with ["
-							+ std::to_string(readValue) + "]\n");
+							+ std::to_string(readValue) + "]");
 
 			constantFound = true;
 			break;
@@ -75,9 +76,9 @@ void Constants::overrideConst(std::string line) {
 	// print error if constant in text file doesn't exist
 	if (!constantFound)
 	{
-		DriverStation::ReportError(
+		DriverOutputs::ReportError(
 				"Can not override not existent constant [" + readName
-						+ "]\n");
+						+ "]");
 	}
 }
 
@@ -93,7 +94,7 @@ void Constants::ReadFile()
 	// check if file actually exists
 	if (!myfile.is_open())
 	{
-		DriverStation::ReportError("No Constants file found\n");
+		DriverOutputs::ReportError("No Constants file found");
 	}
 	else
 	{
@@ -123,8 +124,8 @@ float Constants::GetConstant(std::string constName)
 	}
 	if(!ConstantFound)
 	{
-		DriverStation::ReportError(
-			"No constant found with the name [" + constName + "]\n");
+		DriverOutputs::ReportError(
+			"No constant found with the name [" + constName + "]");
 	}
 
 	return ret;

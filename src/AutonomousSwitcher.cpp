@@ -47,7 +47,7 @@ void AutonomousSwitcher::RunAuto()
 		case 0:
 			break;
 		default:
-			DriverStation::ReportError("No Such Autonomous Mode");
+			DriverOutputs::ReportError("No Such Autonomous Mode");
 			break;
 	}
 }

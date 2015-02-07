@@ -1,5 +1,6 @@
 #include "Lift.h"
 #include "Constants.h"
+#include "DriverOutputs.h"
 #include <stdlib.h>
 
 Lift::Lift():
@@ -125,7 +126,7 @@ void Lift::moveLevel(bool up)
 	}
 	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
 	{
-		DriverStation::ReportError("Lift Timeout: 1\n");
+		DriverOutputs::ReportError("Lift Timeout: 1");
 	}
 
 	// Runs the motor until we see the tape
@@ -151,7 +152,7 @@ void Lift::moveLevel(bool up)
 
 	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
 	{
-		DriverStation::ReportError("Lift Timeout: 2\n");
+		DriverOutputs::ReportError("Lift Timeout: 2");
 	}
 
 	if (!OverrideEnabled)
@@ -191,7 +192,7 @@ void Lift::resetCalledByThread()
 
 	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
 	{
-		DriverStation::ReportError("Lift Reset Timeout\n");
+		DriverStation::ReportError("Lift Reset Timeout");
 	}
 
 
