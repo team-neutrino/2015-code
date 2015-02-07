@@ -16,6 +16,8 @@ public:
 	 */
 	void SpitOut();
 
+	void Stop();
+
 private:
 	Victor SuckyMotorLeft;
 	Victor SuckyMotorRight;

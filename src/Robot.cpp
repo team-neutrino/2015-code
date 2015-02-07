@@ -4,6 +4,7 @@
 #include "AutonomousSwitcher.h"
 #include "Drive.h"
 #include "Sucky.h"
+#include "DriverOutputs.h"
 
 class Robot: public SampleRobot
 {
@@ -81,6 +82,10 @@ public:
 			else if (Gamepad.GetRawButton(6))
 			{
 				SuckyInst.SpitOut();
+			}
+			else
+			{
+				SuckyInst.Stop();
 			}
 
 			// Sucky Controls

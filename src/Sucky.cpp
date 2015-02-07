@@ -19,3 +19,9 @@ void Sucky::SpitOut()
 	SuckyMotorRight.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
 	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
 }
+
+void Sucky::Stop()
+{
+	SuckyMotorRight.Set(0);
+	SuckyMotorLeft.Set(0);
+}
