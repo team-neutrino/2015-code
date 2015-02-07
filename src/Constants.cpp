@@ -28,8 +28,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"DriveFastMultiplier", 1},
 
 	// Lift Constants
-	{"LiftMotor1Channel", 4},
-	{"LiftMotor2Channel", 5},
+	{"LiftMotor1Channel", 0},
+	{"LiftMotor2Channel", 8},
 
 	{"LiftMotorUpSpeed", 0.5},
 	{"LiftMotorDownSpeed", 0.5},
@@ -46,8 +46,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftThreadWaitTime", 0.05},
 
 	//Sucky Constants
-	{"SuckyMotorRightChannel", 6},
-	{"SuckyMotorLeftChannel", 7},
+	{"SuckyMotorRightChannel", 7},
+	{"SuckyMotorLeftChannel", 3},
 
 	{"SuckyMotorInSpeed", 1},
 	{"SuckyMotorOutSpeed", 1}
