@@ -17,6 +17,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	// Controllers
 	{"JoyRightPort", 1},
 	{"JoyLeftPort", 0},
+	{"GamepadPort", 2},
 
 	// Drive Constants
 	{"DriveLeft1Channel", 1},
