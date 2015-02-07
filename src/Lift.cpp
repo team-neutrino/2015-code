@@ -8,16 +8,13 @@ Lift::Lift():
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
 		LimitSwitchBottom(Constants::GetConstant("LimitSwitchBottomChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
-		//LiftThread("LiftThread", (FUNCPTR)Lift::liftThreadRunnable),
+		LiftThread(&Lift::liftThreadRunnable, this),
 		IsLifting(false),
 		OverrideEnabled(false),
 		CurrentTask(0)
-
 {
-	Task LiftThread("LiftThread", (FUNCPTR)(Lift::liftThreadRunnable));
-	LiftThread.Start(0);
-}
 
+}
 
 void Lift::LevelChange(int levels)
 {
@@ -200,7 +197,7 @@ void Lift::resetCalledByThread()
 
 }
 
-void Lift::liftThreadRunnable(uint32_t argPtr)
+void Lift::liftThreadRunnable()
 {
 	while(true)
 	{
