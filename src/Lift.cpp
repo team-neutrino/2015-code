@@ -180,7 +180,7 @@ void Lift::resetThreaded()
 			((GetTime() - startTime) <= Constants::GetConstant("LiftResetTimeOut")) &&
 			(!OverrideEnabled))
 	{
-
+		Wait(.001);
 	}
 
 	if (!OverrideEnabled)
