@@ -64,27 +64,27 @@ void DriverOutputs::sendDashboardData()
 	{
 		DashboardBoolean b = DashboardBooleanQueue.front();
 		DashboardBooleanQueue.pop();
-		MtxError.unlock();
+		MtxDashboard.unlock();
 		SmartDashboard::PutBoolean(b.key, b.boolean);
-		MtxError.lock();
+		MtxDashboard.lock();
 	}
 
 	while(!DashboardNumberQueue.empty())
 	{
 		DashboardNumber n = DashboardNumberQueue.front();
 		DashboardNumberQueue.pop();
-		MtxError.unlock();
+		MtxDashboard.unlock();
 		SmartDashboard::PutNumber(n.key, n.number);
-		MtxError.lock();
+		MtxDashboard.lock();
 	}
 
 	while(!DashboardStringQueue.empty())
 	{
 		DashboardString s = DashboardStringQueue.front();
 		DashboardStringQueue.pop();
-		MtxError.unlock();
+		MtxDashboard.unlock();
 		SmartDashboard::PutString(s.key, s.string);
-		MtxError.lock();
+		MtxDashboard.lock();
 	}
 }
 
