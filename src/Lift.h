@@ -39,10 +39,10 @@ private:
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
 	std::thread LiftThread;
-	const int RESET = 100;
+	const char RESET = 100;
 	bool IsLifting;
 	bool OverrideEnabled;
-	int CurrentTask;
+	char CurrentTask;
 
 	void resetThreaded();
 	void levelChangeThreaded(int levels);
