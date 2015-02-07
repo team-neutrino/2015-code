@@ -14,7 +14,7 @@ Lift::Lift():
 		CurrentTask(0)
 
 {
-	Task LiftThread("LiftThread", (FUNCPTR)&Lift::liftThreadRunnable);
+	Task LiftThread("LiftThread", (FUNCPTR)(Lift::liftThreadRunnable));
 	LiftThread.Start(0);
 }
 
