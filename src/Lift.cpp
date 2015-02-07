@@ -9,7 +9,7 @@ Lift::Lift():
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
 		LimitSwitchBottom(Constants::GetConstant("LimitSwitchBottomChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
-		LiftThread(&Lift::liftThreadRunnable, this),
+		LiftThread(&Lift::lifterThread, this),
 		IsLifting(false),
 		OverrideEnabled(false),
 		CurrentTask(0)
@@ -62,7 +62,7 @@ bool Lift::Lifting()
 	return IsLifting;
 }
 
-void Lift::levelChangeCalledByThread(int levels)
+void Lift::levelChangeThreaded(int levels)
 {
 	if (OverrideEnabled)
 	{
@@ -73,12 +73,12 @@ void Lift::levelChangeCalledByThread(int levels)
 
 	for (int i = 0; i < levels; i++)
 	{
-		moveLevel(true);
+		moveLevelThreaded(true);
 	}
 
 	for (int i = 0; i > levels; i--)
 	{
-		moveLevel(false);
+		moveLevelThreaded(false);
 	}
 
 	if (!OverrideEnabled)
@@ -87,7 +87,7 @@ void Lift::levelChangeCalledByThread(int levels)
 	}
 }
 
-void Lift::moveLevel(bool up)
+void Lift::moveLevelThreaded(bool up)
 {
 	if (OverrideEnabled)
 	{
@@ -150,20 +150,20 @@ void Lift::moveLevel(bool up)
 
 	}
 
-	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
-	{
-		DriverOutputs::ReportError("Lift Timeout: 2");
-	}
-
 	if (!OverrideEnabled)
 	{
 		LiftMotor1.Set(0);
 		LiftMotor2.Set(0);
 	}
 
+	if ((GetTime() - startTime) >= Constants::GetConstant("LiftTimeOut"))
+	{
+		DriverOutputs::ReportError("Lift Timeout: 2");
+	}
+
 }
 
-void Lift::resetCalledByThread()
+void Lift::resetThreaded()
 {
 	if (OverrideEnabled)
 	{
@@ -194,22 +194,20 @@ void Lift::resetCalledByThread()
 	{
 		DriverOutputs::ReportError("Lift Reset Timeout");
 	}
-
-
 }
 
-void Lift::liftThreadRunnable()
+void Lift::lifterThread()
 {
 	while(true)
 	{
 		if (CurrentTask == RESET)
 		{
-			resetCalledByThread();
+			resetThreaded();
 			CurrentTask = 0;
 		}
 		else if(CurrentTask != 0)
 		{
-			levelChangeCalledByThread(CurrentTask);
+			levelChangeThreaded(CurrentTask);
 			CurrentTask = 0;
 		}
 
