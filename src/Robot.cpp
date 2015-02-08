@@ -75,6 +75,7 @@ public:
 		int liftDownButton = Constants::GetConstant("LiftDownButton");
 		int liftResetButton = Constants::GetConstant("LiftResetButton");
 		int liftOverrideButton = Constants::GetConstant("LiftOverrideButton");
+		int joyLiftResetButton = Constants::GetConstant("JoyLiftResetButton");
 
 		while(IsOperatorControl() && IsEnabled())
 		{
@@ -104,17 +105,20 @@ public:
 				// Normal Control
 				if(!LiftInst.Lifting())
 				{
-					if (Gamepad.GetRawButton(liftUpButton))
+
+					if (Gamepad.GetRawButton(liftResetButton) ||
+							JoyLeft.GetRawButton(joyLiftResetButton) ||
+							JoyRight.GetRawButton(joyLiftResetButton))
+					{
+						LiftInst.Reset();
+					}
+					else if (Gamepad.GetRawButton(liftUpButton))
 					{
 						LiftInst.LevelChange(1);
 					}
 					else if (Gamepad.GetRawButton(liftDownButton))
 					{
 						LiftInst.LevelChange(-1);
-					}
-					else if (Gamepad.GetRawButton(liftResetButton))
-					{
-						LiftInst.Reset();
 					}
 				}
 			}
