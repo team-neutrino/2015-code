@@ -15,11 +15,14 @@ AutonomousSwitcher::AutonomousSwitcher():
 void AutonomousSwitcher::updateDashboardThread()
 {
 	int mode;
-	int modePrev;
+	int modePrev = 0;
+
+	double lastRefresh = GetTime() + REFRESH_RATE;
+
 	while (true)
 	{
 		mode = Switch.Read();
-		if(mode != modePrev)
+		if(mode != modePrev || ((GetTime() - lastRefresh) >= REFRESH_RATE))
 		{
 			DriverOutputs::UpdateSmartDashboardNumber("Autonomous Mode", mode);
 

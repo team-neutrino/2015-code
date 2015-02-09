@@ -13,5 +13,8 @@ public:
 private:
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
+
+	const double REFRESH_RATE = 5;
+
 	void updateDashboardThread();
 };
