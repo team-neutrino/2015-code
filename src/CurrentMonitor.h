@@ -1,0 +1,18 @@
+#include "WPILib.h"
+#include <thread>
+
+#pragma once
+
+class CurrentMonitor
+{
+public:
+	CurrentMonitor();
+	bool Warning();
+
+private:
+	const double WARNING_CURRENT = 120;
+	PowerDistributionPanel Pdp;
+	std::thread thread;
+
+	void currentThread();
+};

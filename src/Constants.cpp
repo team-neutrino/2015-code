@@ -34,16 +34,22 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	// Drive Constants
 	{"DriveLeft1Channel", 1},
+	{"DriveLeft1PowerChannel", 0}, //TODO
 	{"DriveLeft2Channel", 2},
+	{"DriveLeft2PowerChannel", 0}, //TODO
 	{"DriveRight1Channel", 5},
+	{"DriveRight1PowerChannel", 0}, //TODO
 	{"DriveRight2Channel", 6},
+	{"DriveRight2PowerChannel", 0}, //TODO
 
 	{"DriveSlowMultiplier", .5},
 	{"DriveFastMultiplier", 1},
 
 	// Lift Constants
 	{"LiftMotor1Channel", 0},
+	{"LiftMotor1PowerChannel", 0}, //TODO
 	{"LiftMotor2Channel", 8},
+	{"LiftMotor2PowerChannel", 0}, //TODO
 
 	{"LiftMotorUpOverideSpeed", .5},
 	{"LiftMotorDownOverideSpeed", .5},
@@ -64,7 +70,9 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	//Sucky Constants
 	{"SuckyMotorRightChannel", 7},
+	{"SuckyMotorRightPowerChannel", 0}, //TODO
 	{"SuckyMotorLeftChannel", 3},
+	{"SuckyMotorLeftPowerChannel", 0}, //TODO
 
 	{"SuckyMotorInSpeed", 1},
 	{"SuckyMotorOutSpeed", 1}

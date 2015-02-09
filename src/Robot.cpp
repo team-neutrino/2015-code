@@ -5,6 +5,7 @@
 #include "Drive.h"
 #include "Sucky.h"
 #include "DriverOutputs.h"
+#include "CurrentMonitor.h"
 
 class Robot: public SampleRobot
 {
@@ -17,6 +18,7 @@ public:
 	Drive DriveInst;
 	Lift LiftInst;
 	Sucky SuckyInst;
+	CurrentMonitor CurrentMonitorInst;
 
 	/**
 	 * Constructor
@@ -28,7 +30,8 @@ public:
 		Gamepad(Constants::GetConstant("GamepadPort")),
 		DriveInst(),
 		LiftInst(),
-		SuckyInst()
+		SuckyInst(),
+		CurrentMonitorInst()
 	{
 
 	}
@@ -137,6 +140,18 @@ public:
 				{
 					LiftInst.EndManualOverride();
 				}
+			}
+
+			// Current Warning
+			if(CurrentMonitorInst.Warning())
+			{
+				Gamepad.SetRumble(Joystick::kLeftRumble, 1);
+				Gamepad.SetRumble(Joystick::kRightRumble, 1);
+			}
+			else
+			{
+				Gamepad.SetRumble(Joystick::kLeftRumble, 0);
+				Gamepad.SetRumble(Joystick::kRightRumble, 0);
 			}
 
 			Wait(.001);
