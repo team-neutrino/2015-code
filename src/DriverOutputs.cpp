@@ -95,7 +95,7 @@ void DriverOutputs::run()
 	while(true)
 	{
 		// Driver Errors
-		if(UpdateErrors)
+		if(UpdateErrors && DriverStation::GetInstance()->IsDSAttached())
 		{
 			MtxError.lock();
 			UpdateErrors = false;
