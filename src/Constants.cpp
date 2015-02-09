@@ -21,7 +21,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	// Button Mapping - Joysticks
 	{"SpeedBoostButton", 1},
-	{"JoyLiftResetButton", 2}, //TODO
+	{"JoyLiftResetButton", 2},
 
 	// Button Mapping - Gamepad
 	{"SuckInButton", 5},
@@ -29,27 +29,27 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	{"LiftUpButton", 4},
 	{"LiftDownButton", 1},
-	{"LiftResetButton", 0}, //TODO
-	{"LiftOverrideButton", 0}, //TODO
+	{"LiftResetButton", 3},
+	{"LiftOverrideButton", 10},
 
 	// Drive Constants
 	{"DriveLeft1Channel", 1},
 	{"DriveLeft1PowerChannel", 0}, //TODO
 	{"DriveLeft2Channel", 2},
-	{"DriveLeft2PowerChannel", 0}, //TODO
+	{"DriveLeft2PowerChannel", 1}, //TODO
 	{"DriveRight1Channel", 5},
-	{"DriveRight1PowerChannel", 0}, //TODO
+	{"DriveRight1PowerChannel", 2}, //TODO
 	{"DriveRight2Channel", 6},
-	{"DriveRight2PowerChannel", 0}, //TODO
+	{"DriveRight2PowerChannel", 3}, //TODO
 
 	{"DriveSlowMultiplier", .5},
 	{"DriveFastMultiplier", 1},
 
 	// Lift Constants
 	{"LiftMotor1Channel", 0},
-	{"LiftMotor1PowerChannel", 0}, //TODO
+	{"LiftMotor1PowerChannel", 4}, //TODO
 	{"LiftMotor2Channel", 8},
-	{"LiftMotor2PowerChannel", 0}, //TODO
+	{"LiftMotor2PowerChannel", 5}, //TODO
 
 	{"LiftMotorUpOverideSpeed", .5},
 	{"LiftMotorDownOverideSpeed", .5},
@@ -70,9 +70,9 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	//Sucky Constants
 	{"SuckyMotorRightChannel", 7},
-	{"SuckyMotorRightPowerChannel", 0}, //TODO
+	{"SuckyMotorRightPowerChannel", 6}, //TODO
 	{"SuckyMotorLeftChannel", 3},
-	{"SuckyMotorLeftPowerChannel", 0}, //TODO
+	{"SuckyMotorLeftPowerChannel", 7}, //TODO
 
 	{"SuckyMotorInSpeed", 1},
 	{"SuckyMotorOutSpeed", 1}
