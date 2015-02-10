@@ -24,6 +24,8 @@ void AutonomousSwitcher::updateDashboardThread()
 		mode = Switch.Read();
 		if(mode != modePrev || ((GetTime() - lastRefresh) >= REFRESH_RATE))
 		{
+			lastRefresh = GetTime();
+
 			DriverOutputs::UpdateSmartDashboardNumber("Autonomous Mode", mode);
 
 			switch (mode)

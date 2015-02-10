@@ -3,6 +3,7 @@
 #include <fstream>
 
 const double DriverOutputs::COMP_TIME = 1426842000;
+const double DriverOutputs::REFRESH_RATE = 5;
 
 bool DriverOutputs::UpdateErrors = false;
 std::queue<DriverOutputs::Error> DriverOutputs::ErrorQueue;
@@ -91,12 +92,36 @@ void DriverOutputs::sendDashboardData()
 	}
 }
 
+void DriverOutputs::updateName()
+{
+	std::ifstream myfile("/home/lvuser/name");
+
+	// make a string to read into
+	std::string name;
+
+	// check if file actually exists
+	if (!myfile.is_open())
+	{
+		DriverOutputs::UpdateSmartDashboardString("Robot Name", "No Name");
+	}
+	else
+	{
+		// read the file
+		getline(myfile, name);
+
+		// close the file
+		myfile.close();
+
+		DriverOutputs::UpdateSmartDashboardString("Robot Name", name);
+	}
+}
+
 void DriverOutputs::run()
 {
+	double lastRefresh = GetTime() + REFRESH_RATE;
+
 	while(true)
 	{
-		double lastRefresh = GetTime() + REFRESH_RATE;
-
 		if((GetTime() - lastRefresh) >= REFRESH_RATE)
 		{
 			lastRefresh = GetTime();
@@ -122,29 +147,5 @@ void DriverOutputs::run()
 		}
 
 		Wait(.05);
-	}
-}
-
-void updateName()
-{
-	std::ifstream myfile("/home/lvuser/name");
-
-	// make a string to read into
-	std::string name;
-
-	// check if file actually exists
-	if (!myfile.is_open())
-	{
-		DriverOutputs::UpdateSmartDashboardString("Robot Name", "No Name");
-	}
-	else
-	{
-		// read the file
-		getline(myfile, name);
-
-		// close the file
-		myfile.close();
-
-		DriverOutputs::UpdateSmartDashboardString("Robot Name", name);
 	}
 }

@@ -21,11 +21,11 @@ private:
 	static void sendErrors();
 	static void sendDashboardData();
 
-	static void run();
-
 	static void updateName();
 
-	const double REFRESH_RATE = 5;
+	static void run();
+
+	static const double REFRESH_RATE;
 
 	struct Error
 	{
