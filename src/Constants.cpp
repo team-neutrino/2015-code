@@ -81,6 +81,11 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"PdpAttached", 1}
 };
 
+Constants::Constant()
+{
+	ReadFile();
+}
+
 /**
  * Attempts to override constant with name and value in the given string.
  * Prints an error to the driver station if constant doesn't exist.

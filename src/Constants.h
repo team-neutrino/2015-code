@@ -4,6 +4,8 @@
 class Constants
 {
 public:
+	Constants();
+
 	/**
 	 * Reads in constants from file and overrides defaults.
 	 */

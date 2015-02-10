@@ -11,6 +11,7 @@ class Robot: public SampleRobot
 {
 
 public:
+	Constants ConstInst;
 	AutonomousSwitcher AutoSwitch;
 	Joystick JoyRight;
 	Joystick JoyLeft;
@@ -24,6 +25,7 @@ public:
 	 * Constructor
 	 */
 	Robot():
+		ConstInst(),
 		AutoSwitch(),
 		JoyRight(Constants::GetConstant("JoyRightPort")),
 		JoyLeft(Constants::GetConstant("JoyLeftPort")),
@@ -41,7 +43,7 @@ public:
 	 */
 	void RobotInit()
 	{
-		Constants::ReadFile();
+
 	}
 
 	/**
