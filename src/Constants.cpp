@@ -81,7 +81,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"PdpAttached", 1}
 };
 
-Constants::Constant()
+Constants::Constants()
 {
 	ReadFile();
 }
