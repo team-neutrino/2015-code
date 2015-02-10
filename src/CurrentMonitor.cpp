@@ -6,12 +6,12 @@ CurrentMonitor::CurrentMonitor():
 	Pdp(),
 	Thread(&CurrentMonitor::currentThread, this)
 {
-
+	PdpAttached = Constants::GetConstant("PdpAttached") == 1;
 }
 
 bool CurrentMonitor::Warning()
 {
-	return WARNING_CURRENT <= Pdp.GetTotalCurrent();
+	return PdpAttached && WARNING_CURRENT <= Pdp.GetTotalCurrent();
 }
 
 void CurrentMonitor::currentThread()
@@ -27,9 +27,7 @@ void CurrentMonitor::currentThread()
 	int suckyLeftChannel = Constants::GetConstant("SuckyMotorLeftPowerChannel");
 	int suckyRightChannel = Constants::GetConstant("SuckyMotorRightPowerChannel");
 
-	bool pdpAttached = Constants::GetConstant("PdpAttached") == 1;
-
-	while(pdpAttached)
+	while (PdpAttached)
 	{
 		// Total Current
 		DriverOutputs::UpdateSmartDashboardBoolean("Warning", WARNING_CURRENT <= Pdp.GetTotalCurrent());

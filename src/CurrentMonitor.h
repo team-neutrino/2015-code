@@ -11,6 +11,9 @@ public:
 
 private:
 	const double WARNING_CURRENT = 120;
+
+	bool PdpAttached;
+
 	PowerDistributionPanel Pdp;
 	std::thread Thread;
 
