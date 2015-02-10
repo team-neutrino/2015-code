@@ -39,9 +39,9 @@ void AutonomousSwitcher::updateDashboardThread()
 			}
 
 			modePrev = mode;
-
-			Wait(1);
 		}
+
+		Wait(1);
 	}
 }
 
