@@ -9,10 +9,11 @@ Lift::Lift():
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
 		LimitSwitchBottom(Constants::GetConstant("LimitSwitchBottomChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
-		LiftThread(&Lift::lifterThread, this),
 		IsLifting(false),
 		OverrideEnabled(false),
-		CurrentTask(0)
+		CurrentTask(0),
+		LiftThread(&Lift::lifterThread, this),
+		MonitorThread(&Lift::monitorThread, this)
 {
 
 }
@@ -212,5 +213,16 @@ void Lift::lifterThread()
 		}
 
 		Wait(Constants::GetConstant("LiftThreadWaitTime"));
+	}
+}
+
+void Lift::monitorThread()
+{
+	while(true)
+	{
+		DriverOutputs::UpdateSmartDashboardBoolean("Beam Break", BeamBreak.Get());
+		DriverOutputs::UpdateSmartDashboardBoolean("Limit Switch Top", LimitSwitchTop.Get());
+		DriverOutputs::UpdateSmartDashboardBoolean("Limit Switch Bottom", LimitSwitchBottom.Get());
+		Wait(5);
 	}
 }
