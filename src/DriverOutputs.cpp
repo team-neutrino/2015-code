@@ -1,5 +1,6 @@
 #include "WPILib.h"
 #include "DriverOutputs.h"
+#include <fstream>
 
 const double DriverOutputs::COMP_TIME = 1426842000;
 
@@ -94,6 +95,14 @@ void DriverOutputs::run()
 {
 	while(true)
 	{
+		double lastRefresh = GetTime() + REFRESH_RATE;
+
+		if((GetTime() - lastRefresh) >= REFRESH_RATE)
+		{
+			lastRefresh = GetTime();
+			updateName();
+		}
+
 		// Driver Errors
 		if(UpdateErrors && DriverStation::GetInstance()->IsDSAttached())
 		{
@@ -113,5 +122,29 @@ void DriverOutputs::run()
 		}
 
 		Wait(.05);
+	}
+}
+
+void updateName()
+{
+	std::ifstream myfile("/home/lvuser/name");
+
+	// make a string to read into
+	std::string name;
+
+	// check if file actually exists
+	if (!myfile.is_open())
+	{
+		DriverOutputs::UpdateSmartDashboardString("Robot Name", "No Name");
+	}
+	else
+	{
+		// read the file
+		getline(myfile, name);
+
+		// close the file
+		myfile.close();
+
+		DriverOutputs::UpdateSmartDashboardString("Robot Name", name);
 	}
 }

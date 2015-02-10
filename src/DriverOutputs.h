@@ -23,6 +23,10 @@ private:
 
 	static void run();
 
+	static void updateName();
+
+	const double REFRESH_RATE = 5;
+
 	struct Error
 	{
 		double time;
