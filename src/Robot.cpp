@@ -156,6 +156,8 @@ public:
 				Gamepad.SetRumble(Joystick::kRightRumble, 0);
 			}
 
+			DriverOutputs::UpdateSmartDashboardBoolean("Test", JoyRight.GetRawButton(11));
+
 			Wait(.001);
 		}
 	}
