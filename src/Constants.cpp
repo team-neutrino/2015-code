@@ -77,6 +77,11 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"SuckyMotorInSpeed", 1},
 	{"SuckyMotorOutSpeed", 1},
 
+	//Lights Constants
+	{"LightsChannel1", 0},
+	{"LightsChannel2", 0},
+	{"LightsChannel3", 0},
+
 	//Misc Constants
 	{"PdpAttached", 1}
 };
