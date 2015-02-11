@@ -17,7 +17,7 @@ public:
 	static float GetConstant(std::string constName);
 
 private:
-	static const int NUM_CONST = 50;
+	static const int NUM_CONST = 100;
 
 	struct Constant
 	{
