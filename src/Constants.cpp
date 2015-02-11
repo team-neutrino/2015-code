@@ -69,7 +69,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftThreadWaitTime", 0.05},
 
 	//Sucky Constants
-	{"SuckyMotorRightChannel", 4},
+	{"SuckyMotorRightChannel", 7},
 	{"SuckyMotorRightPowerChannel", 11},
 	{"SuckyMotorLeftChannel", 3},
 	{"SuckyMotorLeftPowerChannel", 7},
