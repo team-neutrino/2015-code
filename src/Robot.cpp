@@ -107,10 +107,10 @@ public:
 			// Sucky Controls
 			if (!Gamepad.GetRawButton(liftOverrideButton))
 			{
+				LiftInst.EndManualOverride();
 				// Normal Control
 				if(!LiftInst.Lifting())
 				{
-
 					if (Gamepad.GetRawButton(liftResetButton) ||
 							JoyLeft.GetRawButton(joyLiftResetButton) ||
 							JoyRight.GetRawButton(joyLiftResetButton))
