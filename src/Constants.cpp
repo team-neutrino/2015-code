@@ -9,10 +9,10 @@
 Constants::Constant Constants::ConstantsList[NUM_CONST] =
 {
 	// Autonomous Constants
-	{"AutonSwitchInput0Channel", 0},
-	{"AutonSwitchInput1Channel", 1},
-	{"AutonSwitchInput2Channel", 2},
-	{"AutonSwitchInput3Channel", 3},
+	{"AutonSwitchInput0Channel", 4},
+	{"AutonSwitchInput1Channel", 5},
+	{"AutonSwitchInput2Channel", 6},
+	{"AutonSwitchInput3Channel", 7},
 
 	// Controllers
 	{"JoyRightPort", 1},
@@ -57,14 +57,14 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftMotorUpSpeed", 1},
 	{"LiftMotorDownSpeed", 1},
 
-	{"BeamBreakChannel", 4},
-	{"LimitSwitchTopChannel", 5},
-	{"LimitSwitchBottomChannel", 6},
+	{"BeamBreakChannel", 0},
+	{"LimitSwitchTopChannel", 9},
+	{"LimitSwitchBottomChannel", 8},
 
-	{"LiftTimeOut", 10},
+	{"LiftTimeOut", 3},
 	{"LiftSampleRate", 0.01},
 	{"LiftNumSamples", 5},
-	{"LiftResetTimeOut", 5},
+	{"LiftResetTimeOut", 3},
 
 	{"LiftThreadWaitTime", 0.05},
 

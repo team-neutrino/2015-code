@@ -18,7 +18,7 @@ Lift::Lift():
 
 }
 
-void Lift::LevelChange(int levels)
+void Lift::LevelChange(signed char levels)
 {
 	CurrentTask = levels;
 }
@@ -74,6 +74,7 @@ void Lift::levelChangeThreaded(int levels)
 
 	for (int i = 0; i < levels; i++)
 	{
+		std::cout << "Lifting Loop Through " << i << " target: " << levels << '\n';
 		moveLevelThreaded(true);
 	}
 
@@ -212,6 +213,7 @@ void Lift::lifterThread()
 			CurrentTask = 0;
 		}
 
+		std::cout << "np \n";
 		Wait(Constants::GetConstant("LiftThreadWaitTime"));
 	}
 }

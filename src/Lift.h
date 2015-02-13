@@ -9,7 +9,7 @@ public:
 	/**
 	 * Moves the lift up/down the specified amount of levels.
 	 */
-	void LevelChange(int levels);
+	void LevelChange(signed char levels);
 
 	/**
 	 * Moves the lift to its bottom-most level.
@@ -39,11 +39,11 @@ private:
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
 
-	const char RESET = 100;
+	signed const char RESET = 100;
 
 	bool IsLifting;
 	bool OverrideEnabled;
-	char CurrentTask;
+	signed char CurrentTask;
 
 	std::thread LiftThread;
 	std::thread MonitorThread;
