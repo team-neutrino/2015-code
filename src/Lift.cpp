@@ -112,8 +112,8 @@ void Lift::moveLevelThreaded(bool up)
 	int BeamBreakCount = 0;
 	while (BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
-			(!LimitSwitchTop.Get()) &&
-			(!LimitSwitchBottom.Get()) &&
+			(!LimitSwitchTop.Get() || !up) &&
+			(!LimitSwitchBottom.Get() || up) &&
 			(!OverrideEnabled))
 	{
 		if (!BeamBreak.Get())
@@ -136,8 +136,8 @@ void Lift::moveLevelThreaded(bool up)
 	BeamBreakCount = 0;
 	while (BeamBreakCount <= (Constants::GetConstant("LiftNumSamples")) &&
 			((GetTime() - startTime) <= Constants::GetConstant("LiftTimeOut")) &&
-			(!LimitSwitchTop.Get()) &&
-			(!LimitSwitchBottom.Get()) &&
+			(!LimitSwitchTop.Get() || !up) &&
+			(!LimitSwitchBottom.Get() || up) &&
 			(!OverrideEnabled))
 	{
 		if (BeamBreak.Get())
@@ -174,7 +174,7 @@ void Lift::resetThreaded()
 
 	IsLifting = true;
 
-	LiftMotor1.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
 	LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
 
 	double startTime = GetTime();

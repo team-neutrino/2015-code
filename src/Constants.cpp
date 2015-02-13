@@ -62,7 +62,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LimitSwitchBottomChannel", 8},
 
 	{"LiftTimeOut", 3},
-	{"LiftSampleRate", 0.01},
+	{"LiftSampleRate", 0.001},
 	{"LiftNumSamples", 5},
 	{"LiftResetTimeOut", 3},
 
