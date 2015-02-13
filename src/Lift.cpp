@@ -91,7 +91,7 @@ void Lift::levelChangeThreaded(int levels)
 
 void Lift::moveLevelThreaded(bool up)
 {
-	if (OverrideEnabled)
+	if ((OverrideEnabled) || (LimitSwitchTop.Get() && up) || (LimitSwitchBottom.Get() && !up))
 	{
 		return;
 	}

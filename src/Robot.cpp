@@ -90,7 +90,7 @@ public:
 			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
 			DriveInst.SetRight(JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
-			// Lift Controls
+			// Sucky Controls
 			if (Gamepad.GetRawButton(suckInButton))
 			{
 				SuckyInst.SuckIn();
@@ -104,7 +104,7 @@ public:
 				SuckyInst.Stop();
 			}
 
-			// Sucky Controls
+			// Lift Controls
 			if (!Gamepad.GetRawButton(liftOverrideButton))
 			{
 				LiftInst.EndManualOverride();
