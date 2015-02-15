@@ -27,6 +27,9 @@ public:
 	 */
 	void ManualOverride(bool up);
 
+	//TODO Reimplement this in a better way
+	void ManualOverrideStopped();
+
 	/**
 	 * Disables Manual Override.
 	 */

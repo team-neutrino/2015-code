@@ -46,6 +46,11 @@ void Lift::ManualOverride(bool up)
 
 }
 
+void Lift::ManualOverrideStopped()
+{
+	OverrideEnabled = true;
+}
+
 void Lift::EndManualOverride()
 {
 	if (OverrideEnabled)

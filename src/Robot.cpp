@@ -140,7 +140,7 @@ public:
 				}
 				else
 				{
-					LiftInst.EndManualOverride();
+					LiftInst.ManualOverrideStopped();
 				}
 			}
 
