@@ -16,6 +16,10 @@ public:
 	 */
 	void SpitOut();
 
+	void SetLeft(double speed);
+
+	void SetRight(double speed);
+
 	void Stop();
 
 private:

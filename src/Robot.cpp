@@ -101,7 +101,8 @@ public:
 			}
 			else
 			{
-				SuckyInst.Stop();
+				SuckyInst.SetLeft(Gamepad.GetY() + Gamepad.GetX());
+				SuckyInst.SetLeft(Gamepad.GetY() - Gamepad.GetX());
 			}
 
 			// Lift Controls

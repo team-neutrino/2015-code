@@ -20,6 +20,16 @@ void Sucky::SpitOut()
 	SuckyMotorLeft.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
 }
 
+void Sucky::SetLeft(double speed)
+{
+	SuckyMotorLeft.Set(speed);
+}
+
+void Sucky::SetRight(double speed)
+{
+	SuckyMotorRight.Set(-speed);
+}
+
 void Sucky::Stop()
 {
 	SuckyMotorRight.Set(0);
