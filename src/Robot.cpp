@@ -75,6 +75,8 @@ public:
 
 		int suckInButton = Constants::GetConstant("SuckInButton");
 		int spitOutButton = Constants::GetConstant("SpitOutButton");
+		int suckyXAxis = Constants::GetConstant("SuckyXAxis");
+		int suckyYAxis = Constants::GetConstant("SuckyYAxis");
 
 		int liftUpButton = Constants::GetConstant("LiftUpButton");
 		int liftDownButton = Constants::GetConstant("LiftDownButton");
@@ -105,8 +107,8 @@ public:
 			}
 			else
 			{
-				SuckyInst.SetLeft(Gamepad.GetRawAxis(5) + Gamepad.GetRawAxis(4));
-				SuckyInst.SetRight(Gamepad.GetRawAxis(5) - Gamepad.GetRawAxis(4));
+				SuckyInst.SetLeft(Gamepad.GetRawAxis(suckyYAxis) + Gamepad.GetRawAxis(suckyXAxis));
+				SuckyInst.SetRight(Gamepad.GetRawAxis(suckyYAxis) - Gamepad.GetRawAxis(suckyXAxis));
 			}
 
 			// Lift Controls
