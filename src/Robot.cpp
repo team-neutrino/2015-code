@@ -80,7 +80,7 @@ public:
 		int liftDownButton = Constants::GetConstant("LiftDownButton");
 		int liftResetButton = Constants::GetConstant("LiftResetButton");
 		int liftOverrideButton = Constants::GetConstant("LiftOverrideButton");
-		int liftAutoStackButton = Constants::GetConstant("LiftAutoStack");
+		int liftAutoStackButton = Constants::GetConstant("LiftAutoStackButton");
 
 		int joyLiftResetButton = Constants::GetConstant("JoyLiftResetButton");
 
