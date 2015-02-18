@@ -118,6 +118,7 @@ public:
 					if (autoStacking)
 					{
 						LiftInst.LevelChange(1);
+						autoStacking = false;
 					}
 					else
 					{
