@@ -20,11 +20,24 @@ Lift::Lift():
 
 void Lift::LevelChange(signed char levels)
 {
+	if (OverrideEnabled)
+	{
+		return;
+	}
+
+	IsLifting = true;
+
 	CurrentTask = levels;
 }
 
 void Lift::Reset()
 {
+	if (OverrideEnabled)
+	{
+		return;
+	}
+
+	IsLifting = true;
 	CurrentTask = RESET;
 }
 

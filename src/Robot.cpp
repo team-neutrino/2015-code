@@ -80,7 +80,11 @@ public:
 		int liftDownButton = Constants::GetConstant("LiftDownButton");
 		int liftResetButton = Constants::GetConstant("LiftResetButton");
 		int liftOverrideButton = Constants::GetConstant("LiftOverrideButton");
+		int liftAutoStackButton = Constants::GetConstant("LiftAutoStackButton");
+
 		int joyLiftResetButton = Constants::GetConstant("JoyLiftResetButton");
+
+		bool autoStacking = false;
 
 		while(IsOperatorControl() && IsEnabled())
 		{
@@ -110,27 +114,42 @@ public:
 			{
 				LiftInst.EndManualOverride();
 				// Normal Control
-				if(!LiftInst.Lifting())
+				if (!LiftInst.Lifting())
 				{
-					if (Gamepad.GetRawButton(liftResetButton) ||
-							JoyLeft.GetRawButton(joyLiftResetButton) ||
-							JoyRight.GetRawButton(joyLiftResetButton))
-					{
-						LiftInst.Reset();
-					}
-					else if (Gamepad.GetRawButton(liftUpButton))
+					if (autoStacking)
 					{
 						LiftInst.LevelChange(1);
+						autoStacking = false;
 					}
-					else if (Gamepad.GetRawButton(liftDownButton))
+					else
 					{
-						LiftInst.LevelChange(-1);
+						if (Gamepad.GetRawButton(liftResetButton) ||
+								JoyLeft.GetRawButton(joyLiftResetButton) ||
+								JoyRight.GetRawButton(joyLiftResetButton))
+						{
+							LiftInst.Reset();
+						}
+						else if (Gamepad.GetRawButton(liftUpButton))
+						{
+							LiftInst.LevelChange(1);
+						}
+						else if (Gamepad.GetRawButton(liftDownButton))
+						{
+							LiftInst.LevelChange(-1);
+						}
+						else if (Gamepad.GetRawButton(liftAutoStackButton))
+						{
+							LiftInst.LevelChange(-1);
+							autoStacking = true;
+						}
 					}
 				}
 			}
 			else
 			{
 				// Override Control
+				autoStacking = false;
+
 				if (Gamepad.GetRawButton(liftUpButton))
 				{
 					LiftInst.ManualOverride(true);
