@@ -49,6 +49,8 @@ void Lift::ManualOverride(bool up)
 void Lift::ManualOverrideStopped()
 {
 	OverrideEnabled = true;
+	LiftMotor1.Set(0);
+	LiftMotor2.Set(0);
 }
 
 void Lift::EndManualOverride()

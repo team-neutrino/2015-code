@@ -146,7 +146,7 @@ public:
 			}
 
 			// Current Warning
-			if(CurrentMonitorInst.Warning())
+			if(CurrentMonitorInst.Warning() || JoyRight.GetRawButton(11))
 			{
 				Gamepad.SetRumble(Joystick::kLeftRumble, 1);
 				Gamepad.SetRumble(Joystick::kRightRumble, 1);
