@@ -13,6 +13,7 @@ class Robot: public SampleRobot
 public:
 	Constants ConstInst;
 	AutonomousSwitcher AutoSwitch;
+	Compressor Comp;
 	Joystick JoyRight;
 	Joystick JoyLeft;
 	Joystick Gamepad;
@@ -27,6 +28,7 @@ public:
 	Robot():
 		ConstInst(),
 		AutoSwitch(),
+		Comp(),
 		JoyRight(Constants::GetConstant("JoyRightPort")),
 		JoyLeft(Constants::GetConstant("JoyLeftPort")),
 		Gamepad(Constants::GetConstant("GamepadPort")),
