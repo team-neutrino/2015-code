@@ -232,8 +232,6 @@ void Lift::lifterThread()
 			levelChangeThreaded(CurrentTask);
 			CurrentTask = 0;
 		}
-
-		std::cout << "np \n";
 		Wait(Constants::GetConstant("LiftThreadWaitTime"));
 	}
 }
