@@ -29,6 +29,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	// Button Mapping - Gamepad
 	{"SuckInButton", 5},
 	{"SpitOutButton", 6},
+	{"SuckyOpenButton", 9},
 
 	{"LiftUpButton", 4},
 	{"LiftDownButton", 1},
@@ -80,6 +81,9 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	{"SuckyMotorInSpeed", 1},
 	{"SuckyMotorOutSpeed", 1},
+
+	{"SuckySolenoidOpenChannel", 0},
+	{"SuckySolenoidCloseChannel", 1},
 
 	//Lights Constants
 	{"LightsChannel1", 0},

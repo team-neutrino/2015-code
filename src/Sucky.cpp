@@ -3,7 +3,9 @@
 
 Sucky::Sucky():
 		SuckyMotorLeft(Constants::GetConstant("SuckyMotorLeftChannel")),
-		SuckyMotorRight(Constants::GetConstant("SuckyMotorRightChannel"))
+		SuckyMotorRight(Constants::GetConstant("SuckyMotorRightChannel")),
+		SuckySolenoidOpen(Constants::GetConstant("SuckySuckyOpenChannel")),
+		SuckySolenoidClose(Constants::GetConstant("SuckySuckyCloseChannel"))
 {
 
 }
@@ -34,4 +36,10 @@ void Sucky::Stop()
 {
 	SuckyMotorRight.Set(0);
 	SuckyMotorLeft.Set(0);
+}
+
+void Sucky::Open(bool open)
+{
+	SuckySolenoidOpen(open);
+	SuckySolenoidClose(!open);
 }

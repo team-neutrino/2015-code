@@ -22,7 +22,12 @@ public:
 
 	void Stop();
 
+	void Open(bool open);
+
 private:
 	Victor SuckyMotorLeft;
 	Victor SuckyMotorRight;
+
+	Solenoid SuckySolenoidOpen;
+	Solenoid SuckySolenoidClose;
 };

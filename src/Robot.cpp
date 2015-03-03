@@ -113,6 +113,8 @@ public:
 				SuckyInst.SetRight(Gamepad.GetRawAxis(suckyYAxis) - Gamepad.GetRawAxis(suckyXAxis));
 			}
 
+			SuckyInst.Open(Gamepad.GetRawButton(Constants::GetConstant("SuckyOpenButton")));
+
 			// Lift Controls
 			if (!Gamepad.GetRawButton(liftOverrideButton))
 			{
