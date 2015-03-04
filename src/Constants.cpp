@@ -34,7 +34,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftUpButton", 4},
 	{"LiftDownButton", 1},
 	{"LiftResetButton", 3},
-	{"LiftOverrideButton", 9},
+	{"LiftOverrideButton", 10},
 	{"LiftAutoStackButton", 2},
 
 	// Drive Constants
