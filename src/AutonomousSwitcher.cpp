@@ -1,6 +1,7 @@
 #include "AutonomousSwitcher.h"
 #include "Constants.h"
 #include "DriverOutputs.h"
+#include "string"
 
 AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift):
 		Switch(Constants::GetConstant("AutonSwitchInput0Channel"),
@@ -30,15 +31,24 @@ void AutonomousSwitcher::updateDashboardThread()
 
 			DriverOutputs::UpdateSmartDashboardNumber("Autonomous Mode", mode);
 
+			std::string description;
 			switch (mode)
 			{
 				case 0:
-					DriverOutputs::UpdateSmartDashboardString("Autonomous Mode Description", "Do Nothing!");
+					description = "Do Nothing!";
+					break;
+				case 1:
+					description = "Drive Forward";
+					break;
+				case 2:
+					description = "Three Tote Stacked";
 					break;
 				default:
-					DriverOutputs::UpdateSmartDashboardString("Autonomous Mode Description", "Auto mode not implemented");
+					description =  "Auto mode not implemented";
 					break;
 			}
+
+			DriverOutputs::UpdateSmartDashboardString("Autonomous Mode Description", description);
 
 			modePrev = mode;
 		}
@@ -72,43 +82,48 @@ void AutonomousSwitcher::ModeDriveForward()
 
 void AutonomousSwitcher::ModeThreeToteStack()
 {
-	float degreechange = 15;
+	float degreechange = 20;
 	float diagonalmove = 3;
-	float straightmove = 3;
+	float straightmove = 5;
+	float autonlongturn = 90;
+	float autonlongmove = 1;
 	//First Tote
-	SuckyInst->Open(false);
-	SuckyInst->SuckIn();
-	LiftInst->LevelChange(-1);
 	DriverInst.TurnDegrees(degreechange);
 	SuckyInst->Stop();
 	LiftInst->LevelChange(1);
 	DriverInst.MoveDistance(diagonalmove);
 	DriverInst.TurnDegrees(-degreechange);
 	DriverInst.MoveDistance(straightmove);
-	DriverInst.TurnDegrees(degreechange);
-	SuckyInst->Open(true);
+	DriverInst.TurnDegrees(-degreechange);
 	SuckyInst->SuckIn();
 	DriverInst.MoveDistance(diagonalmove);
 	//Second Tote
+	SuckyInst->Open(true);
+	Wait (1);
 	SuckyInst->Open(false);
 	LiftInst->LevelChange(-1);
-	DriverInst.MoveDistance(-diagonalmove);
-	DriverInst.TurnDegrees(-degreechange);
-	SuckyInst->Stop();
+	Wait (1);
 	LiftInst->LevelChange(1);
-	DriverInst.MoveDistance(straightmove);
+	Wait (1);
+	DriverInst.MoveDistance(-diagonalmove);
 	DriverInst.TurnDegrees(degreechange);
-	SuckyInst->Open(true);
+	SuckyInst->Stop();
+	DriverInst.MoveDistance(straightmove);
+	DriverInst.TurnDegrees(-degreechange);
 	SuckyInst->SuckIn();
 	DriverInst.MoveDistance(diagonalmove);
 	//Third Tote
+	SuckyInst->Open(true);
+	Wait (1);
 	SuckyInst->Open(false);
+	Wait (1);
 	LiftInst->LevelChange(-1);
+	Wait (1);
 	DriverInst.MoveDistance(-diagonalmove);
-	DriverInst.TurnDegrees(-90);
-	DriverInst.MoveDistance(9);
+	DriverInst.TurnDegrees(autonlongturn);
+	DriverInst.MoveDistance(autonlongmove);
 	SuckyInst->Stop();
 	//Drop Stack
-	SuckyInst->Open(true);
+	SuckyInst->Open(false);
 	DriverInst.MoveDistance(-1);
 }

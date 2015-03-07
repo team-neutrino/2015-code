@@ -96,8 +96,8 @@ public:
 			// Drive Controls
 			driveMultiplier =(JoyLeft.GetRawButton(speedBoostButton) || JoyRight.GetRawButton(speedBoostButton)) ?
 								driveFastMultiplier : driveSlowMultiplier;
-			DriveInst.SetLeft(JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
-			DriveInst.SetRight(JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
+			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
+			DriveInst.SetRight(-JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
 			// Sucky Controls
 			if (Gamepad.GetRawButton(suckInButton))

@@ -13,4 +13,5 @@ private:
 
 	Drive* DriveInst;
 	Gyro Gyroscope;
+	Encoder Encode;
 };
