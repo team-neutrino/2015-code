@@ -8,7 +8,9 @@ AutonomousSwitcher::AutonomousSwitcher(Drive* drive):
 				Constants::GetConstant("AutonSwitchInput2Channel"),
 				Constants::GetConstant("AutonSwitchInput3Channel")),
 		DashboardThread(&AutonomousSwitcher::updateDashboardThread, this),
-		DriverInst(drive)
+		DriverInst(drive),
+		Intake(),
+		Lifter()
 {
 
 }
@@ -55,6 +57,9 @@ void AutonomousSwitcher::RunAuto()
 		case 1:
 			ModeDriveForward();
 			break;
+		case 2:
+			ModeThreeToteStack();
+			break;
 		default:
 			DriverOutputs::ReportError("No Such Autonomous Mode");
 			break;
@@ -63,5 +68,48 @@ void AutonomousSwitcher::RunAuto()
 
 void AutonomousSwitcher::ModeDriveForward()
 {
+	DriverInst.MoveDistance(3);
+}
 
+void AutonomousSwitcher::ModeThreeToteStack()
+{
+	float degreechange = 15;
+	float diagonalmove = 3;
+	float straightmove = 3;
+	//First Tote
+	Intake.Open(false);
+	Intake.SuckIn();
+	Lifter.LevelChange(-1);
+	DriverInst.TurnDegrees(degreechange);
+	Intake.Stop();
+	Lifter.LevelChange(1);
+	DriverInst.MoveDistance(diagonalmove);
+	DriverInst.TurnDegrees(-degreechange);
+	DriverInst.MoveDistance(straightmove);
+	DriverInst.TurnDegrees(degreechange);
+	Intake.Open(true);
+	Intake.SuckIn();
+	DriverInst.MoveDistance(diagonalmove);
+	//Second Tote
+	Intake.Open(false);
+	Lifter.LevelChange(-1);
+	DriverInst.MoveDistance(-diagonalmove);
+	DriverInst.TurnDegrees(-degreechange);
+	Intake.Stop();
+	Lifter.LevelChange(1);
+	DriverInst.MoveDistance(straightmove);
+	DriverInst.TurnDegrees(degreechange);
+	Intake.Open(true);
+	Intake.SuckIn();
+	DriverInst.MoveDistance(diagonalmove);
+	//Third Tote
+	Intake.Open(false);
+	Lifter.LevelChange(-1);
+	DriverInst.MoveDistance(-diagonalmove);
+	DriverInst.TurnDegrees(-90);
+	DriverInst.MoveDistance(9);
+	Intake.Stop();
+	//Drop Stack
+	Intake.Open(true);
+	DriverInst.MoveDistance(-1);
 }

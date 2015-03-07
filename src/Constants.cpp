@@ -18,6 +18,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"Encoder1ChannelB"},
 	{"UseTime", 1},
 	{"FeetToTimeRatio", .06666666666667},
+	{"AutonMoveSpeed", .4},
 
 	// Controllers
 	{"JoyRightPort", 1},

@@ -32,6 +32,9 @@ void AutonomousDriver::TurnDegrees(float degrees)
 
 void AutonomousDriver::MoveDistance(float feet)
 {
+	float movespeed = Constants::GetConstant("AutonMoveSpeed");
+	DriveInst->SetLeft(movespeed);
+	DriveInst->SetRight(movespeed);
 	if(Constants::GetConstant("UseTime"))
 	{
 		Wait(feet*Constants::GetConstant("FeetToTimeRatio"));
@@ -40,4 +43,6 @@ void AutonomousDriver::MoveDistance(float feet)
 	{
 		//TODO implement encoder
 	}
+	DriveInst->SetLeft(0);
+	DriveInst->SetRight(0);
 }
