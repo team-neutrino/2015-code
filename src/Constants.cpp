@@ -13,6 +13,9 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"AutonSwitchInput1Channel", 5},
 	{"AutonSwitchInput2Channel", 6},
 	{"AutonSwitchInput3Channel", 7},
+	{"GyroAnalogChannel", 1},
+	{"Encoder1ChannelA"},
+	{"Encoder1ChannelB"},
 
 	// Controllers
 	{"JoyRightPort", 1},

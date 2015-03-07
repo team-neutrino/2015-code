@@ -6,6 +6,7 @@
 #include "Sucky.h"
 #include "DriverOutputs.h"
 #include "CurrentMonitor.h"
+#include "AutonomousDriver.h"
 
 class Robot: public SampleRobot
 {
@@ -21,6 +22,7 @@ public:
 	Lift LiftInst;
 	Sucky SuckyInst;
 	CurrentMonitor CurrentMonitorInst;
+	AutonomousDriver AutoDrive;
 
 	/**
 	 * Constructor
@@ -35,7 +37,8 @@ public:
 		DriveInst(),
 		LiftInst(),
 		SuckyInst(),
-		CurrentMonitorInst()
+		CurrentMonitorInst(),
+		AutoDrive(&DriveInst)
 	{
 
 	}
@@ -61,7 +64,7 @@ public:
 	 */
 	void Autonomous()
 	{
-		AutoSwitch.RunAuto();
+		// AutoDrive.TurnDegrees(50);
 	}
 
 	/**
