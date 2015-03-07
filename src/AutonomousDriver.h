@@ -13,5 +13,5 @@ public:
 private:
 
 	Drive* DriveInst;
-//	Gyro Gyroscope;
+	Gyro Gyroscope;
 };

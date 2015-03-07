@@ -2,9 +2,8 @@
 #include "Constants.h"
 
 
-AutonomousDriver::AutonomousDriver(Drive* driveinst)
-//		Gyroscope(1)
-
+AutonomousDriver::AutonomousDriver(Drive* driveinst):
+		Gyroscope(1)
 {
 	DriveInst = driveinst;
 }
@@ -12,7 +11,7 @@ AutonomousDriver::AutonomousDriver(Drive* driveinst)
 void AutonomousDriver::TurnDegrees(float degrees)
 {
 	int error = 20;
-//	Gyroscope.Reset();
+	Gyroscope.Reset();
 	if (degrees >= 0)
 	{
 		DriveInst->SetLeft(-1);
@@ -24,10 +23,10 @@ void AutonomousDriver::TurnDegrees(float degrees)
 		DriveInst->SetLeft(1);
 		DriveInst->SetRight(-1);
 	}
-//	while(Gyroscope.GetAngle() < degrees + error && Gyroscope.GetAngle() > degrees - error)
-//	{
-//		Wait(.01);
-//	}
+	while(Gyroscope.GetAngle() < degrees + error && Gyroscope.GetAngle() > degrees - error)
+	{
+		Wait(.01);
+	}
 	DriveInst->SetLeft(0);
 	DriveInst->SetRight(0);
 }
