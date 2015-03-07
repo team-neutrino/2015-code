@@ -22,14 +22,12 @@ public:
 	Lift LiftInst;
 	Sucky SuckyInst;
 	CurrentMonitor CurrentMonitorInst;
-	AutonomousDriver AutoDrive;
 
 	/**
 	 * Constructor
 	 */
 	Robot():
 		ConstInst(),
-		AutoSwitch(),
 		Comp(),
 		JoyRight(Constants::GetConstant("JoyRightPort")),
 		JoyLeft(Constants::GetConstant("JoyLeftPort")),
@@ -37,8 +35,8 @@ public:
 		DriveInst(),
 		LiftInst(),
 		SuckyInst(),
-		CurrentMonitorInst(),
-		AutoDrive(&DriveInst)
+		AutoSwitch(&DriveInst),
+		CurrentMonitorInst()
 	{
 
 	}
@@ -64,7 +62,7 @@ public:
 	 */
 	void Autonomous()
 	{
-		// AutoDrive.TurnDegrees(50);
+		AutoSwitch.RunAuto();
 	}
 
 	/**
@@ -98,7 +96,7 @@ public:
 			// Drive Controls
 			driveMultiplier =(JoyLeft.GetRawButton(speedBoostButton) || JoyRight.GetRawButton(speedBoostButton)) ?
 								driveFastMultiplier : driveSlowMultiplier;
-			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
+			DriveInst.SetLeft(JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
 			DriveInst.SetRight(JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
 			// Sucky Controls

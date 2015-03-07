@@ -12,8 +12,8 @@ Drive::Drive():
 
 void Drive::SetLeft(float speed)
 {
-	 MotorLeft1.Set(speed);
-	 MotorLeft2.Set(speed);
+	 MotorLeft1.Set(-speed);
+	 MotorLeft2.Set(-speed);
 }
 
 void Drive::SetRight(float speed)

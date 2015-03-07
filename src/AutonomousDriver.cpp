@@ -3,40 +3,41 @@
 
 
 AutonomousDriver::AutonomousDriver(Drive* driveinst):
-		Gyroscope(1)
+		Gyroscope(Constants::GetConstant("GyroAnalogChannel"))
 {
 	DriveInst = driveinst;
 }
 
 void AutonomousDriver::TurnDegrees(float degrees)
 {
-	int error = 20;
-	Gyroscope.Reset();
-	if (degrees >= 0)
+	if(degrees == 0)
 	{
-		DriveInst->SetLeft(-1);
-		DriveInst->SetRight(1);
+		return;
+	}
 
-	}
-	else if (degrees <= 0)
+	Gyroscope.Reset();
+	DriveInst->SetLeft(-.4 * (abs(degrees) / degrees));
+	DriveInst->SetRight(.4 * (abs(degrees) / degrees));
+
+	while (abs(Gyroscope.GetAngle()) < abs(degrees))
 	{
-		DriveInst->SetLeft(1);
-		DriveInst->SetRight(-1);
+		std::cout << Gyroscope.GetAngle() << '\n';
+		Wait(.001);
 	}
-	while(Gyroscope.GetAngle() < degrees + error && Gyroscope.GetAngle() > degrees - error)
-	{
-		Wait(.01);
-	}
+
 	DriveInst->SetLeft(0);
 	DriveInst->SetRight(0);
+	std::cout << Gyroscope.GetAngle() << '\n';
 }
 
 void AutonomousDriver::MoveDistance(float feet)
 {
-
-}
-
-void AutonomousDriver::FeetMoved(float feetmoved)
-{
-
+	if(Constants::GetConstant("UseTime"))
+	{
+		Wait(feet*Constants::GetConstant("FeetToTimeRatio"));
+	}
+	else
+	{
+		//TODO implement encoder
+	}
 }

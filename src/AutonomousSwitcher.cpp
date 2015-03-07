@@ -2,12 +2,13 @@
 #include "Constants.h"
 #include "DriverOutputs.h"
 
-AutonomousSwitcher::AutonomousSwitcher():
+AutonomousSwitcher::AutonomousSwitcher(Drive* drive):
 		Switch(Constants::GetConstant("AutonSwitchInput0Channel"),
 				Constants::GetConstant("AutonSwitchInput1Channel"),
 				Constants::GetConstant("AutonSwitchInput2Channel"),
 				Constants::GetConstant("AutonSwitchInput3Channel")),
-		DashboardThread(&AutonomousSwitcher::updateDashboardThread, this)
+		DashboardThread(&AutonomousSwitcher::updateDashboardThread, this),
+		DriverInst(drive)
 {
 
 }
@@ -51,8 +52,16 @@ void AutonomousSwitcher::RunAuto()
 	{
 		case 0:
 			break;
+		case 1:
+			ModeDriveForward();
+			break;
 		default:
 			DriverOutputs::ReportError("No Such Autonomous Mode");
 			break;
 	}
+}
+
+void AutonomousSwitcher::ModeDriveForward()
+{
+
 }

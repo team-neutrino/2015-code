@@ -9,7 +9,6 @@ public:
 	AutonomousDriver(Drive* driveinst);
 	void TurnDegrees(float degrees);
 	void MoveDistance(float feet);
-	void FeetMoved(float feetmoved);
 private:
 
 	Drive* DriveInst;
