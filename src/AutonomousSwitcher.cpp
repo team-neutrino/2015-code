@@ -2,17 +2,16 @@
 #include "Constants.h"
 #include "DriverOutputs.h"
 
-AutonomousSwitcher::AutonomousSwitcher(Drive* drive):
+AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift):
 		Switch(Constants::GetConstant("AutonSwitchInput0Channel"),
 				Constants::GetConstant("AutonSwitchInput1Channel"),
 				Constants::GetConstant("AutonSwitchInput2Channel"),
 				Constants::GetConstant("AutonSwitchInput3Channel")),
 		DashboardThread(&AutonomousSwitcher::updateDashboardThread, this),
-		DriverInst(drive),
-		Intake(),
-		Lifter()
+		DriverInst(drive)
 {
-
+	SuckyInst = sucky;
+	LiftInst = lift;
 }
 
 void AutonomousSwitcher::updateDashboardThread()
@@ -77,39 +76,39 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	float diagonalmove = 3;
 	float straightmove = 3;
 	//First Tote
-	Intake.Open(false);
-	Intake.SuckIn();
-	Lifter.LevelChange(-1);
+	SuckyInst->Open(false);
+	SuckyInst->SuckIn();
+	LiftInst->LevelChange(-1);
 	DriverInst.TurnDegrees(degreechange);
-	Intake.Stop();
-	Lifter.LevelChange(1);
+	SuckyInst->Stop();
+	LiftInst->LevelChange(1);
 	DriverInst.MoveDistance(diagonalmove);
 	DriverInst.TurnDegrees(-degreechange);
 	DriverInst.MoveDistance(straightmove);
 	DriverInst.TurnDegrees(degreechange);
-	Intake.Open(true);
-	Intake.SuckIn();
+	SuckyInst->Open(true);
+	SuckyInst->SuckIn();
 	DriverInst.MoveDistance(diagonalmove);
 	//Second Tote
-	Intake.Open(false);
-	Lifter.LevelChange(-1);
+	SuckyInst->Open(false);
+	LiftInst->LevelChange(-1);
 	DriverInst.MoveDistance(-diagonalmove);
 	DriverInst.TurnDegrees(-degreechange);
-	Intake.Stop();
-	Lifter.LevelChange(1);
+	SuckyInst->Stop();
+	LiftInst->LevelChange(1);
 	DriverInst.MoveDistance(straightmove);
 	DriverInst.TurnDegrees(degreechange);
-	Intake.Open(true);
-	Intake.SuckIn();
+	SuckyInst->Open(true);
+	SuckyInst->SuckIn();
 	DriverInst.MoveDistance(diagonalmove);
 	//Third Tote
-	Intake.Open(false);
-	Lifter.LevelChange(-1);
+	SuckyInst->Open(false);
+	LiftInst->LevelChange(-1);
 	DriverInst.MoveDistance(-diagonalmove);
 	DriverInst.TurnDegrees(-90);
 	DriverInst.MoveDistance(9);
-	Intake.Stop();
+	SuckyInst->Stop();
 	//Drop Stack
-	Intake.Open(true);
+	SuckyInst->Open(true);
 	DriverInst.MoveDistance(-1);
 }

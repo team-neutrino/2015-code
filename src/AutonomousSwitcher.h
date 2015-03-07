@@ -10,19 +10,20 @@
 class AutonomousSwitcher
 {
 public:
-	AutonomousSwitcher(Drive* drive);
+	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift);
 	void RunAuto();
 	void ModeDriveForward();
 	void ModeThreeToteStack();
 
 private:
-	Lift Lifter;
-	Sucky Intake;
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
 
 	AutonomousDriver DriverInst;
 
+	Sucky* SuckyInst;
+
+	Lift* LiftInst;
 
 	const double REFRESH_RATE = 5;
 

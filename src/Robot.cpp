@@ -13,7 +13,6 @@ class Robot: public SampleRobot
 
 public:
 	Constants ConstInst;
-	AutonomousSwitcher AutoSwitch;
 	Compressor Comp;
 	Joystick JoyRight;
 	Joystick JoyLeft;
@@ -21,6 +20,7 @@ public:
 	Drive DriveInst;
 	Lift LiftInst;
 	Sucky SuckyInst;
+	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
 
 	/**
@@ -35,7 +35,7 @@ public:
 		DriveInst(),
 		LiftInst(),
 		SuckyInst(),
-		AutoSwitch(&DriveInst),
+		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst),
 		CurrentMonitorInst()
 	{
 
