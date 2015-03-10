@@ -246,3 +246,11 @@ void Lift::monitorThread()
 		Wait(5);
 	}
 }
+
+void Lift::WaitForLift()
+{
+	while (Lifting())
+	{
+		Wait(.01);
+	}
+}

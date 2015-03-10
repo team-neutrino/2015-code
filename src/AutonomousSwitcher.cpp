@@ -82,48 +82,59 @@ void AutonomousSwitcher::ModeDriveForward()
 
 void AutonomousSwitcher::ModeThreeToteStack()
 {
-	float degreechange = 20;
-	float diagonalmove = 3;
-	float straightmove = 5;
-	float autonlongturn = 90;
-	float autonlongmove = 1;
 	//First Tote
-	DriverInst.TurnDegrees(degreechange);
-	SuckyInst->Stop();
+	DriverInst.TurnDegrees(35);
 	LiftInst->LevelChange(1);
-	DriverInst.MoveDistance(diagonalmove);
-	DriverInst.TurnDegrees(-degreechange);
-	DriverInst.MoveDistance(straightmove);
-	DriverInst.TurnDegrees(-degreechange);
+	//Move out 3
+	DriverInst.MoveDistance(3);
+	//Turn to long move
+	DriverInst.TurnDegrees(-23);
+	//Long move
+	DriverInst.MoveDistance(2);
+	//Turn to diagonal move
+	DriverInst.TurnDegrees(-20);
 	SuckyInst->SuckIn();
-	DriverInst.MoveDistance(diagonalmove);
+	//Diagonal move
+	DriverInst.MoveDistance(3);
 	//Second Tote
 	SuckyInst->Open(true);
 	Wait (1);
 	SuckyInst->Open(false);
 	LiftInst->LevelChange(-1);
-	Wait (1);
+	LiftInst->WaitForLift();
 	LiftInst->LevelChange(1);
 	Wait (1);
-	DriverInst.MoveDistance(-diagonalmove);
-	DriverInst.TurnDegrees(degreechange);
+	//Back up for long move
+	DriverInst.MoveDistance(-3);
+	//Turn to face long move
+	DriverInst.TurnDegrees(20);
 	SuckyInst->Stop();
-	DriverInst.MoveDistance(straightmove);
-	DriverInst.TurnDegrees(-degreechange);
+	//Long move to tote three
+	DriverInst.MoveDistance(6);
+	//Turn to diagonal for tote 3
+	DriverInst.TurnDegrees(-20);
 	SuckyInst->SuckIn();
-	DriverInst.MoveDistance(diagonalmove);
-	//Third Tote
+	//Move to pick up tote three
+	DriverInst.MoveDistance(3);
+	//Third Tote pickup
 	SuckyInst->Open(true);
 	Wait (1);
 	SuckyInst->Open(false);
 	Wait (1);
 	LiftInst->LevelChange(-1);
-	Wait (1);
-	DriverInst.MoveDistance(-diagonalmove);
-	DriverInst.TurnDegrees(autonlongturn);
-	DriverInst.MoveDistance(autonlongmove);
+	LiftInst->WaitForLift();
+	LiftInst->LevelChange(1);
+	//Back up from tote three
+	DriverInst.MoveDistance(-3);
+	//Turn to go toward auto zone
+	DriverInst.TurnDegrees(90);
+	//Move to auto zone
+	DriverInst.MoveDistance(1);
 	SuckyInst->Stop();
 	//Drop Stack
 	SuckyInst->Open(false);
+	LiftInst->LevelChange(-1);
+	LiftInst->WaitForLift();
+	//Back up from stack
 	DriverInst.MoveDistance(-1);
 }
