@@ -35,8 +35,6 @@ public:
 	 */
 	void EndManualOverride();
 
-	void WaitUntilLiftComplete();
-
 private:
 	Talon LiftMotor1;
 	Talon LiftMotor2;
