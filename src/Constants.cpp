@@ -19,7 +19,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"UseTime", 0},
 	{"FeetToTimeRatio", 1},
 	{"EncoderTickPerFoot", 1500},
-	{"AutonMoveSpeed", .4},
+	{"AutonMoveSpeed", .50},
 
 	// Controllers
 	{"JoyRightPort", 1},

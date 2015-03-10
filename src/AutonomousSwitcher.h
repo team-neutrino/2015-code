@@ -14,6 +14,7 @@ public:
 	void RunAuto();
 	void ModeDriveForward();
 	void ModeThreeToteStack();
+	void ModeDriveBackward();
 
 private:
 	DigitalSelectorSwitch Switch;
