@@ -67,7 +67,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftMotorDownOverideSpeed", .5},
 
 	{"LiftMotorUpSpeed", 1},
-	{"LiftMotorDownSpeed", 1},
+	{"LiftMotorDownSpeed", .6},
 
 	{"BeamBreakChannel", 0},
 	{"LimitSwitchTopChannel", 9},
@@ -86,8 +86,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"SuckyMotorLeftChannel", 3},
 	{"SuckyMotorLeftPowerChannel", 7},
 
-	{"SuckyMotorInSpeed", 1},
-	{"SuckyMotorOutSpeed", 1},
+	{"SuckyMotorInSpeed", .75},
+	{"SuckyMotorOutSpeed", .75},
 
 	{"SuckySolenoidOpenChannel", 0},
 	{"SuckySolenoidCloseChannel", 1},
