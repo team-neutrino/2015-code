@@ -19,7 +19,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"UseTime", 0},
 	{"FeetToTimeRatio", 1},
 	{"EncoderTickPerFoot", 1500},
-	{"AutonMoveSpeed", .4},
+	{"AutonMoveSpeed", .5},
 
 	// Controllers
 	{"JoyRightPort", 1},
@@ -91,6 +91,12 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	{"SuckySolenoidOpenChannel", 0},
 	{"SuckySolenoidCloseChannel", 1},
+
+	//StackJail Constants
+	{"StackJailLeftSolenoidOpen", 4},
+	{"StackJailLeftSolenoidClose", 5},
+	{"StackJailRightSolenoidOpen", 6},
+	{"StackJailRightSolenoidClose", 7},
 
 	//Lights Constants
 	{"LightsChannel1", 0},

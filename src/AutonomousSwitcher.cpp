@@ -82,20 +82,39 @@ void AutonomousSwitcher::ModeDriveForward()
 
 void AutonomousSwitcher::ModeThreeToteStack()
 {
+	// Moving (in feet)
+	float FirstToteMoveDiagonal = 3;
+	float LongMoveToSecondTote = 1.7;
+	float MoveToSecondTote = 3.5;
+	float SecondToteMoveBack = -3.5;
+	float LongMoveToToteThree = 6.5;
+	float DiagonalMoveToThirdTote = 4;
+	float MoveBackFromThirdTote = -4;
+	float MoveToAutoZone = 1;
+	float DropTotesInAutoZone = -1;
+
+	//Turning (in degrees)
+	float TurnOutFromFirstTote = 35;
+	float FirstToteTurnToLongMove = -23;
+	float SecondToteTurnToDiagonal = -20;
+	float SecondToteTurnToLongMove = 20;
+	float ThirdToteTurnToDiagonal = -20;
+	float LongTurnToAutoZone = 90;
+
 	//First Tote
-	DriverInst.TurnDegrees(35);
+	DriverInst.TurnDegrees(TurnOutFromFirstTote);
 	LiftInst->LevelChange(1);
 	//Move out 3
-	DriverInst.MoveDistance(3);
+	DriverInst.MoveDistance(FirstToteMoveDiagonal);
 	//Turn to long move
-	DriverInst.TurnDegrees(-23);
+	DriverInst.TurnDegrees(FirstToteTurnToLongMove);
 	//Long move
-	DriverInst.MoveDistance(2);
+	DriverInst.MoveDistance(LongMoveToSecondTote);
 	//Turn to diagonal move
-	DriverInst.TurnDegrees(-20);
+	DriverInst.TurnDegrees(SecondToteTurnToDiagonal);
 	SuckyInst->SuckIn();
 	//Diagonal move
-	DriverInst.MoveDistance(3);
+	DriverInst.MoveDistance(MoveToSecondTote);
 	//Second Tote
 	SuckyInst->Open(true);
 	Wait (1);
@@ -105,17 +124,17 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	LiftInst->LevelChange(1);
 	Wait (1);
 	//Back up for long move
-	DriverInst.MoveDistance(-3);
+	DriverInst.MoveDistance(SecondToteMoveBack);
 	//Turn to face long move
-	DriverInst.TurnDegrees(20);
+	DriverInst.TurnDegrees(SecondToteTurnToLongMove);
 	SuckyInst->Stop();
 	//Long move to tote three
-	DriverInst.MoveDistance(6);
+	DriverInst.MoveDistance(LongMoveToToteThree);
 	//Turn to diagonal for tote 3
-	DriverInst.TurnDegrees(-20);
+	DriverInst.TurnDegrees(ThirdToteTurnToDiagonal);
 	SuckyInst->SuckIn();
 	//Move to pick up tote three
-	DriverInst.MoveDistance(3);
+	DriverInst.MoveDistance(DiagonalMoveToThirdTote);
 	//Third Tote pickup
 	SuckyInst->Open(true);
 	Wait (1);
@@ -124,17 +143,18 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	LiftInst->LevelChange(-1);
 	LiftInst->WaitForLift();
 	LiftInst->LevelChange(1);
+	LiftInst->WaitForLift();
 	//Back up from tote three
-	DriverInst.MoveDistance(-3);
+	DriverInst.MoveDistance(MoveBackFromThirdTote);
 	//Turn to go toward auto zone
-	DriverInst.TurnDegrees(90);
+	DriverInst.TurnDegrees(LongTurnToAutoZone);
 	//Move to auto zone
-	DriverInst.MoveDistance(1);
+	DriverInst.MoveDistance(MoveToAutoZone);
 	SuckyInst->Stop();
 	//Drop Stack
 	SuckyInst->Open(false);
 	LiftInst->LevelChange(-1);
 	LiftInst->WaitForLift();
 	//Back up from stack
-	DriverInst.MoveDistance(-1);
+	DriverInst.MoveDistance(DropTotesInAutoZone);
 }
