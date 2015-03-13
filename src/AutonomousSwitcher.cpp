@@ -85,11 +85,12 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	// Moving (in feet)
 	float FirstToteMoveDiagonal = 3;
 	float LongMoveToSecondTote = 1.7;
-	float MoveToSecondTote = 3.5;
-	float SecondToteMoveBack = -3.5;
+	float MoveToSecondTote = 4;
+	float SecondToteMoveBack = -4;
 	float LongMoveToToteThree = 6.5;
 	float DiagonalMoveToThirdTote = 4;
 	float MoveBackFromThirdTote = -4;
+	// TODO Make the robot move into the auto zone far enough.
 	float MoveToAutoZone = 1;
 	float DropTotesInAutoZone = -1;
 
