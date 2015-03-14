@@ -5,12 +5,12 @@
 class StackJail {
 public:
 	StackJail();
-	// Toggles the gate open/closed
+	/**
+	 * Toggles the gate open/closed
+	 */
 	void GateToggle(bool open);
 
 private:
 	Solenoid GateOpen;
 	Solenoid GateClose;
-//	Solenoid RightGateOpen;
-//	Solenoid RightGateClose;
 };

@@ -76,7 +76,6 @@ public:
 
 		int speedBoostButton = Constants::GetConstant("SpeedBoostButton");
 
-//		int suckInButton = Constants::GetConstant("SuckInButton");
 		int spitOutButton = Constants::GetConstant("SpitOutButton");
 		int suckyXAxis = Constants::GetConstant("SuckyXAxis");
 		int suckyYAxis = Constants::GetConstant("SuckyYAxis");
@@ -99,12 +98,7 @@ public:
 			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
 			DriveInst.SetRight(-JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
-			// Sucky Controls
-			/*if (Gamepad.GetRawButton(suckInButton))
-			{
-				SuckyInst.SuckIn();
-			}
-			else */if (Gamepad.GetRawButton(spitOutButton))
+			if (Gamepad.GetRawButton(spitOutButton))
 			{
 				SuckyInst.SpitOut();
 			}

@@ -1,5 +1,5 @@
-#include <StackJail.h>
 #include "WPILib.h"
+#include "StackJail.h"
 #pragma once
 
 class Lift
