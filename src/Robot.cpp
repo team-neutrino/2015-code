@@ -76,7 +76,7 @@ public:
 
 		int speedBoostButton = Constants::GetConstant("SpeedBoostButton");
 
-		int suckInButton = Constants::GetConstant("SuckInButton");
+//		int suckInButton = Constants::GetConstant("SuckInButton");
 		int spitOutButton = Constants::GetConstant("SpitOutButton");
 		int suckyXAxis = Constants::GetConstant("SuckyXAxis");
 		int suckyYAxis = Constants::GetConstant("SuckyYAxis");
@@ -84,7 +84,7 @@ public:
 		int liftUpButton = Constants::GetConstant("LiftUpButton");
 		int liftDownButton = Constants::GetConstant("LiftDownButton");
 		int liftResetButton = Constants::GetConstant("LiftResetButton");
-		int liftOverrideButton = Constants::GetConstant("LiftOverrideButton");
+		int liftOverrideTrigger = Constants::GetConstant("LiftOverrideTrigger");
 		int liftAutoStackButton = Constants::GetConstant("LiftAutoStackButton");
 
 		int joyLiftResetButton = Constants::GetConstant("JoyLiftResetButton");
@@ -100,11 +100,11 @@ public:
 			DriveInst.SetRight(-JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
 			// Sucky Controls
-			if (Gamepad.GetRawButton(suckInButton))
+			/*if (Gamepad.GetRawButton(suckInButton))
 			{
 				SuckyInst.SuckIn();
 			}
-			else if (Gamepad.GetRawButton(spitOutButton))
+			else */if (Gamepad.GetRawButton(spitOutButton))
 			{
 				SuckyInst.SpitOut();
 			}
@@ -117,7 +117,7 @@ public:
 			SuckyInst.Open(Gamepad.GetRawButton(Constants::GetConstant("SuckyOpenButton")));
 
 			// Lift Controls
-			if (!Gamepad.GetRawButton(liftOverrideButton))
+			if (Gamepad.GetRawAxis(liftOverrideTrigger) > -.5f)
 			{
 				LiftInst.EndManualOverride();
 				// Normal Control

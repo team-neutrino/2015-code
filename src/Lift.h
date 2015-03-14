@@ -1,3 +1,4 @@
+#include <StackJail.h>
 #include "WPILib.h"
 #pragma once
 
@@ -43,6 +44,7 @@ private:
 	DigitalInput BeamBreak;
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
+	StackJail jail;
 
 	signed const char RESET = 100;
 

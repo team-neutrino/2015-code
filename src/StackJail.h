@@ -9,8 +9,8 @@ public:
 	void GateToggle(bool open);
 
 private:
-	Solenoid LeftGateOpen;
-	Solenoid LeftGateClose;
-	Solenoid RightGateOpen;
-	Solenoid RightGateClose;
+	Solenoid GateOpen;
+	Solenoid GateClose;
+//	Solenoid RightGateOpen;
+//	Solenoid RightGateClose;
 };

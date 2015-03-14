@@ -29,19 +29,19 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	// Button Mapping - Joysticks
 	{"SpeedBoostButton", 1},
 	{"JoyLiftResetButton", 2},
-	{"SuckyXAxis", 0},
-	{"SuckyYAxis", 1},
 	{"JoyLiftResetButton", 2},
 
 	// Button Mapping - Gamepad
-	{"SuckInButton", 5},
+//	{"SuckInButton", 5},
+	{"SuckyXAxis", 0},
+	{"SuckyYAxis", 1},
 	{"SpitOutButton", 6},
-	{"SuckyOpenButton", 9},
+	{"SuckyOpenButton", 5},
 
 	{"LiftUpButton", 4},
 	{"LiftDownButton", 1},
 	{"LiftResetButton", 3},
-	{"LiftOverrideButton", 10},
+	{"LiftOverrideTrigger", 3},
 	{"LiftAutoStackButton", 2},
 
 	// Drive Constants
@@ -93,10 +93,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"SuckySolenoidCloseChannel", 1},
 
 	//StackJail Constants
-	{"StackJailLeftSolenoidOpen", 4},
-	{"StackJailLeftSolenoidClose", 5},
-	{"StackJailRightSolenoidOpen", 6},
-	{"StackJailRightSolenoidClose", 7},
+	{"StackJailSolenoidOpen", 2},
+	{"StackJailSolenoidClose", 3},
 
 	//Lights Constants
 	{"LightsChannel1", 0},
