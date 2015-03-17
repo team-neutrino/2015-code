@@ -13,7 +13,9 @@ public:
 	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift);
 	void RunAuto();
 	void ModeDriveForward();
+	void ModeDriveBackward();
 	void ModeThreeToteStack();
+	void TurnWithTote();
 
 private:
 	DigitalSelectorSwitch Switch;

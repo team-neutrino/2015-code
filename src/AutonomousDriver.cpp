@@ -33,13 +33,13 @@ void AutonomousDriver::TurnDegrees(float degrees)
 	std::cout << Gyroscope.GetAngle() << '\n';
 }
 
-void AutonomousDriver::MoveDistance(float feet)
+void AutonomousDriver::MoveDistance(float feet, float spd)
 {
-	float movespeed = Constants::GetConstant("AutonMoveSpeed");
+	float movespeed = Constants::GetConstant("AutonMoveSpeed") * spd;
 	float tickPerFoot = Constants::GetConstant("EncoderTickPerFoot");
 
 	DriveInst->SetLeft(movespeed * (abs(feet) / feet));
-	DriveInst->SetRight(movespeed * (abs(feet) / feet));
+	DriveInst->SetRight(movespeed * 1.1 * (abs(feet) / feet));
 
 	if(Constants::GetConstant("UseTime"))
 	{

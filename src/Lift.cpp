@@ -258,5 +258,7 @@ void Lift::WaitForLift()
 	while (Lifting())
 	{
 		Wait(.01);
+		DriverOutputs::ReportError("waiting for lift");
+
 	}
 }

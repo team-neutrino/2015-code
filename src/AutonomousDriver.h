@@ -1,6 +1,7 @@
 #include "WPILib.h"
 #include "Drive.h"
 #include "Gyro.h"
+#include "Constants.h"
 #pragma once
 
 class AutonomousDriver
@@ -8,7 +9,7 @@ class AutonomousDriver
 public:
 	AutonomousDriver(Drive* driveinst);
 	void TurnDegrees(float degrees);
-	void MoveDistance(float feet);
+	void MoveDistance(float feet, float spd = 1);
 private:
 
 	Drive* DriveInst;
