@@ -74,14 +74,10 @@ void AutonomousSwitcher::RunAuto()
 			ModeDriveForward();
 			break;
 		case 2:
-			DriverOutputs::ReportError("drive backward\n");
-			ModeDriveBackward;
-			break;
-		case 3:
 			DriverOutputs::ReportError("3 stack totes\n");
 			ModeThreeToteStack();
 			break;
-		case 4:
+		case 3:
 			DriverOutputs::ReportError("Turn 90 and drive forward\n");
 			TurnWithTote();
 			break;
@@ -95,10 +91,6 @@ void AutonomousSwitcher::ModeDriveForward()
 {
 	DriverInst.MoveDistance(3);
 }
-void AutonomousSwitcher::ModeDriveBackward()
-{
-	DriverInst.MoveDistance(-3);
-}
 
 void AutonomousSwitcher::ModeThreeToteStack()
 {
@@ -110,7 +102,7 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	SuckyInst->SetRight(-.5);
 	DriverInst.MoveDistance(3);
 	SuckyInst->Open(false);
-	DriverInst.MoveDistance(2);
+	DriverInst.MoveDistance(3);
 	SuckyInst->Open(true);
 	SuckyInst->SuckIn();
 	Wait(1);
@@ -141,7 +133,6 @@ void AutonomousSwitcher::ModeThreeToteStack()
 
 void AutonomousSwitcher::TurnWithTote()
 {
-	SuckyInst->Open(true);
-	DriverInst.TurnDegrees(90);
+	DriverInst.TurnDegrees(60);
 	DriverInst.MoveDistance(3);
 }
