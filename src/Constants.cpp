@@ -14,8 +14,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"AutonSwitchInput2Channel", 6},
 	{"AutonSwitchInput3Channel", 7},
 	{"GyroAnalogChannel", 1},
-	{"Encoder1ChannelA", 1},
-	{"Encoder1ChannelB", 2},
+	{"Encoder1ChannelA", 9},
+	{"Encoder1ChannelB", 8},
 	{"UseTime", 0},
 	{"FeetToTimeRatio", 1},
 	{"EncoderTickPerFoot", 1500},
@@ -69,8 +69,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftMotorDownSpeed", .6},
 
 	{"BeamBreakChannel", 0},
-	{"LimitSwitchTopChannel", 9},
-	{"LimitSwitchBottomChannel", 8},
+	{"LimitSwitchTopChannel", 2},
+	{"LimitSwitchBottomChannel", 3},
 
 	{"LiftTimeOut", 3},
 	{"LiftSampleRate", 0.001},

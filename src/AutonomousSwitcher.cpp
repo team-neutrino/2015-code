@@ -94,7 +94,7 @@ void AutonomousSwitcher::ModeDriveForward()
 
 void AutonomousSwitcher::ModeThreeToteStack()
 {
-	LiftInst->LevelChange(1);
+	LiftInst->LevelChange(2);
 	LiftInst->WaitForLift();
 	Wait(.5);
 	SuckyInst->Open(true);
@@ -107,9 +107,9 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	SuckyInst->SuckIn();
 	Wait(1);
 	SuckyInst->Open(false);
-	LiftInst->LevelChange(-1);
+	LiftInst->LevelChange(-2);
 	LiftInst->WaitForLift();
-	LiftInst->LevelChange(1);
+	LiftInst->LevelChange(2);
 	SuckyInst->Open(true);
 	SuckyInst->SetLeft(-.5);
 	SuckyInst->SetRight(.5);
@@ -121,9 +121,9 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	Wait(1);
 	SuckyInst->Open(false);
 	SuckyInst->Stop();
-	LiftInst->LevelChange(-1);
+	LiftInst->LevelChange(-2);
 	LiftInst->WaitForLift();
-	LiftInst->LevelChange(1);
+	LiftInst->LevelChange(2);
 	DriverInst.TurnDegrees(60);
 	DriverInst.MoveDistance(6);
 	LiftInst->Reset();
