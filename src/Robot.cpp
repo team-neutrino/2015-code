@@ -111,7 +111,7 @@ public:
 			SuckyInst.Open(Gamepad.GetRawButton(Constants::GetConstant("SuckyOpenButton")));
 
 			// Lift Controls
-			if (Gamepad.GetRawButton(2))
+			if (!Gamepad.GetRawButton(2) && !Gamepad.GetRawButton(3))
 			{
 				LiftInst.EndManualOverride();
 				// Normal Control
@@ -151,11 +151,11 @@ public:
 				// Override Control
 				autoStacking = false;
 
-				if (Gamepad.GetRawButton(liftUpButton))
+				if (Gamepad.GetRawButton(2))
 				{
 					LiftInst.ManualOverride(true);
 				}
-				else if (Gamepad.GetRawButton(liftDownButton))
+				else if (Gamepad.GetRawButton(3))
 				{
 					LiftInst.ManualOverride(false);
 				}
