@@ -14,10 +14,10 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"AutonSwitchInput2Channel", 6},
 	{"AutonSwitchInput3Channel", 7},
 	{"GyroAnalogChannel", 1},
-	{"Encoder1ChannelA", 9},
-	{"Encoder1ChannelB", 8},
+	{"Encoder1ChannelA", 8},
+	{"Encoder1ChannelB", 9},
 	{"UseTime", 0},
-	{"FeetToTimeRatio", 1},
+	{"FeetToTimeRatio", .12},
 	{"EncoderTickPerFoot", 1500},
 	{"AutonMoveSpeed", .45},
 

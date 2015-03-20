@@ -41,12 +41,9 @@ void AutonomousSwitcher::updateDashboardThread()
 					description = "Drive Forward";
 					break;
 				case 2:
-					description = "Drive Backward";
-					break;
-				case 3:
 					description = "Three Tote Stacked";
 					break;
-				case 4:
+				case 3:
 					description = "Turn 90 and drive to zone";
 					break;
 				default:
@@ -89,7 +86,7 @@ void AutonomousSwitcher::RunAuto()
 
 void AutonomousSwitcher::ModeDriveForward()
 {
-	DriverInst.MoveDistance(3);
+	DriverInst.MoveDistance(2);
 }
 
 void AutonomousSwitcher::ModeThreeToteStack()

@@ -22,7 +22,6 @@ public:
 	Sucky SuckyInst;
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
-	Encoder coder;
 
 	/**
 	 * Constructor
@@ -64,10 +63,6 @@ public:
 	void Autonomous()
 	{
 		AutoSwitch.RunAuto();
-		while (IsAutonomous)
-		{
-			std::cout << coder.Get();
-		}
 	}
 
 	/**

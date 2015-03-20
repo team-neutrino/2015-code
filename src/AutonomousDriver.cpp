@@ -13,6 +13,7 @@ void AutonomousDriver::TurnDegrees(float degrees)
 {
 	float movespeed = Constants::GetConstant("AutonMoveSpeed");
 
+
 	if(degrees == 0)
 	{
 		return;
@@ -50,6 +51,12 @@ void AutonomousDriver::MoveDistance(float feet, float spd)
 		Encode.Reset();
 		while (abs(Encode.Get() / tickPerFoot) < abs(feet))
 		{
+			float encoderout = Encode.Get();
+			char tmpStr[50];
+			sprintf(tmpStr, "%f\n", encoderout);
+			std::string tmp = std::string(tmpStr);
+			DriverStation::ReportError(tmpStr);
+
 			Wait(.001);
 		}
 	}
