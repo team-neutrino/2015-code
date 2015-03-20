@@ -111,7 +111,7 @@ public:
 			SuckyInst.Open(Gamepad.GetRawButton(Constants::GetConstant("SuckyOpenButton")));
 
 			// Lift Controls
-			if (Gamepad.GetRawAxis(liftOverrideTrigger) > -.5f)
+			if (Gamepad.GetRawButton(2))
 			{
 				LiftInst.EndManualOverride();
 				// Normal Control

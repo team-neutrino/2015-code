@@ -16,8 +16,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"GyroAnalogChannel", 1},
 	{"Encoder1ChannelA", 8},
 	{"Encoder1ChannelB", 9},
-	{"UseTime", 0},
-	{"FeetToTimeRatio", .12},
+	{"UseTime", 1},
+	{"FeetToTimeRatio", .55},
 	{"EncoderTickPerFoot", 1500},
 	{"AutonMoveSpeed", .45},
 
@@ -28,7 +28,6 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	// Button Mapping - Joysticks
 	{"SpeedBoostButton", 1},
-	{"JoyLiftResetButton", 2},
 	{"JoyLiftResetButton", 2},
 
 	// Button Mapping - Gamepad
