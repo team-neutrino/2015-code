@@ -16,7 +16,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"GyroAnalogChannel", 1},
 	{"Encoder1ChannelA", 8},
 	{"Encoder1ChannelB", 9},
-	{"UseTime", 0},
+	{"UseTime", 1},
 	{"FeetToTimeRatio", .55},
 	{"EncoderTickPerFoot", 1500},
 	{"AutonMoveSpeed", .45},
