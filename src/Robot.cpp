@@ -89,7 +89,7 @@ public:
 		int liftResetButton = Constants::GetConstant("LiftResetButton");
 		int liftOverrideUp = Constants::GetConstant("LiftOverrideUp");
 		int liftOverrideDown = Constants::GetConstant("LiftOverrideDown");
-		int liftAutoStackButton = Constants::GetConstant("LiftAutoStackButton");
+//		int liftAutoStackButton = Constants::GetConstant("LiftAutoStackButton");
 
 		//TODO Implement Autostacking
 		bool autoStacking = false;
@@ -137,8 +137,13 @@ public:
 					// Regular automated lift control
 					else
 					{
+						if (JoyLeft.GetRawButton(liftResetButton) ||
+								JoyRight.GetRawButton(liftResetButton))
+						{
+							LiftInst.Reset();
+						}
 						// sends lift up a level
-						if (Gamepad.GetRawButton(liftUpButton))
+						else if (Gamepad.GetRawButton(liftUpButton))
 						{
 							LiftInst.LevelChange(1);
 						}
