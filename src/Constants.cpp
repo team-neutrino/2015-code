@@ -16,7 +16,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"GyroAnalogChannel", 1},
 	{"Encoder1ChannelA", 8},
 	{"Encoder1ChannelB", 9},
-	{"UseTime", 1},
+	{"UseTime", 0},
 	{"FeetToTimeRatio", .55},
 	{"EncoderTickPerFoot", 1500},
 	{"AutonMoveSpeed", .45},
@@ -86,8 +86,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"SuckyMotorInSpeed", .75},
 	{"SuckyMotorOutSpeed", .75},
 
-	{"SuckySolenoidOpenChannel", 0},
-	{"SuckySolenoidCloseChannel", 1},
+	{"SuckySolenoidOpenChannel", 1},
+	{"SuckySolenoidCloseChannel", 0},
 
 	//StackJail Constants
 	{"StackJailSolenoidOpen", 2},
@@ -95,8 +95,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	//Lights Constants
 	{"LightsChannel1", 0},
-	{"LightsChannel2", 0},
-	{"LightsChannel3", 0},
+	{"LightsChannel2", 1},
+	{"LightsChannel3", 2},
 
 	//Misc Constants
 	{"PdpAttached", 1}

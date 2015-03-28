@@ -27,6 +27,16 @@ void Lights::LightsPower3(bool on)
 void Lights::LightsPower(bool on)
 {
 	LightsPower1(on);
-	LightsPower2(on);
-	LightsPower3(on);
+//	LightsPower2(on);
+//	LightsPower3(on);
+}
+
+void Lights::LightsBlink(bool on, int blinktime)
+{
+	while (on)
+	{
+		LightsPower(true);
+		Wait (blinktime);
+	}
+	LightsPower(false);
 }

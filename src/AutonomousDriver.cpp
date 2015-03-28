@@ -1,5 +1,6 @@
 #include "AutonomousDriver.h"
 #include "Constants.h"
+#include <cmath>
 
 
 AutonomousDriver::AutonomousDriver(Drive* driveinst):
@@ -50,14 +51,9 @@ void AutonomousDriver::MoveDistance(float feet, float spd)
 	else
 	{
 		Encode.Reset();
-		while (abs(Encode.Get() / tickPerFoot) < abs(feet))
+		while (std::abs(Encode.Get() / tickPerFoot) < abs(feet))
 		{
-//			float encoderout = Encode.Get();
-//			char tmpStr[50];
-//			sprintf(tmpStr, "%f\n", encoderout);
-//			std::string tmp = std::string(tmpStr);
-//			DriverStation::ReportError(tmpStr);
-
+			std::cout << std::abs((float)Encode.Get() / tickPerFoot) << "," << Encode.Get() << "\n";
 			Wait(.001);
 		}
 	}

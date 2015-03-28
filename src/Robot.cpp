@@ -7,6 +7,7 @@
 #include "DriverOutputs.h"
 #include "CurrentMonitor.h"
 #include "AutonomousDriver.h"
+#include "Lights.h"
 
 class Robot: public SampleRobot
 {
@@ -22,6 +23,7 @@ public:
 	Sucky SuckyInst;
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
+	Lights Lightshow;
 
 	/**
 	 * Constructor
@@ -36,7 +38,8 @@ public:
 		LiftInst(),
 		SuckyInst(),
 		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst),
-		CurrentMonitorInst()
+		CurrentMonitorInst(),
+		Lightshow()
 	{
 
 	}
