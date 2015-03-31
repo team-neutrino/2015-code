@@ -17,10 +17,17 @@ public:
 	void ModeDriveBackward();
 	void ModeThreeToteStack();
 	void TurnWithTote();
+	void ModeCanGrab();
+
+	void TimeThreeTote();
+	void TimeMoveForward();
+	void TimeGrabCans();
 
 private:
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
+
+	DeadSpider CanGrabber;
 
 	AutonomousDriver DriverInst;
 

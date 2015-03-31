@@ -62,3 +62,30 @@ void AutonomousDriver::MoveDistance(float feet, float spd)
 	DriveInst->SetRight(0);
 	DriverStation::ReportError("Motors are stopped\n");
 }
+
+void AutonomousDriver::MoveForTime(float time)
+{
+	float movespeed = Constants::GetConstant("AutonMoveSpeed");
+
+	if (time >= 0)
+	{
+		DriveInst->SetLeft(movespeed);
+		DriveInst->SetRight(movespeed);
+		Wait (std::abs(time));
+		DriveInst->SetLeft(0);
+		DriveInst->SetRight(0);
+	}
+	else if (time <= 0)
+	{
+		DriveInst->SetLeft(-movespeed);
+		DriveInst->SetRight(-movespeed);
+		Wait (std::abs(time));
+		DriveInst->SetLeft(0);
+		DriveInst->SetRight(0);
+	}
+	else
+	{
+		DriveInst->SetLeft(0);
+		DriveInst->SetRight(0);
+	}
+}

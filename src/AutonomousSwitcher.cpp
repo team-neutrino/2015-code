@@ -46,6 +46,15 @@ void AutonomousSwitcher::updateDashboardThread()
 				case 3:
 					description = "Turn 90 and drive to zone";
 					break;
+				case 4:
+					description = "Grab the Cans";
+					break;
+				case 5:
+					description = "Grab Cans in Time Mode";
+					break;
+				case 6:
+					description = "Drive Forward in Time Mode";
+					break;
 				default:
 					description =  "Auto mode not implemented";
 					break;
@@ -77,6 +86,18 @@ void AutonomousSwitcher::RunAuto()
 		case 3:
 			DriverOutputs::ReportError("Auto: Turn 90 and drive forward\n");
 			TurnWithTote();
+			break;
+		case 4:
+			DriverOutputs::ReportError("Auto: Grab Those Cans!\n I need Cans!\n DEAD SPEIDER AWAY!!!!\n");
+			ModeCanGrab();
+			break;
+		case 5:
+			DriverOutputs::ReportError("Auto: Grab the Cans in Timed Mode\n");
+			TimeGrabCans();
+			break;
+		case 6:
+			DriverOutputs::ReportError("Auto: Move Forward in Time Mode\n");
+			TimeMoveForward();
 			break;
 		default:
 			DriverOutputs::ReportError("Auto: No Such Autonomous Mode");
@@ -155,4 +176,24 @@ void AutonomousSwitcher::TurnWithTote()
 {
 	DriverInst.TurnDegrees(60);
 	DriverInst.MoveDistance(3);
+}
+
+void AutonomousSwitcher::ModeCanGrab()
+{
+	DriverInst.MoveDistance(-.5);
+	CanGrabber.SpiderToggle(true);
+	DriverInst.MoveDistance(-1);
+	DriverInst.MoveDistance(5);
+}
+
+void AutonomousSwitcher::TimeGrabCans()
+{
+	DriverInst.MoveForTime(-.5);
+	CanGrabber.SpiderToggle(true);
+	DriverInst.MoveForTime(2);
+}
+
+void AutonomousSwitcher::TimeMoveForward()
+{
+	DriverInst.MoveForTime(2);
 }
