@@ -11,7 +11,7 @@
 class AutonomousSwitcher
 {
 public:
-	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift);
+	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift, DeadSpider* spider);
 	void RunAuto();
 	void ModeDriveForward();
 	void ModeDriveBackward();
@@ -27,7 +27,7 @@ private:
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
 
-	DeadSpider CanGrabber;
+	DeadSpider* CanGrabber;
 
 	AutonomousDriver DriverInst;
 
