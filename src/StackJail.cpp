@@ -1,13 +1,14 @@
 #include <StackJail.h>
 
 StackJail::StackJail():
-	GateOpen(Constants::GetConstant("StackJailSolenoidOpen")),
-	GateClose(Constants::GetConstant("StackJailSolenoidClose"))
+	gateOpen(Constants::GetConstant("StackJailSolenoidOpen")),
+	gateClose(Constants::GetConstant("StackJailSolenoidClose")),
+	Gamepad(Constants::GetConstant("GamepadPort"))
 {
 
 }
 void StackJail::GateToggle(bool open)
 {
-	GateOpen.Set(open);
-	GateClose.Set(!open);
+	gateOpen.Set(open);
+	gateClose.Set(!open);
 }

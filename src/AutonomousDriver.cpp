@@ -21,10 +21,10 @@ void AutonomousDriver::TurnDegrees(float degrees)
 	}
 
 	Gyroscope.Reset();
-	DriveInst->SetLeft(movespeed * (abs(degrees) / degrees));
-	DriveInst->SetRight(-movespeed * (abs(degrees) / degrees));
+	DriveInst->SetLeft(movespeed * (std::abs(degrees) / degrees));
+	DriveInst->SetRight(-movespeed * (std::abs(degrees) / degrees));
 
-	while (abs(Gyroscope.GetAngle()) < abs(degrees))
+	while (std::abs(Gyroscope.GetAngle()) < std::abs(degrees))
 	{
 		std::cout << Gyroscope.GetAngle() << '\n';
 		Wait(.001);

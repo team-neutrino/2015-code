@@ -82,7 +82,6 @@ public:
 		int speedBoostButton = Constants::GetConstant("SpeedBoostButton");
 
 		// Intake variables
-		int spitOutButton = Constants::GetConstant("SpitOutButton");
 		int suckyXAxis = Constants::GetConstant("SuckyXAxis");
 		int suckyYAxis = Constants::GetConstant("SuckyYAxis");
 
@@ -105,18 +104,9 @@ public:
 			DriveInst.SetLeft(-JoyLeft.GetY() * fabs(JoyLeft.GetY()) * driveMultiplier);
 			DriveInst.SetRight(-JoyRight.GetY() * fabs(JoyRight.GetY()) * driveMultiplier);
 
-			// Spits out the tote or stack
-			if (Gamepad.GetRawButton(spitOutButton))
-			{
-				SuckyInst.SpitOut();
-			}
-
 			// Spins the intake wheels at speeds based on the game controller sticks
-			else
-			{
-				SuckyInst.SetLeft(Gamepad.GetRawAxis(suckyYAxis) + Gamepad.GetRawAxis(suckyXAxis));
-				SuckyInst.SetRight(Gamepad.GetRawAxis(suckyYAxis) - Gamepad.GetRawAxis(suckyXAxis));
-			}
+			SuckyInst.SetLeft(Gamepad.GetRawAxis(suckyYAxis) + Gamepad.GetRawAxis(suckyXAxis));
+			SuckyInst.SetRight(Gamepad.GetRawAxis(suckyYAxis) - Gamepad.GetRawAxis(suckyXAxis));
 
 			// Opens or closes the intake
 			SuckyInst.Open(Gamepad.GetRawButton(Constants::GetConstant("SuckyOpenButton")));

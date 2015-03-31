@@ -11,6 +11,7 @@ public:
 	void GateToggle(bool open);
 
 private:
-	Solenoid GateOpen;
-	Solenoid GateClose;
+	Solenoid gateOpen;
+	Solenoid gateClose;
+	Joystick Gamepad;
 };

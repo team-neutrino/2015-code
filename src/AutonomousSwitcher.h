@@ -5,6 +5,7 @@
 #include "Sucky.h"
 #include "Lift.h"
 #include <thread>
+#include "DeadSpider.h"
 #pragma once
 
 class AutonomousSwitcher
