@@ -2,7 +2,7 @@
 #include "DriverOutputs.h"
 #include <fstream>
 
-const double DriverOutputs::COMP_TIME = 1426842000;
+const double DriverOutputs::COMP_TIME = 1428051600;
 const double DriverOutputs::REFRESH_RATE = 5;
 
 bool DriverOutputs::UpdateErrors = false;
