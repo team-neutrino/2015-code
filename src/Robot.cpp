@@ -23,10 +23,10 @@ public:
 	Drive DriveInst;
 	Lift LiftInst;
 	Sucky SuckyInst;
+	DeadSpider CanWhip;
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
 	Lights Lightshow;
-	DeadSpider CanWhip;
 	StackJail Chopsticks;
 
 	/**
@@ -41,10 +41,10 @@ public:
 		DriveInst(),
 		LiftInst(),
 		SuckyInst(),
-		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst),
+		CanWhip(),
+		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst, &CanWhip),
 		CurrentMonitorInst(),
-		Lightshow(),
-		CanWhip()
+		Lightshow()
 	{
 
 	}
