@@ -8,6 +8,8 @@
 #include "CurrentMonitor.h"
 #include "AutonomousDriver.h"
 #include "Lights.h"
+#include "DeadSpider.h"
+#include "StackJail.h"
 
 class Robot: public SampleRobot
 {
@@ -24,6 +26,8 @@ public:
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
 	Lights Lightshow;
+	DeadSpider CanWhip;
+	StackJail Chopsticks;
 
 	/**
 	 * Constructor
@@ -39,7 +43,8 @@ public:
 		SuckyInst(),
 		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst),
 		CurrentMonitorInst(),
-		Lightshow()
+		Lightshow(),
+		CanWhip()
 	{
 
 	}
@@ -177,6 +182,12 @@ public:
 					LiftInst.ManualOverrideStopped();
 				}
 			}
+			//DeadSpider Override
+			CanWhip.SpiderToggle(JoyLeft.GetRawButton(Constants::GetConstant("DeadSpiderWhip")) ||
+					JoyRight.GetRawButton(Constants::GetConstant("DeadSpiderWhip")));
+
+			//Chopsticks Override
+			Chopsticks.GateToggle(Gamepad.GetRawButton(Constants::GetConstant("StackJailOverrideOpen")));
 
 			// Current Warning - rumbles when breaker is about to blow
 			if(CurrentMonitorInst.Warning() || JoyRight.GetRawButton(11))
