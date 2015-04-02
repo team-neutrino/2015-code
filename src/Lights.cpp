@@ -26,7 +26,7 @@ void Lights::LightsPower3(bool on)
 
 void Lights::LightsPower(bool on)
 {
-	LightsPower1(on);
+	LightsPower1(!on);
 //	LightsPower2(on);
 //	LightsPower3(on);
 }

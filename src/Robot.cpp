@@ -71,6 +71,7 @@ public:
 	 */
 	void Autonomous()
 	{
+		Lightshow.LightsPower(true);
 		AutoSwitch.RunAuto();
 	}
 
@@ -79,6 +80,7 @@ public:
 	 */
 	void OperatorControl()
 	{
+		Lightshow.LightsPower(true);
 		// Drive multiplier variables
 		float driveSlowMultiplier = Constants::GetConstant("DriveSlowMultiplier");
 		float driveFastMultiplier = Constants::GetConstant("DriveFastMultiplier");
@@ -98,6 +100,9 @@ public:
 		int liftOverrideUp = Constants::GetConstant("LiftOverrideUp");
 		int liftOverrideDown = Constants::GetConstant("LiftOverrideDown");
 //		int liftAutoStackButton = Constants::GetConstant("LiftAutoStackButton");
+
+		bool ChopsticksOverridePrev = false;
+		bool ChopsticksOverrideCurr = false;
 
 		//TODO Implement Autostacking
 		bool autoStacking = false;
@@ -188,7 +193,13 @@ public:
 					JoyRight.GetRawButton(Constants::GetConstant("DeadSpiderWhip")));
 
 			//Chopsticks Override
-			Chopsticks.GateToggle(Gamepad.GetRawButton(Constants::GetConstant("StackJailOverrideOpen")));
+			ChopsticksOverrideCurr = Gamepad.GetRawButton(Constants::GetConstant("StackJailOverrideOpen"));
+			if(!ChopsticksOverridePrev == ChopsticksOverrideCurr)
+			{
+				Chopsticks.GateToggle(ChopsticksOverrideCurr);
+			}
+
+			ChopsticksOverridePrev = ChopsticksOverrideCurr;
 
 			// Current Warning - rumbles when breaker is about to blow
 			if(CurrentMonitorInst.Warning() || JoyRight.GetRawButton(11))

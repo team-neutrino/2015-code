@@ -38,6 +38,8 @@ public:
 
 	void WaitForLift();
 
+	void ChopsticksOverride(bool enabled);
+
 private:
 	Talon LiftMotor1;
 	Talon LiftMotor2;
@@ -50,10 +52,13 @@ private:
 
 	bool IsLifting;
 	bool OverrideEnabled;
+
 	signed char CurrentTask;
 
 	std::thread LiftThread;
 	std::thread MonitorThread;
+
+	bool ChopsticksOverrideEnabled;
 
 	void resetThreaded();
 	void levelChangeThreaded(int levels);

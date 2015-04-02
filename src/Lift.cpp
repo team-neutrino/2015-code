@@ -13,7 +13,8 @@ Lift::Lift(StackJail* j):
 		OverrideEnabled(false),
 		CurrentTask(0),
 		LiftThread(&Lift::lifterThread, this),
-		MonitorThread(&Lift::monitorThread, this)
+		MonitorThread(&Lift::monitorThread, this),
+		ChopsticksOverrideEnabled(false)
 {
 	Jail = j;
 }
@@ -64,7 +65,10 @@ void Lift::ManualOverrideStopped()
 	OverrideEnabled = true;
 	LiftMotor1.Set(0);
 	LiftMotor2.Set(0);
-	Jail->GateToggle(false);
+	if(!ChopsticksOverrideEnabled)
+	{
+		Jail->GateToggle(false);
+	}
 }
 
 void Lift::EndManualOverride()
@@ -76,7 +80,10 @@ void Lift::EndManualOverride()
 
 		LiftMotor1.Set(0);
 		LiftMotor2.Set(0);
-		Jail->GateToggle(false);
+		if(!ChopsticksOverrideEnabled)
+		{
+			Jail->GateToggle(false);
+		}
 	}
 }
 
@@ -105,7 +112,11 @@ void Lift::levelChangeThreaded(int levels)
 	{
 		moveLevelThreaded(false);
 	}
-	Jail->GateToggle(false);
+
+	if(!ChopsticksOverrideEnabled)
+	{
+		Jail->GateToggle(false);
+	}
 
 	if (!OverrideEnabled)
 	{
@@ -259,5 +270,19 @@ void Lift::WaitForLift()
 		Wait(.01);
 		DriverOutputs::ReportError("waiting for lift");
 
+	}
+}
+
+void Lift::ChopsticksOverride(bool enabled)
+{
+	ChopsticksOverrideEnabled = enabled;
+
+	if (enabled)
+	{
+	//	Jail->GateToggle(true);
+	}
+	else if (!IsLifting)
+	{
+		Jail->GateToggle(false);
 	}
 }

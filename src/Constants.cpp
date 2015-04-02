@@ -28,7 +28,7 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 
 	// Button Mapping - Joysticks
 	{"SpeedBoostButton", 1},
-	{"LiftResetButton", 3},
+	{"LiftResetButton", 2},
 	{"DeadSpiderWhip", 7},
 
 	// Button Mapping - Gamepad
