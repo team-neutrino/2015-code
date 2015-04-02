@@ -3,20 +3,19 @@
 #include "DriverOutputs.h"
 #include <stdlib.h>
 
-Lift::Lift():
+Lift::Lift(StackJail* j):
 		LiftMotor1(Constants::GetConstant("LiftMotor1Channel")),
 		LiftMotor2(Constants::GetConstant("LiftMotor2Channel")),
 		BeamBreak(Constants::GetConstant("BeamBreakChannel")),
 		LimitSwitchBottom(Constants::GetConstant("LimitSwitchBottomChannel")),
 		LimitSwitchTop(Constants::GetConstant("LimitSwitchTopChannel")),
-		jail(),
 		IsLifting(false),
 		OverrideEnabled(false),
 		CurrentTask(0),
 		LiftThread(&Lift::lifterThread, this),
 		MonitorThread(&Lift::monitorThread, this)
 {
-
+	Jail = j;
 }
 
 void Lift::LevelChange(signed char levels)
@@ -46,7 +45,7 @@ void Lift::ManualOverride(bool up)
 {
 	OverrideEnabled = true;
 	IsLifting = true;
-	jail.GateToggle(true);
+	Jail->GateToggle(true);
 
 	if (up)
 	{
@@ -65,7 +64,7 @@ void Lift::ManualOverrideStopped()
 	OverrideEnabled = true;
 	LiftMotor1.Set(0);
 	LiftMotor2.Set(0);
-	jail.GateToggle(false);
+	Jail->GateToggle(false);
 }
 
 void Lift::EndManualOverride()
@@ -77,7 +76,7 @@ void Lift::EndManualOverride()
 
 		LiftMotor1.Set(0);
 		LiftMotor2.Set(0);
-		jail.GateToggle(false);
+		Jail->GateToggle(false);
 	}
 }
 
@@ -95,7 +94,7 @@ void Lift::levelChangeThreaded(int levels)
 
 	IsLifting = true;
 
-	jail.GateToggle(true);
+	Jail->GateToggle(true);
 	for (int i = 0; i < levels; i++)
 	{
 		std::cout << "Lifting Loop Through " << i << " target: " << levels << '\n';
@@ -106,7 +105,7 @@ void Lift::levelChangeThreaded(int levels)
 	{
 		moveLevelThreaded(false);
 	}
-	jail.GateToggle(false);
+	Jail->GateToggle(false);
 
 	if (!OverrideEnabled)
 	{
@@ -198,7 +197,7 @@ void Lift::resetThreaded()
 	}
 
 	IsLifting = true;
-	jail.GateToggle(true);
+	Jail->GateToggle(true);
 
 	LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
 	LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));

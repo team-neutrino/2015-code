@@ -95,8 +95,8 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"StackJailSolenoidClose", 3},
 
 	//DeadSpiderWhippyThing Constants
-	{"DeadSpiderUp", 7},
-	{"DeadSpiderDown", 8},
+	{"DeadSpiderUp", 4},
+	{"DeadSpiderDown", 5},
 
 	//Lights Constants
 	{"LightsChannel1", 0},

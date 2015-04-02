@@ -21,13 +21,13 @@ public:
 	Joystick JoyLeft;
 	Joystick Gamepad;
 	Drive DriveInst;
+	StackJail Chopsticks;
 	Lift LiftInst;
 	Sucky SuckyInst;
 	DeadSpider CanWhip;
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
 	Lights Lightshow;
-	StackJail Chopsticks;
 
 	/**
 	 * Constructor
@@ -39,7 +39,8 @@ public:
 		JoyLeft(Constants::GetConstant("JoyLeftPort")),
 		Gamepad(Constants::GetConstant("GamepadPort")),
 		DriveInst(),
-		LiftInst(),
+		Chopsticks(),
+		LiftInst(&Chopsticks),
 		SuckyInst(),
 		CanWhip(),
 		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst, &CanWhip),
@@ -54,7 +55,7 @@ public:
 	 */
 	void RobotInit()
 	{
-
+		Lightshow.LightsPower(true);
 	}
 
 	/**
@@ -62,7 +63,7 @@ public:
 	 */
 	void Disabled()
 	{
-
+		Lightshow.LightsPower(true);
 	}
 
 	/**

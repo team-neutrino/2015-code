@@ -5,7 +5,7 @@
 class Lift
 {
 public:
-	Lift();
+	Lift(StackJail* j);
 
 	/**
 	 * Moves the lift up/down the specified amount of levels.
@@ -44,7 +44,7 @@ private:
 	DigitalInput BeamBreak;
 	DigitalInput LimitSwitchBottom;
 	DigitalInput LimitSwitchTop;
-	StackJail jail;
+	StackJail* Jail;
 
 	signed const char RESET = 100;
 
