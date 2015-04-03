@@ -15,6 +15,7 @@ class Robot: public SampleRobot
 {
 
 public:
+	Relay Relay1;
 	Constants ConstInst;
 	Compressor Comp;
 	Joystick JoyRight;
@@ -33,6 +34,7 @@ public:
 	 * Constructor
 	 */
 	Robot():
+		Relay1(0),
 		ConstInst(),
 		Comp(),
 		JoyRight(Constants::GetConstant("JoyRightPort")),
@@ -46,6 +48,7 @@ public:
 		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst, &CanWhip),
 		CurrentMonitorInst(),
 		Lightshow()
+
 	{
 
 	}
@@ -55,7 +58,7 @@ public:
 	 */
 	void RobotInit()
 	{
-		Lightshow.LightsPower(true);
+
 	}
 
 	/**
@@ -63,7 +66,7 @@ public:
 	 */
 	void Disabled()
 	{
-		Lightshow.LightsPower(true);
+
 	}
 
 	/**
@@ -71,7 +74,6 @@ public:
 	 */
 	void Autonomous()
 	{
-		Lightshow.LightsPower(true);
 		AutoSwitch.RunAuto();
 	}
 
@@ -80,7 +82,7 @@ public:
 	 */
 	void OperatorControl()
 	{
-		Lightshow.LightsPower(true);
+		Relay1.Set(Relay::kReverse);
 		// Drive multiplier variables
 		float driveSlowMultiplier = Constants::GetConstant("DriveSlowMultiplier");
 		float driveFastMultiplier = Constants::GetConstant("DriveFastMultiplier");
