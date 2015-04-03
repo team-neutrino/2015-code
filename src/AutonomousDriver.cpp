@@ -1,5 +1,6 @@
 #include "AutonomousDriver.h"
 #include "Constants.h"
+#include "WPILib.h"
 #include <cmath>
 
 
@@ -24,7 +25,7 @@ void AutonomousDriver::TurnDegrees(float degrees)
 	DriveInst->SetLeft(movespeed * (std::abs(degrees) / degrees));
 	DriveInst->SetRight(-movespeed * (std::abs(degrees) / degrees));
 
-	while (std::abs(Gyroscope.GetAngle()) < std::abs(degrees))
+	while (std::abs(Gyroscope.GetAngle()) < std::abs(degrees) && DriverStation::GetInstance()->IsAutonomous())
 	{
 		std::cout << Gyroscope.GetAngle() << '\n';
 		Wait(.001);
@@ -51,7 +52,7 @@ void AutonomousDriver::MoveDistance(float feet, float spd)
 	else
 	{
 		Encode.Reset();
-		while (std::abs(Encode.Get() / tickPerFoot) < abs(feet))
+		while (std::abs(Encode.Get() / tickPerFoot) < abs(feet) && DriverStation::GetInstance()->IsAutonomous())
 		{
 			std::cout << std::abs((float)Encode.Get() / tickPerFoot) << "," << Encode.Get() << "\n";
 			Wait(.001);
