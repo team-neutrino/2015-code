@@ -279,7 +279,7 @@ void Lift::ChopsticksOverride(bool enabled)
 
 	if (enabled)
 	{
-	//	Jail->GateToggle(true);
+		Jail->GateToggle(true);
 	}
 	else if (!IsLifting)
 	{

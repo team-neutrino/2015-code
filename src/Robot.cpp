@@ -202,7 +202,7 @@ public:
 			ChopsticksOverrideCurr = Gamepad.GetRawButton(Constants::GetConstant("StackJailOverrideOpen"));
 			if(!ChopsticksOverridePrev == ChopsticksOverrideCurr)
 			{
-				Chopsticks.GateToggle(ChopsticksOverrideCurr);
+				LiftInst.ChopsticksOverride(ChopsticksOverrideCurr);
 			}
 
 			ChopsticksOverridePrev = ChopsticksOverrideCurr;
