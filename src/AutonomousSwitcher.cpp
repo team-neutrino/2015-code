@@ -189,9 +189,11 @@ void AutonomousSwitcher::ModeCanGrab()
 
 void AutonomousSwitcher::TimeGrabCans()
 {
-	DriverInst.MoveForTime(-.5);
+	DriverInst.MoveForTime(-.18);
+	Wait (1);
 	CanGrabber->SpiderToggle(true);
-	DriverInst.MoveForTime(2);
+	Wait (1);
+	DriverInst.MoveForTime(1.5);
 }
 
 void AutonomousSwitcher::TimeMoveForward()
