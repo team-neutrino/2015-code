@@ -189,8 +189,14 @@ public:
 				}
 			}
 			//DeadSpider Override
-			CanWhip.SpiderToggle(JoyLeft.GetRawButton(Constants::GetConstant("DeadSpiderWhip")) ||
-					JoyRight.GetRawButton(Constants::GetConstant("DeadSpiderWhip")));
+			if(JoyLeft.GetRawButton(Constants::GetConstant("DeadSpiderWhip")))
+			{
+				CanWhip.SpiderToggle(true);
+			}
+			else if (JoyRight.GetRawButton(Constants::GetConstant("DeadSpiderWhip")))
+			{
+				CanWhip.SpiderToggle(false);
+			}
 
 			//Chopsticks Override
 			ChopsticksOverrideCurr = Gamepad.GetRawButton(Constants::GetConstant("StackJailOverrideOpen"));
