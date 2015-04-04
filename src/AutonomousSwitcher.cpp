@@ -198,5 +198,5 @@ void AutonomousSwitcher::TimeGrabCans()
 
 void AutonomousSwitcher::TimeMoveForward()
 {
-	DriverInst.MoveForTime(2);
+	DriverInst.MoveForTime(1.5);
 }
