@@ -79,16 +79,16 @@ Constants::Constant Constants::ConstantsList[NUM_CONST] =
 	{"LiftThreadWaitTime", 0.05},
 
 	//Sucky Constants
-	{"SuckyMotorRightChannel", 7},
-	{"SuckyMotorRightPowerChannel", 11},
-	{"SuckyMotorLeftChannel", 3},
-	{"SuckyMotorLeftPowerChannel", 7},
+	{"IntakeMotorRightChannel", 7},
+	{"IntakeMotorRightPowerChannel", 11},
+	{"IntakeMotorLeftChannel", 3},
+	{"IntakeMotorLeftPowerChannel", 7},
 
-	{"SuckyMotorInSpeed", .75},
-	{"SuckyMotorOutSpeed", .75},
+	{"IntakeMotorInSpeed", .75},
+	{"IntakeMotorOutSpeed", .75},
 
-	{"SuckySolenoidOpenChannel", 1},
-	{"SuckySolenoidCloseChannel", 0},
+	{"IntakeSolenoidOpenChannel", 1},
+	{"IntakeSolenoidCloseChannel", 0},
 
 	//StackJail Constants
 	{"StackJailSolenoidOpen", 2},

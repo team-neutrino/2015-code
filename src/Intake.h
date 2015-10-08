@@ -25,9 +25,9 @@ public:
 	void Open(bool open);
 
 private:
-	Victor SuckyMotorLeft;
-	Victor SuckyMotorRight;
+	Victor IntakeMotorLeft;
+	Victor IntakeMotorRight;
 
-	Solenoid SuckySolenoidOpen;
-	Solenoid SuckySolenoidClose;
+	Solenoid IntakeSolenoidOpen;
+	Solenoid InakeSolenoidClose;
 };

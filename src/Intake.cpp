@@ -2,44 +2,44 @@
 #include "Constants.h"
 
 Intake::Intake():
-		SuckyMotorLeft(Constants::GetConstant("SuckyMotorLeftChannel")),
-		SuckyMotorRight(Constants::GetConstant("SuckyMotorRightChannel")),
-		SuckySolenoidOpen(Constants::GetConstant("SuckySolenoidOpenChannel")),
-		SuckySolenoidClose(Constants::GetConstant("SuckySolenoidCloseChannel"))
+		IntakeMotorLeft(Constants::GetConstant("SuckyMotorLeftChannel")),
+		IntakeMotorRight(Constants::GetConstant("SuckyMotorRightChannel")),
+		IntakeSolenoidOpen(Constants::GetConstant("SuckySolenoidOpenChannel")),
+		InakeSolenoidClose(Constants::GetConstant("SuckySolenoidCloseChannel"))
 {
 
 }
 
 void Intake::SuckIn()
 {
-	SuckyMotorRight.Set(Constants::GetConstant("SuckyMotorInSpeed"));
-	SuckyMotorLeft.Set(-Constants::GetConstant("SuckyMotorInSpeed"));
+	IntakeMotorRight.Set(Constants::GetConstant("SuckyMotorInSpeed"));
+	IntakeMotorLeft.Set(-Constants::GetConstant("SuckyMotorInSpeed"));
 }
 
 void Intake::SpitOut()
 {
-	SuckyMotorRight.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
-	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
+	IntakeMotorRight.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
+	IntakeMotorLeft.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
 }
 
 void Intake::SetLeft(double speed)
 {
-	SuckyMotorLeft.Set(-speed);
+	IntakeMotorLeft.Set(-speed);
 }
 
 void Intake::SetRight(double speed)
 {
-	SuckyMotorRight.Set(speed);
+	IntakeMotorRight.Set(speed);
 }
 
 void Intake::Stop()
 {
-	SuckyMotorRight.Set(0);
-	SuckyMotorLeft.Set(0);
+	IntakeMotorRight.Set(0);
+	IntakeMotorLeft.Set(0);
 }
 
 void Intake::Open(bool open)
 {
-	SuckySolenoidOpen.Set(open);
-	SuckySolenoidClose.Set(!open);
+	IntakeSolenoidOpen.Set(open);
+	InakeSolenoidClose.Set(!open);
 }
