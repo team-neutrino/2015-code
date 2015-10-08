@@ -5,13 +5,13 @@
 #include "Sucky.h"
 #include "Lift.h"
 #include <thread>
-#include "DeadSpider.h"
+#include "CanGrabberArm.h"
 #pragma once
 
 class AutonomousSwitcher
 {
 public:
-	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift, DeadSpider* spider);
+	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift, CanGrabberArm* spider);
 	void RunAuto();
 	void ModeDriveForward();
 	void ModeDriveBackward();
@@ -27,7 +27,7 @@ private:
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
 
-	DeadSpider* CanGrabber;
+	CanGrabberArm* CanGrabber;
 
 	AutonomousDriver DriverInst;
 
