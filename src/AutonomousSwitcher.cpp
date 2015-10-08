@@ -3,7 +3,7 @@
 #include "DriverOutputs.h"
 #include "string"
 
-AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift, DeadSpider* spider):
+AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, DeadSpider* spider):
 		Switch(Constants::GetConstant("AutonSwitchInput0Channel"),
 				Constants::GetConstant("AutonSwitchInput1Channel"),
 				Constants::GetConstant("AutonSwitchInput2Channel"),

@@ -1,7 +1,7 @@
-#include "Sucky.h"
+#include <Intake.h>
 #include "Constants.h"
 
-Sucky::Sucky():
+Intake::Intake():
 		SuckyMotorLeft(Constants::GetConstant("SuckyMotorLeftChannel")),
 		SuckyMotorRight(Constants::GetConstant("SuckyMotorRightChannel")),
 		SuckySolenoidOpen(Constants::GetConstant("SuckySolenoidOpenChannel")),
@@ -10,35 +10,35 @@ Sucky::Sucky():
 
 }
 
-void Sucky::SuckIn()
+void Intake::SuckIn()
 {
 	SuckyMotorRight.Set(Constants::GetConstant("SuckyMotorInSpeed"));
 	SuckyMotorLeft.Set(-Constants::GetConstant("SuckyMotorInSpeed"));
 }
 
-void Sucky::SpitOut()
+void Intake::SpitOut()
 {
 	SuckyMotorRight.Set(-Constants::GetConstant("SuckyMotorOutSpeed"));
 	SuckyMotorLeft.Set(Constants::GetConstant("SuckyMotorOutSpeed"));
 }
 
-void Sucky::SetLeft(double speed)
+void Intake::SetLeft(double speed)
 {
 	SuckyMotorLeft.Set(-speed);
 }
 
-void Sucky::SetRight(double speed)
+void Intake::SetRight(double speed)
 {
 	SuckyMotorRight.Set(speed);
 }
 
-void Sucky::Stop()
+void Intake::Stop()
 {
 	SuckyMotorRight.Set(0);
 	SuckyMotorLeft.Set(0);
 }
 
-void Sucky::Open(bool open)
+void Intake::Open(bool open)
 {
 	SuckySolenoidOpen.Set(open);
 	SuckySolenoidClose.Set(!open);

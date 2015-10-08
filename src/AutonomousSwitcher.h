@@ -1,8 +1,8 @@
+#include <Intake.h>
 #include "WPILib.h"
 #include "DigitalSelectorSwitch.h"
 #include "Drive.h"
 #include "AutonomousDriver.h"
-#include "Sucky.h"
 #include "Lift.h"
 #include <thread>
 #include "DeadSpider.h"
@@ -11,7 +11,7 @@
 class AutonomousSwitcher
 {
 public:
-	AutonomousSwitcher(Drive* drive, Sucky* sucky, Lift* lift, DeadSpider* spider);
+	AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, DeadSpider* spider);
 	void RunAuto();
 	void ModeDriveForward();
 	void ModeDriveBackward();
@@ -31,7 +31,7 @@ private:
 
 	AutonomousDriver DriverInst;
 
-	Sucky* SuckyInst;
+	Intake* SuckyInst;
 
 	Lift* LiftInst;
 

@@ -1,10 +1,10 @@
 #include "WPILib.h"
 #pragma once
 
-class Sucky
+class Intake
 {
 public:
-	Sucky();
+	Intake();
 
 	/**
 	 * Sucks object into robot.

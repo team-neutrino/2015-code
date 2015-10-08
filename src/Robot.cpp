@@ -1,9 +1,9 @@
+#include <Intake.h>
 #include "WPILib.h"
 #include "Lift.h"
 #include "Constants.h"
 #include "AutonomousSwitcher.h"
 #include "Drive.h"
-#include "Sucky.h"
 #include "DriverOutputs.h"
 #include "CurrentMonitor.h"
 #include "AutonomousDriver.h"
@@ -24,7 +24,7 @@ public:
 	Drive DriveInst;
 	StackJail Chopsticks;
 	Lift LiftInst;
-	Sucky SuckyInst;
+	Intake SuckyInst;
 	DeadSpider CanWhip;
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
