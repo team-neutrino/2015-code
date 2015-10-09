@@ -11,7 +11,7 @@
 class AutonomousSwitcher
 {
 public:
-	AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, DeadSpider* spider);
+	AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, CanGrabberArm* spider);
 	void RunAuto();
 	void ModeDriveForward();
 	void ModeDriveBackward();

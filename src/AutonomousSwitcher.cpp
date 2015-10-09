@@ -3,7 +3,7 @@
 #include "DriverOutputs.h"
 #include "string"
 
-AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, DeadSpider* spider):
+AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, CanGrabberArm* spider):
 		Switch(Constants::GetConstant("AutonSwitchInput0Channel"),
 				Constants::GetConstant("AutonSwitchInput1Channel"),
 				Constants::GetConstant("AutonSwitchInput2Channel"),
@@ -182,7 +182,7 @@ void AutonomousSwitcher::TurnWithTote()
 void AutonomousSwitcher::ModeCanGrab()
 {
 	DriverInst.MoveDistance(-.5);
-	CanGrabber->SpiderToggle(true);
+	CanGrabber->CanGrabberToggle(true);
 	DriverInst.MoveDistance(-1);
 	DriverInst.MoveDistance(5);
 }
@@ -191,7 +191,7 @@ void AutonomousSwitcher::TimeGrabCans()
 {
 	DriverInst.MoveForTime(-.18);
 	Wait (1);
-	CanGrabber->SpiderToggle(true);
+	CanGrabber->CanGrabberToggle(true);
 	Wait (1);
 	DriverInst.MoveForTime(1.5);
 }

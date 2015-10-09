@@ -8,7 +8,7 @@
 #include "CurrentMonitor.h"
 #include "AutonomousDriver.h"
 #include "Lights.h"
-#include "DeadSpider.h"
+#include "CanGrabberArm.h"
 #include "StackJail.h"
 
 class Robot: public SampleRobot
@@ -25,7 +25,7 @@ public:
 	StackJail Chopsticks;
 	Lift LiftInst;
 	Intake SuckyInst;
-	DeadSpider CanWhip;
+	CanGrabberArm CanGrabber;
 	AutonomousSwitcher AutoSwitch;
 	CurrentMonitor CurrentMonitorInst;
 	Lights Lightshow;
@@ -44,8 +44,8 @@ public:
 		Chopsticks(),
 		LiftInst(&Chopsticks),
 		SuckyInst(),
-		CanWhip(),
-		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst, &CanWhip),
+		CanGrabber(),
+		AutoSwitch(&DriveInst, &SuckyInst, &LiftInst, &CanGrabber),
 		CurrentMonitorInst(),
 		Lightshow()
 
@@ -193,11 +193,11 @@ public:
 			//DeadSpider Override
 			if(JoyLeft.GetRawButton(Constants::GetConstant("DeadSpiderWhip")))
 			{
-				CanWhip.SpiderToggle(true);
+				CanGrabber.CanGrabberToggle(true);
 			}
 			else if (JoyRight.GetRawButton(Constants::GetConstant("DeadSpiderWhip")))
 			{
-				CanWhip.SpiderToggle(false);
+				CanGrabber.CanGrabberToggle(false);
 			}
 
 			//Chopsticks Override
@@ -237,4 +237,4 @@ public:
 	}
 };
 
-START_ROBOT_CLASS(Robot);
+START_ROBOT_CLASS(Robot);CLASS(Robot);
