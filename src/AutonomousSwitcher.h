@@ -5,7 +5,7 @@
 #include "AutonomousDriver.h"
 #include "Lift.h"
 #include <thread>
-#include "DeadSpider.h"
+#include "CanGrabberArm.h"
 #pragma once
 
 class AutonomousSwitcher
@@ -27,7 +27,7 @@ private:
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
 
-	DeadSpider* CanGrabber;
+	CanGrabberArm* CanGrabber;
 
 	AutonomousDriver DriverInst;
 

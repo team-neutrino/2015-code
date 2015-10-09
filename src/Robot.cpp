@@ -237,4 +237,4 @@ public:
 	}
 };
 
-START_ROBOT_CLASS(Robot);CLASS(Robot);
+START_ROBOT_CLASS(Robot);
