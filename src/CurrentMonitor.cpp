@@ -24,8 +24,8 @@ void CurrentMonitor::currentThread()
 	int lift1Channel = Constants::GetConstant("LiftMotor1PowerChannel");
 	int lift2Channel = Constants::GetConstant("LiftMotor2PowerChannel");
 
-	int suckyLeftChannel = Constants::GetConstant("SuckyMotorLeftPowerChannel");
-	int suckyRightChannel = Constants::GetConstant("SuckyMotorRightPowerChannel");
+	int suckyLeftChannel = Constants::GetConstant("IntakeMotorLeftPowerChannel");
+	int suckyRightChannel = Constants::GetConstant("IntakeMotorRightPowerChannel");
 
 	while (PdpAttached)
 	{
