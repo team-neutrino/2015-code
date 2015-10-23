@@ -42,7 +42,7 @@ void AutonomousDriver::MoveDistance(float feet, float spd)
 	float tickPerFoot = Constants::GetConstant("EncoderTickPerFoot");
 	DriverStation::ReportError("Motors should start\n");
 	DriveInst->SetLeft(movespeed * (abs(feet) / feet));
-	DriveInst->SetRight(movespeed * 1.1 * (abs(feet) / feet));
+	DriveInst->SetRight(movespeed * (.9) * (abs(feet) / feet));
 	DriverStation::ReportError("Motors have started\n");
 
 	if(Constants::GetConstant("UseTime"))

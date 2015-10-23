@@ -108,7 +108,7 @@ void AutonomousSwitcher::RunAuto()
 
 void AutonomousSwitcher::ModeDriveForward()
 {
-	DriverInst.MoveDistance(1);
+	DriverInst.MoveDistance(4);
 }
 
 // stacks three totes - make sure the lift is at the first flag
@@ -121,24 +121,24 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	Wait(.5);
 	// Pushes the recycling container out of the way
 	DriverStation::ReportError("2. Push the recycling container\n");
-	SuckyInst->Open(false);
+	SuckyInst->Open(true);
 	SuckyInst->SetLeft(.75);
 	SuckyInst->SetRight(-.75);
 	// Moves to the second tote
 	DriverStation::ReportError("3. Move 3 feet to the second tote\n");
-	DriverInst.MoveDistance(3);
+	DriverInst.MoveDistance(2);
 	// Opens for the second tote
 	DriverStation::ReportError("4. Open for second tote\n");
-	SuckyInst->Open(true);
+	SuckyInst->Open(false);
 	// Continues to move to the second tote
 	DriverStation::ReportError("5. Move 3 feet to the second tote again\n");
-	DriverInst.MoveDistance(3);
+	DriverInst.MoveDistance(2);
 	// intakes the second tote
 	DriverStation::ReportError("6. Intake the second tote\n");
-	SuckyInst->Open(false);
+	SuckyInst->Open(true);
 	SuckyInst->SuckIn();
 	Wait(1);
-	SuckyInst->Open(true);
+	SuckyInst->Open(false);
 	// picks up the second tote
 	DriverStation::ReportError("7. Pick up the second tote\n");
 	LiftInst->LevelChange(-2);
@@ -146,25 +146,25 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	LiftInst->LevelChange(2);
 	// closes the intake and pushes away the container
 	DriverStation::ReportError("8. Close intake and push away container\n");
-	SuckyInst->Open(false);
+	SuckyInst->Open(true);
 	SuckyInst->SetLeft(-.75);
 	SuckyInst->SetRight(.75);
 	// slowly moves to the third tote and opens the intake
 	DriverStation::ReportError("9. Move 3 feet toward the third tote at .75 * speed\n");
-	DriverInst.MoveDistance(3, .75);
+	DriverInst.MoveDistance(2, .75);
 	DriverStation::ReportError("10. Open the intake\n");
-	SuckyInst->Open(true);
-	DriverInst.MoveDistance(4);
-	// Intakes the third tote
 	SuckyInst->Open(false);
+	DriverInst.MoveDistance(3.5);
+	// Intakes the third tote
+	SuckyInst->Open(true);
 	SuckyInst->SuckIn();
 	Wait(1);
-	SuckyInst->Open(true);
+	SuckyInst->Open(false);
 	SuckyInst->Stop();
 	// Picks up the third tote
-	LiftInst->LevelChange(-2);
-	LiftInst->WaitForLift();
-	LiftInst->LevelChange(2);
+//	LiftInst->LevelChange(-2);
+//	LiftInst->WaitForLift();
+//	LiftInst->LevelChange(2);
 	// Turns and drives to the auton zone
 	DriverInst.TurnDegrees(60);
 	DriverInst.MoveDistance(6);
