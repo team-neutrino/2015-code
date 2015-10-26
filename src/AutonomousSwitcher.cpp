@@ -75,6 +75,7 @@ void AutonomousSwitcher::RunAuto()
 	switch (Switch.Read())
 	{
 		case 0:
+			DriverOutputs::ReportError("Auto: none\n");
 			break;
 		case 1:
 			DriverOutputs::ReportError("Auto: drive forward\n");
@@ -158,19 +159,15 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	// Intakes the third tote
 	SuckyInst->Open(true);
 	SuckyInst->SuckIn();
-	Wait(1);
+	Wait(.25);
 	SuckyInst->Open(false);
 	SuckyInst->Stop();
-	// Picks up the third tote
-//	LiftInst->LevelChange(-2);
-//	LiftInst->WaitForLift();
-//	LiftInst->LevelChange(2);
 	// Turns and drives to the auton zone
 	DriverInst.TurnDegrees(60);
-	DriverInst.MoveDistance(6);
 	LiftInst->Reset();
+	DriverInst.MoveDistance(2, 2);
 	LiftInst->WaitForLift();
-	DriverInst.MoveDistance(-3);
+	DriverInst.MoveDistance(1, -3);
 }
 
 void AutonomousSwitcher::TurnWithTote()
