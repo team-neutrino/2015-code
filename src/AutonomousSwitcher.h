@@ -24,6 +24,8 @@ public:
 	void TimeGrabCans();
 
 private:
+	int MODE = 2;
+
 	DigitalSelectorSwitch Switch;
 	std::thread DashboardThread;
 

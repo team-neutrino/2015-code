@@ -18,61 +18,11 @@ AutonomousSwitcher::AutonomousSwitcher(Drive* drive, Intake* sucky, Lift* lift, 
 
 void AutonomousSwitcher::updateDashboardThread()
 {
-	int mode;
-	int modePrev = 0;
-
-	double lastRefresh = GetTime() + REFRESH_RATE;
-
-	while (true)
-	{
-		mode = Switch.Read();
-		if(mode != modePrev || ((GetTime() - lastRefresh) >= REFRESH_RATE))
-		{
-			lastRefresh = GetTime();
-
-			DriverOutputs::UpdateSmartDashboardNumber("Autonomous Mode", mode);
-
-			std::string description;
-			switch (mode)
-			{
-				case 0:
-					description = "Do Nothing!";
-					break;
-				case 1:
-					description = "Drive Forward";
-					break;
-				case 2:
-					description = "Three Tote Stacked";
-					break;
-				case 3:
-					description = "Turn 90 and drive to zone";
-					break;
-				case 4:
-					description = "Grab the Cans";
-					break;
-				case 5:
-					description = "Grab Cans in Time Mode";
-					break;
-				case 6:
-					description = "Drive Forward in Time Mode";
-					break;
-				default:
-					description =  "Auto mode not implemented";
-					break;
-			}
-
-			DriverOutputs::UpdateSmartDashboardString("Autonomous Mode Description", description);
-
-			modePrev = mode;
-		}
-
-		Wait(1);
-	}
 }
 
 void AutonomousSwitcher::RunAuto()
 {
-	switch (Switch.Read())
+	switch (MODE)
 	{
 		case 0:
 			DriverOutputs::ReportError("Auto: none\n");
@@ -90,15 +40,11 @@ void AutonomousSwitcher::RunAuto()
 			TurnWithTote();
 			break;
 		case 4:
-			DriverOutputs::ReportError("Auto: Grab Those Cans!\n I need Cans!\n DEAD SPEIDER AWAY!!!!\n");
-			ModeCanGrab();
-			break;
-		case 5:
 			DriverOutputs::ReportError("Auto: Grab the Cans in Timed Mode\n");
 			TimeGrabCans();
 			break;
-		case 6:
-			DriverOutputs::ReportError("Auto: Move Forward in Time Mode\n");
+		case 5:
+			DriverOutputs::ReportError("Flip Can\n");
 			TimeMoveForward();
 			break;
 		default:
@@ -123,8 +69,8 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	// Pushes the recycling container out of the way
 	DriverStation::ReportError("2. Push the recycling container\n");
 	SuckyInst->Open(true);
-	SuckyInst->SetLeft(.75);
-	SuckyInst->SetRight(-.75);
+	SuckyInst->SetLeft(1);
+	SuckyInst->SetRight(-1);
 	// Moves to the second tote
 	DriverStation::ReportError("3. Move 3 feet to the second tote\n");
 	DriverInst.MoveDistance(2);
@@ -133,7 +79,7 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	SuckyInst->Open(false);
 	// Continues to move to the second tote
 	DriverStation::ReportError("5. Move 3 feet to the second tote again\n");
-	DriverInst.MoveDistance(2);
+	DriverInst.MoveDistance(1.75);
 	// intakes the second tote
 	DriverStation::ReportError("6. Intake the second tote\n");
 	SuckyInst->Open(true);
@@ -148,26 +94,27 @@ void AutonomousSwitcher::ModeThreeToteStack()
 	// closes the intake and pushes away the container
 	DriverStation::ReportError("8. Close intake and push away container\n");
 	SuckyInst->Open(true);
-	SuckyInst->SetLeft(-.75);
-	SuckyInst->SetRight(.75);
+	SuckyInst->SetLeft(-1);
+	SuckyInst->SetRight(1);
 	// slowly moves to the third tote and opens the intake
 	DriverStation::ReportError("9. Move 3 feet toward the third tote at .75 * speed\n");
-	DriverInst.MoveDistance(2, .75);
+	DriverInst.MoveDistance(2.5);
 	DriverStation::ReportError("10. Open the intake\n");
 	SuckyInst->Open(false);
-	DriverInst.MoveDistance(3.5);
-	// Intakes the third tote
-	SuckyInst->Open(true);
+	DriverInst.MoveDistance(2.5);
 	SuckyInst->SuckIn();
-	Wait(.25);
-	SuckyInst->Open(false);
+	SuckyInst->Open(true);
+	DriverInst.MoveDistance(.5);
+	// Intakes the third totes
 	SuckyInst->Stop();
 	// Turns and drives to the auton zone
 	DriverInst.TurnDegrees(60);
+	SuckyInst->Open(false);
 	LiftInst->Reset();
 	DriverInst.MoveDistance(2, 2);
 	LiftInst->WaitForLift();
-	DriverInst.MoveDistance(1, -3);
+	DriverOutputs::ReportError("Driving back");
+	DriverInst.MoveDistance(1.5, -2);
 }
 
 void AutonomousSwitcher::TurnWithTote()
@@ -176,24 +123,28 @@ void AutonomousSwitcher::TurnWithTote()
 	DriverInst.MoveDistance(3);
 }
 
-void AutonomousSwitcher::ModeCanGrab()
-{
-	DriverInst.MoveDistance(-.5);
-	CanGrabber->CanGrabberToggle(true);
-	DriverInst.MoveDistance(-1);
-	DriverInst.MoveDistance(5);
-}
-
 void AutonomousSwitcher::TimeGrabCans()
 {
-	DriverInst.MoveForTime(-.18);
-	Wait (1);
+	DriverInst.MoveForTime(-.3);
+	Wait (2);
 	CanGrabber->CanGrabberToggle(true);
-	Wait (1);
-	DriverInst.MoveForTime(1.5);
+	Wait (5);
+	DriverInst.MoveForTime(3);
+	CanGrabber->CanGrabberToggle(false);
 }
 
 void AutonomousSwitcher::TimeMoveForward()
 {
-	DriverInst.MoveForTime(1.5);
+	DriverInst.MoveDistance(2, 1);
+	DriverInst.MoveDistance(1.75, -1);
+	LiftInst->Reset();
+	LiftInst->WaitForLift();
+	SuckyInst->Open(true);
+	SuckyInst->SuckIn();
+	Wait(2);
+	SuckyInst->Open(false);
+	DriverInst.MoveDistance(2.75, 1);
+	Wait(1);
+	Wait(1);
+	LiftInst->LevelChange(3);
 }

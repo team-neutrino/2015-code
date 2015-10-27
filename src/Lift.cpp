@@ -210,8 +210,16 @@ void Lift::resetThreaded()
 	IsLifting = true;
 	Jail->GateToggle(true);
 
-	LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
-	LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	if (DriverStation::GetInstance()->IsAutonomous())
+	{
+		LiftMotor1.Set(-Constants::GetConstant("LiftMotorDownSpeed"));
+		LiftMotor2.Set(Constants::GetConstant("LiftMotorDownSpeed"));
+	}
+	else
+	{
+		LiftMotor1.Set(-1);
+		LiftMotor2.Set(1);
+	}
 
 	double startTime = GetTime();
 	while (!LimitSwitchBottom.Get() &&
