@@ -129,7 +129,7 @@ void DriverOutputs::run()
 		}
 
 		// Driver Errors
-		if(UpdateErrors && DriverStation::GetInstance()->IsDSAttached())
+		if(UpdateErrors && DriverStation::GetInstance().IsDSAttached())
 		{
 			MtxError.lock();
 			UpdateErrors = false;
